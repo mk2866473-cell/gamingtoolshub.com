@@ -34,21 +34,48 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#039;');
 }
 
+// Clean up any legacy directory-based tool folders so only clean .html files exist
+function cleanSubdirectories(parentDirPath: string) {
+  if (!fs.existsSync(parentDirPath)) return;
+  const entries = fs.readdirSync(parentDirPath, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      fs.rmSync(path.join(parentDirPath, entry.name), { recursive: true, force: true });
+    }
+  }
+}
+
+cleanSubdirectories(path.join(DIST_DIR, 'tools'));
+cleanSubdirectories(path.join(DIST_DIR, 'games'));
+
 function writeHtmlForRoute(routePath: string, htmlContent: string) {
   const cleanPath = routePath.replace(/^\//, '').replace(/\/$/, '');
-  let targetFile: string;
 
   if (cleanPath === '') {
-    targetFile = path.join(DIST_DIR, 'index.html');
-  } else {
-    const targetDir = path.join(DIST_DIR, cleanPath);
-    if (!fs.existsSync(targetDir)) {
-      fs.mkdirSync(targetDir, { recursive: true });
-    }
-    targetFile = path.join(targetDir, 'index.html');
+    fs.writeFileSync(path.join(DIST_DIR, 'index.html'), htmlContent, 'utf-8');
+    return;
   }
 
-  fs.writeFileSync(targetFile, htmlContent, 'utf-8');
+  // 1. Write the clean URL static HTML file: dist/cleanPath.html
+  // (e.g. dist/tools/robux-tax-calculator.html or dist/about.html)
+  // GitHub Pages natively serves /tools/robux-tax-calculator via /tools/robux-tax-calculator.html
+  // with HTTP 200 and WITHOUT any trailing slash 301 redirect!
+  const targetHtmlFile = path.join(DIST_DIR, `${cleanPath}.html`);
+  const parentDir = path.dirname(targetHtmlFile);
+  if (!fs.existsSync(parentDir)) {
+    fs.mkdirSync(parentDir, { recursive: true });
+  }
+  fs.writeFileSync(targetHtmlFile, htmlContent, 'utf-8');
+
+  // 2. For directory hub routes like /tools, /games, /categories, ALSO write index.html inside the directory
+  // so that if someone visits with a trailing slash (e.g. /tools/), it also resolves directly!
+  if (['tools', 'games', 'categories'].includes(cleanPath)) {
+    const dirPath = path.join(DIST_DIR, cleanPath);
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+    fs.writeFileSync(path.join(dirPath, 'index.html'), htmlContent, 'utf-8');
+  }
 }
 
 function renderNavHeader(activePath: string = ''): string {
@@ -134,7 +161,7 @@ function renderPageTemplate(
   jsonLd?: any
 ) {
   let pageHtml = baseTemplate;
-  const canonicalUrl = `${DOMAIN}${routePath === '/' ? '' : routePath}`;
+  const canonicalUrl = `${DOMAIN}${routePath === '/' ? '/' : routePath}`;
 
   pageHtml = pageHtml.replace(/<title>.*?<\/title>/i, `<title>${escapeHtml(title)}</title>`);
   pageHtml = pageHtml.replace(
@@ -172,7 +199,7 @@ function renderPageTemplate(
   }
 
   // Inject Pre-rendered Content into <div id="root"></div>
-  pageHtml = pageHtml.replace('<div id="root"></div>', `<div id="root">${bodyContent}</div>`);
+  pageHtml = pageHtml.replace('<div id="root"></div>', `<div id="root" data-prerendered="true">${bodyContent}</div>`);
 
   writeHtmlForRoute(routePath, pageHtml);
 }
@@ -303,11 +330,30 @@ TOOLS.forEach(tool => {
               <p class="text-xs sm:text-sm text-zinc-400 mt-2 max-w-3xl leading-relaxed">${escapeHtml(tool.description)}</p>
             </div>
 
-            <!-- Interactive Tool Loading Placeholder (Hydrates instantly in browser) -->
-            <div class="bg-[#0e1422] border border-slate-800 rounded-2xl p-6 sm:p-8 min-h-[350px] flex flex-col items-center justify-center text-center">
-              <div class="w-10 h-10 rounded-full border-2 border-emerald-400 border-t-transparent animate-spin mb-4"></div>
-              <p class="text-sm font-semibold text-white">Loading ${escapeHtml(tool.name)} Engine...</p>
-              <p class="text-xs text-slate-400 mt-1">Instant client-side calculation with zero server lag.</p>
+            <!-- Interactive Tool Launchpad -->
+            <div id="interactive-tool-launcher" class="bg-[#0e1422] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold">
+                    ⚡
+                  </div>
+                  <div>
+                    <h2 class="text-base sm:text-lg font-bold text-white">${escapeHtml(tool.name)} Engine</h2>
+                    <p class="text-xs text-slate-400">Precision Client-Side Calculator • Zero Server Lag</p>
+                  </div>
+                </div>
+                <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20">Verified Math</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Click below to open the interactive ${escapeHtml(tool.name)} directly in your browser. All formulas run locally on your device with complete privacy.
+              </p>
+              <div class="pt-2">
+                <button id="open-interactive-tool-btn" data-tool-slug="${escapeHtml(tool.slug)}" class="w-full sm:w-auto px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-sm rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 cursor-pointer">
+                  <span>⚡</span>
+                  <span>Open the interactive tool</span>
+                  <span class="text-xs font-normal opacity-75">→</span>
+                </button>
+              </div>
             </div>
 
             <!-- How to Use Step-by-Step Guide -->
@@ -455,7 +501,7 @@ TOOLS.forEach(tool => {
   pageHtml = pageHtml.replace('</head>', `${jsonLdScript}\n</head>`);
 
   // Inject Pre-rendered Content into <div id="root"></div>
-  pageHtml = pageHtml.replace('<div id="root"></div>', `<div id="root">${prerenderedBody}</div>`);
+  pageHtml = pageHtml.replace('<div id="root"></div>', `<div id="root" data-prerendered="true">${prerenderedBody}</div>`);
 
   writeHtmlForRoute(`/tools/${tool.slug}`, pageHtml);
   renderedCount++;
@@ -1202,25 +1248,176 @@ renderPageTemplate(
 console.log('Successfully pre-rendered all listing and static pages with rich content and working links!');
 
 /**
- * 3. Generate Intelligent GitHub Pages 404.html with SPA Redirect
+ * 3. Generate Clean GitHub Pages 404.html (No Meta Refresh, No Redirect Loop)
  */
-const spa404Script = `
-<!DOCTYPE html>
-<html>
+const clean404Html = `<!doctype html>
+<html lang="en" class="dark">
   <head>
-    <meta charset="utf-8">
-    <title>GamingToolsHub - Redirecting...</title>
-    <script>
-      // Single Page App redirect for GitHub Pages
-      sessionStorage.redirect = location.href;
-    </script>
-    <meta http-equiv="refresh" content="0;URL='/'">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found | GamingToolsHub</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        background-color: #080c14;
+        color: #f1f5f9;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        justify-content: space-between;
+      }
+      header {
+        border-bottom: 1px solid rgba(51, 65, 85, 0.8);
+        background: rgba(8, 12, 20, 0.95);
+        padding: 0 1.5rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 800;
+        font-size: 1rem;
+      }
+      .brand-badge {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        color: #34d399;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 0.875rem;
+      }
+      .brand-highlight {
+        color: #34d399;
+      }
+      nav a {
+        color: #cbd5e1;
+        text-decoration: none;
+        font-size: 0.875rem;
+        margin-left: 1.25rem;
+        transition: color 0.2s;
+      }
+      nav a:hover {
+        color: #34d399;
+      }
+      main {
+        max-width: 36rem;
+        margin: 4rem auto;
+        padding: 0 1.5rem;
+        text-align: center;
+      }
+      .error-code {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 0.75rem;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        color: #34d399;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+        font-size: 1.125rem;
+        margin-bottom: 1.5rem;
+      }
+      h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: #ffffff;
+        margin: 0 0 1rem 0;
+        letter-spacing: -0.025em;
+      }
+      p {
+        font-size: 0.95rem;
+        color: #94a3b8;
+        line-height: 1.6;
+        margin: 0 0 2rem 0;
+      }
+      .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+      }
+      .btn-primary {
+        background: #10b981;
+        color: #000000;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: background 0.2s;
+      }
+      .btn-primary:hover {
+        background: #34d399;
+      }
+      .btn-secondary {
+        background: #1e293b;
+        color: #ffffff;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        font-size: 0.875rem;
+        border: 1px solid #334155;
+        transition: background 0.2s;
+      }
+      .btn-secondary:hover {
+        background: #334155;
+      }
+      footer {
+        border-top: 1px solid rgba(51, 65, 85, 0.8);
+        background: #060910;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        font-size: 0.75rem;
+        color: #64748b;
+      }
+    </style>
   </head>
-  <body style="background:#080c14;color:#94a3b8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
-    <p>Redirecting to requested page...</p>
-  </body>
-</html>
-`;
+  <body>
+    <header>
+      <a href="/" class="brand">
+        <span class="brand-badge">G</span>
+        <span>GamingTools<span class="brand-highlight">Hub</span></span>
+      </a>
+      <nav>
+        <a href="/tools">All Tools</a>
+        <a href="/games">Games</a>
+        <a href="/">Home</a>
+      </nav>
+    </header>
 
-fs.writeFileSync(path.join(DIST_DIR, '404.html'), spa404Script.trim(), 'utf-8');
-console.log('Generated GitHub Pages intelligent 404.html SPA redirect!');
+    <main>
+      <div class="error-code">404 • NOT FOUND</div>
+      <h1>Page Not Found</h1>
+      <p>The gaming tool or calculator URL you requested does not exist or has been moved. Explore our complete directory of 100+ precision gaming tools below.</p>
+      <div class="btn-group">
+        <a href="/tools" class="btn-primary">Browse All Tools →</a>
+        <a href="/" class="btn-secondary">Return Home</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2026 GamingToolsHub. Built for precision gaming calculations with zero server lag.</p>
+    </footer>
+  </body>
+</html>`;
+
+fs.writeFileSync(path.join(DIST_DIR, '404.html'), clean404Html.trim(), 'utf-8');
+console.log('Generated clean GitHub Pages 404.html without redirects!');

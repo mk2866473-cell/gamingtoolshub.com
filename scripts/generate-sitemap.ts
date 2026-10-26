@@ -23,7 +23,7 @@ const domain = 'https://gamingtoolshub.com';
 const today = new Date().toISOString().split('T')[0];
 
 const staticRoutes = [
-  { path: '', priority: '1.0', changefreq: 'daily' },
+  { path: '/', priority: '1.0', changefreq: 'daily' },
   { path: '/tools', priority: '0.9', changefreq: 'daily' },
   { path: '/games', priority: '0.8', changefreq: 'weekly' },
   { path: '/categories', priority: '0.8', changefreq: 'weekly' },
