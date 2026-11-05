@@ -65,21 +65,24 @@ export default function BloxFruitsStatCalculator() {
         <div className="flex flex-wrap gap-1.5">
           <button
             onClick={() => applyPreset('fruit-main')}
-            className="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-purple-300 border border-purple-500/40 font-bold"
+            className="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-purple-300 border border-purple-500/40 font-bold flex items-center gap-1.5"
           >
-            🍇 Fruit Main (Melee + Def + Fruit)
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Fruit Main (Melee + Def + Fruit)</span>
           </button>
           <button
             onClick={() => applyPreset('sword-main')}
-            className="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-cyan-300 border border-cyan-500/40 font-bold"
+            className="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-cyan-300 border border-cyan-500/40 font-bold flex items-center gap-1.5"
           >
-            ⚔️ Sword Main (Melee + Def + Sword)
+            <Sword className="w-3.5 h-3.5" />
+            <span>Sword Main (Melee + Def + Sword)</span>
           </button>
           <button
             onClick={() => applyPreset('gun-main')}
-            className="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300 border border-amber-500/40 font-bold"
+            className="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300 border border-amber-500/40 font-bold flex items-center gap-1.5"
           >
-            🎯 Gun Main (Melee + Def + Gun)
+            <Crosshair className="w-3.5 h-3.5" />
+            <span>Gun Main (Melee + Def + Gun)</span>
           </button>
         </div>
       </div>

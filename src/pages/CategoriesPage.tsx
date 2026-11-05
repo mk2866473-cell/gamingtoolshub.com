@@ -16,13 +16,13 @@ interface CategoriesPageProps {
 }
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  calculators: <Calculator className="w-5 h-5 text-emerald-400" />,
+  calculators: <Calculator className="w-5 h-5 text-violet-400" />,
   generators: <Shapes className="w-5 h-5 text-cyan-400" />,
   converters: <ArrowLeftRight className="w-5 h-5 text-violet-400" />,
-  planners: <Layers className="w-5 h-5 text-amber-400" />,
-  trackers: <Clock className="w-5 h-5 text-rose-400" />,
-  'gaming-utilities': <Dices className="w-5 h-5 text-teal-400" />,
-  randomizers: <Dices className="w-5 h-5 text-teal-400" />
+  planners: <Layers className="w-5 h-5 text-cyan-400" />,
+  trackers: <Clock className="w-5 h-5 text-purple-400" />,
+  'gaming-utilities': <Dices className="w-5 h-5 text-cyan-400" />,
+  randomizers: <Dices className="w-5 h-5 text-violet-400" />
 };
 
 export default function CategoriesPage({ selectedCategoryId, onNavigate }: CategoriesPageProps) {
@@ -44,7 +44,7 @@ export default function CategoriesPage({ selectedCategoryId, onNavigate }: Categ
       <div className="space-y-8">
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-indigo-950/80">
             <div>
               <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                 {activeCat ? `${activeCat.name}` : 'Browse Tools by Category'}
@@ -56,7 +56,7 @@ export default function CategoriesPage({ selectedCategoryId, onNavigate }: Categ
             {activeCat && (
               <button
                 onClick={() => onNavigate('/categories')}
-                className="text-xs text-emerald-400 hover:text-emerald-300 self-start sm:self-auto"
+                className="text-xs font-semibold text-violet-400 hover:text-cyan-300 self-start sm:self-auto transition-colors"
               >
                 ← View All Categories
               </button>
@@ -64,23 +64,25 @@ export default function CategoriesPage({ selectedCategoryId, onNavigate }: Categ
           </div>
         </div>
 
-        {/* Category Pills / Cards */}
-        <div className="flex flex-wrap gap-2.5">
+        {/* Category Filter Buttons */}
+        <div className="flex flex-wrap gap-2 sm:gap-2.5">
           {CATEGORIES.filter(c => c.id !== 'randomizers').map((cat) => {
             const isSelected = activeCat?.id === cat.id;
             const count = TOOLS.filter(t => t.categoryId === cat.id).length;
+            const icon = CATEGORY_ICONS[cat.id];
             return (
               <button
                 key={cat.id}
                 onClick={() => onNavigate(`/categories?cat=${cat.id}`)}
                 className={`px-3.5 py-2 rounded-xl text-xs font-semibold border flex items-center gap-2 transition-all ${
                   isSelected
-                    ? 'bg-emerald-600 border-emerald-500 text-white font-semibold'
-                    : 'bg-[#0e1422] border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white'
+                    ? 'bg-violet-600 border-violet-500 text-white font-semibold shadow-md shadow-violet-950/50'
+                    : 'bg-[#0c122e] border-indigo-900/60 text-slate-300 hover:border-violet-500/50 hover:text-white hover:bg-[#121c45]'
                 }`}
               >
+                {icon && <span className="w-4 h-4 flex items-center justify-center flex-shrink-0">{icon}</span>}
                 <span>{cat.name}</span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#090d16] text-slate-400">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#070b19] border border-indigo-950 text-slate-400">
                   {count}
                 </span>
               </button>

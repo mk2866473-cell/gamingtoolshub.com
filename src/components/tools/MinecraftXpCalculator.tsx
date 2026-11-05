@@ -6,7 +6,7 @@
 import React, { useState, useMemo } from 'react';
 import { 
   Zap, Flame, Sword, Pickaxe, Award, ChevronRight, 
-  HelpCircle, RefreshCw, BarChart3
+  HelpCircle, RefreshCw, BarChart3, Eye, Waves, Layers, Sparkles
 } from 'lucide-react';
 
 // Minecraft Vanilla XP Calculations
@@ -205,8 +205,10 @@ export default function MinecraftXpCalculator() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {/* Bottles */}
-          <div className="bg-zinc-950 border border-zinc-800 hover:border-emerald-500/50 p-3 rounded-lg text-center transition-colors">
-            <span className="text-2xl mb-1 block">🧪</span>
+          <div className="bg-zinc-950 border border-zinc-800 hover:border-emerald-500/50 p-3 rounded-lg text-center transition-colors flex flex-col items-center">
+            <span className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-1">
+              <Sparkles className="w-4 h-4" />
+            </span>
             <span className="text-xs text-zinc-400 block font-medium">Bottles o' Enchanting</span>
             <span className="text-lg font-bold font-mono text-emerald-400 mt-1 block">
               {xpAnalysis.bottlesNeeded.toLocaleString()}
@@ -215,8 +217,10 @@ export default function MinecraftXpCalculator() {
           </div>
 
           {/* Endermen */}
-          <div className="bg-zinc-950 border border-zinc-800 hover:border-purple-500/50 p-3 rounded-lg text-center transition-colors">
-            <span className="text-2xl mb-1 block">👁️</span>
+          <div className="bg-zinc-950 border border-zinc-800 hover:border-purple-500/50 p-3 rounded-lg text-center transition-colors flex flex-col items-center">
+            <span className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center mb-1">
+              <Eye className="w-4 h-4" />
+            </span>
             <span className="text-xs text-zinc-400 block font-medium">Enderman Farm</span>
             <span className="text-lg font-bold font-mono text-purple-400 mt-1 block">
               {xpAnalysis.endermenNeeded.toLocaleString()}
@@ -225,8 +229,10 @@ export default function MinecraftXpCalculator() {
           </div>
 
           {/* Blazes */}
-          <div className="bg-zinc-950 border border-zinc-800 hover:border-amber-500/50 p-3 rounded-lg text-center transition-colors">
-            <span className="text-2xl mb-1 block">🔥</span>
+          <div className="bg-zinc-950 border border-zinc-800 hover:border-amber-500/50 p-3 rounded-lg text-center transition-colors flex flex-col items-center">
+            <span className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-1">
+              <Flame className="w-4 h-4" />
+            </span>
             <span className="text-xs text-zinc-400 block font-medium">Blaze Spawner</span>
             <span className="text-lg font-bold font-mono text-amber-400 mt-1 block">
               {xpAnalysis.blazesNeeded.toLocaleString()}
@@ -235,8 +241,10 @@ export default function MinecraftXpCalculator() {
           </div>
 
           {/* Guardians */}
-          <div className="bg-zinc-950 border border-zinc-800 hover:border-cyan-500/50 p-3 rounded-lg text-center transition-colors">
-            <span className="text-2xl mb-1 block">🐡</span>
+          <div className="bg-zinc-950 border border-zinc-800 hover:border-cyan-500/50 p-3 rounded-lg text-center transition-colors flex flex-col items-center">
+            <span className="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-1">
+              <Waves className="w-4 h-4" />
+            </span>
             <span className="text-xs text-zinc-400 block font-medium">Ocean Monument</span>
             <span className="text-lg font-bold font-mono text-cyan-400 mt-1 block">
               {xpAnalysis.guardiansNeeded.toLocaleString()}
@@ -245,8 +253,10 @@ export default function MinecraftXpCalculator() {
           </div>
 
           {/* Nether Quartz */}
-          <div className="bg-zinc-950 border border-zinc-800 hover:border-rose-500/50 p-3 rounded-lg text-center transition-colors">
-            <span className="text-2xl mb-1 block">⛏️</span>
+          <div className="bg-zinc-950 border border-zinc-800 hover:border-rose-500/50 p-3 rounded-lg text-center transition-colors flex flex-col items-center">
+            <span className="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center mb-1">
+              <Pickaxe className="w-4 h-4" />
+            </span>
             <span className="text-xs text-zinc-400 block font-medium">Nether Quartz Ores</span>
             <span className="text-lg font-bold font-mono text-rose-400 mt-1 block">
               {xpAnalysis.quartzOresNeeded.toLocaleString()}
@@ -255,8 +265,10 @@ export default function MinecraftXpCalculator() {
           </div>
 
           {/* Smelting Ancient Debris */}
-          <div className="bg-zinc-950 border border-zinc-800 hover:border-indigo-500/50 p-3 rounded-lg text-center transition-colors">
-            <span className="text-2xl mb-1 block">🧱</span>
+          <div className="bg-zinc-950 border border-zinc-800 hover:border-indigo-500/50 p-3 rounded-lg text-center transition-colors flex flex-col items-center">
+            <span className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-1">
+              <Layers className="w-4 h-4" />
+            </span>
             <span className="text-xs text-zinc-400 block font-medium">Debris Smelting</span>
             <span className="text-lg font-bold font-mono text-indigo-400 mt-1 block">
               {xpAnalysis.ancientDebrisSmeltNeeded.toLocaleString()}

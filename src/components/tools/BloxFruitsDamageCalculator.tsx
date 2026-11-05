@@ -5,7 +5,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { 
-  Sword, Zap, Shield, Sparkles, Trophy, Flame, ChevronRight, Check
+  Sword, Zap, Shield, Sparkles, Trophy, Flame, ChevronRight, Check, Crosshair
 } from 'lucide-react';
 import { BLOX_FRUITS_GAME_CONSTANTS } from '../../data/robloxData';
 
@@ -73,23 +73,27 @@ export default function BloxFruitsDamageCalculator() {
   return (
     <div className="bg-zinc-900/90 border border-zinc-800 rounded-2xl p-4 sm:p-6 shadow-2xl space-y-6">
       {/* Attack Category Tabs */}
-      <div className="grid grid-cols-4 gap-2 p-1 bg-zinc-950 rounded-xl border border-zinc-800">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1 bg-zinc-950 rounded-xl border border-zinc-800">
         {[
-          { id: 'fruit', name: '🍇 Blox Fruit Move' },
-          { id: 'sword', name: '⚔️ Sword Skill' },
-          { id: 'melee', name: '⚡ Melee Style' },
-          { id: 'gun', name: '🎯 Gun Blast' }
-        ].map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => setAttackCategory(cat.id as any)}
-            className={`py-2 rounded-lg text-xs font-bold transition-all ${
-              attackCategory === cat.id ? 'bg-purple-500/20 text-purple-300 border border-purple-500/50' : 'text-zinc-400 hover:text-white'
-            }`}
-          >
-            {cat.name}
-          </button>
-        ))}
+          { id: 'fruit', name: 'Blox Fruit Move', icon: Sparkles },
+          { id: 'sword', name: 'Sword Skill', icon: Sword },
+          { id: 'melee', name: 'Melee Style', icon: Zap },
+          { id: 'gun', name: 'Gun Blast', icon: Crosshair }
+        ].map((cat) => {
+          const Icon = cat.icon;
+          return (
+            <button
+              key={cat.id}
+              onClick={() => setAttackCategory(cat.id as any)}
+              className={`py-2 px-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                attackCategory === cat.id ? 'bg-purple-500/20 text-purple-300 border border-purple-500/50' : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Icon className="w-3.5 h-3.5" />
+              <span>{cat.name}</span>
+            </button>
+          );
+        })}
       </div>
 
       {/* Main Stats Sliders */}

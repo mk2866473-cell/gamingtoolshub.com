@@ -12,6 +12,7 @@ import {
 import { TOOLS } from '../data/gamesAndTools';
 import SEOHead from '../components/SEOHead';
 import { PokeballIcon } from '../components/GameIcons';
+import AdLayout from '../components/ads/AdLayout';
 
 interface PokemonGoHubPageProps {
   onNavigate: (path: string) => void;
@@ -67,6 +68,9 @@ export default function PokemonGoHubPage({ onNavigate }: PokemonGoHubPageProps) 
       />
 
       <div className="space-y-12">
+        {/* Hub Top Banner Ad Slot */}
+        <AdLayout.HubTop currentPath="/pokemongo" />
+
         {/* Navigation Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs font-mono text-zinc-400">
           <button onClick={() => onNavigate('/')} className="hover:text-white transition-colors">Home</button>
@@ -86,8 +90,11 @@ export default function PokemonGoHubPage({ onNavigate }: PokemonGoHubPageProps) 
               Verified Pokémon GO Theorycrafting Suite
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Pokémon GO CP, IV, PvP & Stardust Suite
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-4 flex-wrap">
+              <span className="p-2 sm:p-2.5 rounded-2xl bg-rose-950/80 border border-rose-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
+                <PokeballIcon className="w-8 h-8 sm:w-11 sm:h-11 text-rose-400" />
+              </span>
+              <span>Pokémon GO CP, IV, PvP & Stardust Suite</span>
             </h1>
 
             <p className="text-base sm:text-lg text-zinc-300 leading-relaxed">
@@ -154,43 +161,48 @@ export default function PokemonGoHubPage({ onNavigate }: PokemonGoHubPageProps) 
 
         {/* Tools Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredTools.map(tool => (
-            <div
-              key={tool.id}
-              onClick={() => onNavigate(tool.canonicalPath)}
-              className="group p-6 rounded-2xl bg-zinc-900/70 border border-zinc-800 hover:border-rose-500/50 hover:bg-zinc-900 transition-all cursor-pointer flex flex-col justify-between space-y-4 shadow-sm hover:shadow-xl hover:shadow-rose-500/5"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition-all">
-                    {POKEMON_TOOL_ICONS[tool.id] || <PokeballIcon className="w-5 h-5 text-rose-400 group-hover:text-white" />}
+          {filteredTools.map((tool, idx) => (
+            <React.Fragment key={tool.id}>
+              {idx === 9 && <AdLayout.HubInFeed />}
+              <div
+                onClick={() => onNavigate(tool.canonicalPath)}
+                className="group p-6 rounded-2xl bg-zinc-900/70 border border-zinc-800 hover:border-rose-500/50 hover:bg-zinc-900 transition-all cursor-pointer flex flex-col justify-between space-y-4 shadow-sm hover:shadow-xl hover:shadow-rose-500/5"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition-all">
+                      {POKEMON_TOOL_ICONS[tool.id] || <PokeballIcon className="w-5 h-5 text-rose-400 group-hover:text-white" />}
+                    </div>
+                    {tool.badge && (
+                      <span className="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30 font-mono">
+                        {tool.badge}
+                      </span>
+                    )}
                   </div>
-                  {tool.badge && (
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30 font-mono">
-                      {tool.badge}
-                    </span>
-                  )}
+
+                  <h3 className="text-lg font-bold text-white group-hover:text-rose-400 transition-colors">
+                    {tool.name}
+                  </h3>
+
+                  <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
+                    {tool.shortDescription}
+                  </p>
                 </div>
 
-                <h3 className="text-lg font-bold text-white group-hover:text-rose-400 transition-colors">
-                  {tool.name}
-                </h3>
-
-                <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
-                  {tool.shortDescription}
-                </p>
+                <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-xs">
+                  <span className="text-zinc-500 font-mono">Client-Side Instant</span>
+                  <span className="inline-flex items-center gap-1 font-semibold text-rose-400 group-hover:translate-x-1 transition-transform">
+                    Launch Tool
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
               </div>
-
-              <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-xs">
-                <span className="text-zinc-500 font-mono">Client-Side Instant</span>
-                <span className="inline-flex items-center gap-1 font-semibold text-rose-400 group-hover:translate-x-1 transition-transform">
-                  Launch Tool
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-            </div>
+            </React.Fragment>
           ))}
         </div>
+
+        {/* Hub Above Footer Banner Ad Slot */}
+        <AdLayout.HubAboveFooter />
       </div>
     </>
   );

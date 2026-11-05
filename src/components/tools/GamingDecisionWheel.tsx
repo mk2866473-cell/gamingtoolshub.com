@@ -23,19 +23,19 @@ const PALETTE = [
 
 const PRESETS: Record<string, { name: string; items: string[] }> = {
   drops: {
-    name: '🎯 Battle Royale Hot Drops',
+    name: 'Battle Royale Hot Drops',
     items: ['Tilted Towers', 'Pochinki', 'Skull Town', 'Superstore', 'Fragment East', 'School', 'Salvation Point', 'Hydro Dam']
   },
   games: {
-    name: '🎮 What Game Next?',
+    name: 'What Game Next?',
     items: ['Minecraft Survival', 'Valorant Ranked', 'Counter-Strike 2', 'Apex Legends', 'Helldivers 2', 'Rocket League', 'Elden Ring', 'Overwatch 2']
   },
   roles: {
-    name: '🛡️ Role / Hero Class',
+    name: 'Role / Hero Class',
     items: ['Hard Carry / DPS', 'Main Tank', 'Support / Healer', 'In-Game Leader (IGL)', 'Lurker / Flanker', 'Sniper / Anchor']
   },
   punishments: {
-    name: '🔥 Streamer / Party Forfeit',
+    name: 'Streamer / Party Forfeit',
     items: ['10 Pushups', 'Pistol Only Next Round', 'No Audio for 2 Mins', 'Invert Mouse 1 Round', 'Sing Chorus of Song', 'Drop All Loot & Run']
   }
 };
@@ -281,7 +281,7 @@ export default function GamingDecisionWheel() {
               : 'bg-zinc-800 border-zinc-700 text-zinc-400'
           }`}
         >
-          {eliminationMode ? '🔥 Elimination Mode: ON' : 'Elimination Mode: OFF'}
+          {eliminationMode ? 'Elimination Mode: Active' : 'Elimination Mode: Off'}
         </button>
       </div>
 

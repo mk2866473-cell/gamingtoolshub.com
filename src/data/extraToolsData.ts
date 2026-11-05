@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ToolItem, GameInfo } from './gamesAndTools';
+import { ToolItem, GameInfo } from './types';
 
 export const EXTRA_GAMES: GameInfo[] = [
   {
@@ -65,12 +65,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Genshin Soft Pity Curve',
-      details: 'Base 5-star rate is 0.600%. Starting at pull 74, soft pity increases the rate by approximately ~6.0% per pull until reaching 100% at pull 90.',
+      details: 'Base 5-star rate is 0.600%. Starting at pull 74, soft pity increases the rate by approximately ~6.0% per pull until reaching 100% at pull 90.\n\nWorked Example 1: At 75 pity, your chance of a 5-star is approx 12.6% (0.6% + 2 * 6%).\nWorked Example 2: To guarantee a 5-star from 0 pity, you need 90 pulls (14,400 Primogems). If you lose the 50/50, you need 180 pulls (28,800 Primogems) for the featured character.',
       mathSnippet: 'P(pull < 74) = 0.006; P(pull >= 74) = 0.006 + 0.06 * (pull - 73)'
     },
     faqs: [
       { question: 'When does soft pity start in Genshin?', answer: 'Character Event banners enter soft pity at pull 74, where 5-star drop probability surges dramatically.' },
-      { question: 'How many Primogems guarantee a featured character?', answer: 'In the worst-case scenario with a lost 50/50, 180 pulls (28,800 Primogems) guarantee the featured character.' }
+      { question: 'How many Primogems guarantee a featured character?', answer: 'In the worst-case scenario with a lost 50/50, 180 pulls (28,800 Primogems) guarantee the featured character.' },
+      { question: 'Does pity carry over between banners?', answer: 'Yes, pity and your 50/50 guarantee carry over between banners of the same type (e.g., Character Event Banner 1 and 2).' }
     ],
     proTips: ['Most 5-star characters are obtained between pulls 75 and 81 due to soft pity stacking.'],
     relatedToolIds: ['genshin-resin-calculator', 'genshin-artifact-cv-calculator']
@@ -102,11 +103,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Resin Replenishment Rate',
-      details: 'Original Resin regenerates at a constant 1 unit every 8 minutes (480 seconds), producing 180 Resin per 24-hour cycle.',
+      details: 'Original Resin regenerates at a constant 1 unit every 8 minutes (480 seconds), producing 180 Resin per 24-hour cycle.\n\nWorked Example 1: If you have 0 resin, it will take 160 minutes (2h 40m) to reach 20 resin for a Ley Line/Domain run.\nWorked Example 2: To go from 0 to 200 (the cap), it takes 1,600 minutes, which is exactly 26 hours and 40 minutes.',
       mathSnippet: 'MinutesRemaining = (TargetResin - CurrentResin) * 8'
     },
     faqs: [
-      { question: 'What is the maximum Original Resin limit?', answer: 'The maximum Original Resin limit is 200 resin as of Version 4.7+.' }
+      { question: 'What is the maximum Original Resin limit?', answer: 'The maximum Original Resin limit is 200 resin as of Version 4.7+.' },
+      { question: 'How do I get more Resin quickly?', answer: 'You can use Fragile Resin (restores 60) or Transient Resin from the Serenitea Pot. You can also spend Primogems for a "refill" up to 6 times per day.' },
+      { question: 'What is Condensed Resin?', answer: 'Condensed Resin is crafted at a crafting bench using 40 Original Resin and 1 Crystal Core. It allows you to claim double rewards from Ley Lines and Domains in a single run.' }
     ],
     proTips: ['Craft Condensed Resin (40 Original Resin + 1 Crystal Core) to double domain efficiency and save farming time.'],
     relatedToolIds: ['genshin-pity-calculator', 'genshin-artifact-cv-calculator']
@@ -139,11 +142,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Crit Value Mathematical Formula',
-      details: 'Crit Value standardizes 1% Crit Rate as worth 2% Crit DMG due to artifact roll distribution.',
+      details: 'Crit Value standardizes 1% Crit Rate as worth 2% Crit DMG due to artifact roll distribution.\n\nWorked Example 1: An artifact with 10% Crit Rate and 20% Crit DMG has a CV of (10 * 2) + 20 = 40.0 (SS Tier).\nWorked Example 2: An artifact with 3.5% Crit Rate and 14% Crit DMG has a CV of (3.5 * 2) + 14 = 21.0 (A Tier).',
       mathSnippet: 'CV = (CritRate * 2) + CritDMG'
     },
     faqs: [
-      { question: 'What is considered a good Crit Value in Genshin?', answer: '30+ CV is considered very strong (S-tier), while 40+ CV is a rare god roll (SS-tier).' }
+      { question: 'What is considered a good Crit Value in Genshin?', answer: '30+ CV is considered very strong (S-tier), while 40+ CV is a rare god roll (SS-tier).' },
+      { question: 'Does CV include the main stat?', answer: 'Standard CV calculation typically only includes substats. For Circlets, we usually ignore the main stat unless comparing two different main stats (like CR vs CD).' },
+      { question: 'Why is Crit Rate multiplied by 2?', answer: 'In artifact rolls, the maximum possible Crit DMG roll is exactly twice the maximum possible Crit Rate roll (7.8% vs 3.9%). Doubling the rate balances the two stats for easy comparison.' }
     ],
     proTips: ['Circlets with Crit main stat should calculate CV using only the opposite Crit substat.'],
     relatedToolIds: ['genshin-pity-calculator', 'genshin-damage-calculator']
@@ -174,11 +179,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Full Damage Pipeline',
-      details: 'Outgoing = ATK * Talent% * (1 + DmgBonus) * EnemyDefMult * EnemyResMult * (1 + CritDMG).',
+      details: 'Outgoing = ATK * Talent% * (1 + DmgBonus) * EnemyDefMult * EnemyResMult * (1 + CritDMG).\n\nWorked Example 1: A character with 2000 ATK, 100% Talent, and 50% DMG bonus against a same-level enemy (0.5 DefMult) deals 2000 * 1 * 1.5 * 0.5 = 1500 non-crit damage.\nWorked Example 2: If that same hit crits with 150% Crit DMG, the damage becomes 1500 * (1 + 1.5) = 3750.',
       mathSnippet: 'EnemyDefMult = (CharLvl + 100) / ((CharLvl + 100) + (EnemyLvl + 100) * (1 - DefReduction))'
     },
     faqs: [
-      { question: 'How much does enemy DEF reduce damage?', answer: 'Against an equal-level enemy with 0% defense shred, enemy defense halves (50%) outbound damage.' }
+      { question: 'How much does enemy DEF reduce damage?', answer: 'Against an equal-level enemy with 0% defense shred, enemy defense halves (50%) outbound damage.' },
+      { question: 'What is the difference between Base DMG and Final DMG?', answer: 'Base DMG is (ATK * Talent%), while Final DMG is the result after all multipliers like DMG Bonus, Crits, and Enemy Defense/Resistances are applied.' },
+      { question: 'Does defense reduction (Def Shred) make a big difference?', answer: 'Yes! Reducing enemy defense from 50% to 25% (via 50% Def Shred) results in a massive 33% increase in total damage dealt.' }
     ],
     proTips: ['Elemental RES shred below 0% is halved in effectiveness but still yields substantial overall DPS gains.'],
     relatedToolIds: ['genshin-artifact-cv-calculator', 'genshin-elemental-reaction-calculator']
@@ -209,11 +216,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Amplifying Reaction EM Formula',
-      details: 'Amplifying reactions receive bonus damage: Bonus% = 2.78 * EM / (EM + 1400) * 100.',
+      details: 'Amplifying reactions (Melt/Vaporize) receive bonus damage based on Elemental Mastery.\n\nWorked Example 1: With 200 EM, your Vaporize/Melt bonus is approx 36%. A 1.5x Reverse Vaporize becomes 1.5 * (1 + 0.36) = 2.04x total multiplier.\nWorked Example 2: For transformative reactions like Swirl, 200 EM provides approx 158% bonus damage to the base reaction damage.',
       mathSnippet: 'AmpMultiplier = BaseMultiplier * (1 + (2.78 * EM / (EM + 1400)) + ReactionBonus)'
     },
     faqs: [
-      { question: 'What is the difference between Forward and Reverse Vaporize?', answer: 'Hydro triggered on Pyro is Forward (2.0x base), while Pyro triggered on Hydro is Reverse (1.5x base).' }
+      { question: 'What is the difference between Forward and Reverse Vaporize?', answer: 'Hydro triggered on Pyro is Forward (2.0x base), while Pyro triggered on Hydro is Reverse (1.5x base).' },
+      { question: 'Which reactions scale best with high EM?', answer: 'Transformative reactions like Bloom, Hyperbloom, and Burgeon scale the most aggressively with EM, as their entire damage base is derived from EM and Level.' },
+      { question: 'Is there an EM cap for reactions?', answer: 'There is no hard cap, but there are diminishing returns. After 800–1000 EM, the bonus percentage increases much more slowly per point.' }
     ],
     proTips: ['Hyperbloom and Burgeon scale quadratically with character Level 90 and pure Elemental Mastery.'],
     relatedToolIds: ['genshin-damage-calculator', 'genshin-pity-calculator']
@@ -244,11 +253,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Level 1 to 90 EXP Pacing',
-      details: 'Total EXP required is 8,362,650 EXP, equivalent to 418.1 Hero\'s Wit books (20,000 EXP each) plus 1.6M EXP from 80 to 90.',
+      details: 'Total EXP required is 8,362,650 EXP, equivalent to 418.1 Hero\'s Wit books (20,000 EXP each) plus 1.6M EXP from 80 to 90.\n\nWorked Example 1: Leveling from 1 to 80 requires 249 Hero\'s Wit and 1,287,905 Mora.\nWorked Example 2: The final push from 80 to 90 requires 172 Hero\'s Wit (over 40% of the total!) and 684,600 Mora.',
       mathSnippet: 'TotalMora = (TotalExp / 5) + AscensionMoraCosts'
     },
     faqs: [
-      { question: 'Is Level 90 worth it for all characters?', answer: 'Level 90 is critical for HP-scaling, DEF-scaling, and Transformative reaction characters (Dendro, Anemo, Electro). ATK-scaling characters can stop at 80 ascended.' }
+      { question: 'Is Level 90 worth it for all characters?', answer: 'Level 90 is critical for HP-scaling, DEF-scaling, and Transformative reaction characters (Dendro, Anemo, Electro). ATK-scaling characters can stop at 80 ascended.' },
+      { question: 'How much Mora is needed for a full Level 90 character?', answer: 'Approximately 2.1 million Mora is needed just for leveling (1 to 90), excluding talent costs and weapon costs.' },
+      { question: 'What are the Ascension phases?', answer: 'Characters must ascend at levels 20, 40, 50, 60, 70, and 80. Each ascension unlocks the next level cap and grants a specific stat bonus.' }
     ],
     proTips: ['Stopping at Level 80 Ascended (80/90) saves 172 Hero\'s Wit and 680,000 Mora.'],
     relatedToolIds: ['genshin-talent-calculator', 'genshin-resin-calculator']
@@ -278,11 +289,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Talent Level 1 to 10 Cost',
-      details: 'One single talent to Level 10 requires 3 Teachings, 21 Guides, 38 Philosophies, 6 Weekly Boss Drops, 1 Crown, and 1,652,500 Mora.',
+      details: 'One single talent to Level 10 requires 3 Teachings, 21 Guides, 38 Philosophies, 6 Weekly Boss Drops, 1 Crown, and 1,652,500 Mora.\n\nWorked Example 1: To get a talent from Level 1 to 6 (standard budget build), you need 3 Teachings, 21 Guides, and 122,500 Mora.\nWorked Example 2: Triple-crowning (all 3 talents to 10) costs 4,957,500 Mora and 114 Philosophies.',
       mathSnippet: 'TripleCrown = 3 * SingleTalentLvl10'
     },
     faqs: [
-      { question: 'How many Crowns of Insight are needed to triple-crown?', answer: 'Triple-crowning a character requires 3 Crowns of Insight and ~4.95 million Mora.' }
+      { question: 'How many Crowns of Insight are needed to triple-crown?', answer: 'Triple-crowning a character requires 3 Crowns of Insight and ~4.95 million Mora.' },
+      { question: 'When do I start needing Weekly Boss drops?', answer: 'Weekly boss materials are required starting from Talent Level 7 up to Level 10.' },
+      { question: 'Can I get talent materials on any day?', answer: 'No, specific talent books are only available in domains on certain days of the week. All books are available on Sundays.' }
     ],
     proTips: ['Crafting lower-tier talent books with Xingqiu refunds 25% of crafted materials.'],
     relatedToolIds: ['genshin-ascension-calculator', 'genshin-resin-calculator']
@@ -313,11 +326,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Particle Energy Calculation',
-      details: 'Same-element particles give 3.0 energy on-field and 1.8 off-field. Clear Favonius particles give 2.0 energy on-field and 1.2 off-field.',
+      details: 'Same-element particles give 3.0 energy on-field and 1.8 off-field. Clear Favonius particles give 2.0 energy on-field and 1.2 off-field.\n\nWorked Example 1: A character with 80 burst cost receiving 10 same-element particles on-field (30 energy) needs 80 / 30 = 2.66x (266%) ER to burst in one cycle.\nWorked Example 2: Adding a Favonius proc (6 energy on-field) reduces the requirement to 80 / (30 + 6) = 2.22x (222%) ER.',
       mathSnippet: 'RequiredER = (BurstCost - FlatEnergy) / GeneratedEnergy * 100'
     },
     faqs: [
-      { question: 'Why does Xiangling need 200%+ ER?', answer: 'Xiangling has an 80-cost burst and generates few particles while staying mostly off-field, where particles provide 40% less energy.' }
+      { question: 'Why does Xiangling need 200%+ ER?', answer: 'Xiangling has an 80-cost burst and generates few particles while staying mostly off-field, where particles provide 40% less energy.' },
+      { question: 'Does ER affect energy from flat sources?', answer: 'No, flat energy restoration (like Raiden\'s Burst or Venti\'s Ascension 4) is NOT increased by the character\'s Energy Recharge percentage.' },
+      { question: 'What is the base Energy Recharge of every character?', answer: 'Every character starts with 100% base Energy Recharge.' }
     ],
     proTips: ['Equipping a Favonius weapon on your support reduces the entire team ER requirement by 15–25%.'],
     relatedToolIds: ['genshin-damage-calculator', 'genshin-artifact-cv-calculator']
@@ -348,11 +363,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Weapon EXP Tier Scaling',
-      details: 'A 5-star weapon requires 9,064,450 EXP (~907 Mystic Enhancement Ores), while a 4-star weapon requires 6,042,975 EXP (~605 Ores).',
+      details: 'A 5-star weapon requires 9,064,450 EXP (~907 Mystic Enhancement Ores), while a 4-star weapon requires 6,042,975 EXP (~605 Ores).\n\nWorked Example 1: To level a 5-star weapon from 1 to 80, you need approx 658 Mystic Ores and 753k Mora.\nWorked Example 2: The final stretch from 80 to 90 for a 4-star weapon costs 165 Mystic Ores and 238k Mora.',
       mathSnippet: 'OreCount = Ceiling(TotalExp / 10000)'
     },
     faqs: [
-      { question: 'What is the daily blacksmith ore crafting limit?', answer: 'Blacksmiths can forge a maximum of 30 Mystic Enhancement Ores per day using Crystal Chunks.' }
+      { question: 'What is the daily blacksmith ore crafting limit?', answer: 'Blacksmiths can forge a maximum of 30 Mystic Enhancement Ores per day using Crystal Chunks.' },
+      { question: 'How much Mora do I need to max a 5-star weapon?', answer: 'Leveling a 5-star weapon to 90 costs approximately 1.13 million Mora total (leveling + ascension fees).' },
+      { question: 'Does weapon rarity change the Ascension material types?', answer: 'Yes, 5-star weapons typically require slightly more materials per ascension tier compared to 4-star weapons.' }
     ],
     proTips: ['Daily weapon forging cap is 300,000 EXP (30 Mystic Ores) per day across all cities.'],
     relatedToolIds: ['genshin-ascension-calculator', 'genshin-resin-calculator']
@@ -382,11 +399,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Currency Generation Formula',
-      details: 'At maximum 20,000 Adeptal Energy, Realm Currency accumulates at 30 coins per hour (720 coins per 24 hours), filling the 2,400 cap in 80 hours (3.33 days).',
+      details: 'At maximum 20,000 Adeptal Energy, Realm Currency accumulates at 30 coins per hour (720 coins per 24 hours), filling the 2,400 cap in 80 hours (3.33 days).\n\nWorked Example 1: To buy the weekly Transient Resin (1,200 coins), you need 40 hours of generation at the 20k energy tier.\nWorked Example 2: If you have 10,000 energy, you earn 22 coins/hour. It will take 109 hours (4.5 days) to fill your 2,400 capacity tub.',
       mathSnippet: 'WeeklyCoins = 30 * 24 * 7 = 5,040'
     },
     faqs: [
-      { question: 'What should I prioritize buying with Realm Currency?', answer: 'Always buy Transient Resin (1,200 coins) weekly, followed by Hero\'s Wit and Mystic Enhancement Ores.' }
+      { question: 'What should I prioritize buying with Realm Currency?', answer: 'Always buy Transient Resin (1,200 coins) weekly, followed by Hero\'s Wit and Mystic Enhancement Ores.' },
+      { question: 'Does Adeptal Energy increase the load limit?', answer: 'No, Adeptal Energy is based on the items you place, but the Load Limit is a fixed hardware constraint per area.' },
+      { question: 'How do I reach 20,000 Adeptal Energy fastest?', answer: 'Place high-energy outdoor items like statues or buildings, and use multiple realm islands if unlocked.' }
     ],
     proTips: ['Crafting duplicate 4-star folding screens or fences provides high Adeptal Energy per load limit.'],
     relatedToolIds: ['genshin-resin-calculator', 'genshin-pity-calculator']
@@ -422,11 +441,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Yaw Multiplier Conversion',
-      details: 'Yaw values: Valorant = 0.07°, Source/CS2/Apex = 0.022°, Overwatch = 0.0066°. Conversion factor CS2 to Valorant is 1 / 3.181818.',
+      details: 'Yaw values: Valorant = 0.07°, Source/CS2/Apex = 0.022°, Overwatch = 0.0066°. Conversion factor CS2 to Valorant is 1 / 3.181818. Worked Examples: 1. CS2 to Valorant: CS2 Sens 2.0. Valorant Sens = 2.0 / 3.1818 = 0.628. 2. Valorant to Overwatch: Val Sens 0.5. Overwatch Sens = (0.5 * 0.07) / 0.0066 = 5.303.',
       mathSnippet: 'TargetSens = (SourceSens * SourceYaw) / TargetYaw'
     },
     faqs: [
-      { question: 'What is the conversion between Valorant and CS2?', answer: 'Divide CS2 sensitivity by 3.1818 to get Valorant sensitivity (or multiply Valorant sensitivity by 3.1818).' }
+      { question: 'What is the conversion between Valorant and CS2?', answer: 'Divide CS2 sensitivity by 3.1818 to get Valorant sensitivity (or multiply Valorant sensitivity by 3.1818).' },
+      { question: 'Does FOV affect sensitivity conversion?', answer: 'This tool uses cm/360 matching, which is independent of FOV. However, your *perceived* sensitivity may change if FOV differs between games.' },
+      { question: 'What is "cm/360"?', answer: 'It is the physical distance (in centimeters) your mouse must travel on the mousepad to complete a full 360-degree rotation in-game.' }
     ],
     proTips: ['Maintaining consistent cm/360 across all tactical and arena shooters builds permanent flick muscle memory.'],
     relatedToolIds: ['valorant-edpi-calculator', 'crosshair-generator', 'headshot-percentage-calculator']
@@ -457,11 +478,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'eDPI Mathematical Formula',
-      details: 'eDPI standardizes mouse speed regardless of hardware DPI.',
+      details: 'eDPI standardizes mouse speed regardless of hardware DPI. Worked Examples: 1. Low DPI: 400 DPI * 0.6 Sens = 240 eDPI. 2. High DPI: 1600 DPI * 0.15 Sens = 240 eDPI. Both have identical in-game speed.',
       mathSnippet: 'eDPI = MouseDPI * InGameSensitivity'
     },
     faqs: [
-      { question: 'What is a normal eDPI for Valorant?', answer: 'The median pro eDPI is ~260. A standard low-to-medium range is 200–320 eDPI (approx. 40–65 cm/360).' }
+      { question: 'What is a normal eDPI for Valorant?', answer: 'The median pro eDPI is ~260. A standard low-to-medium range is 200–320 eDPI (approx. 40–65 cm/360).' },
+      { question: 'Does a higher DPI mean better accuracy?', answer: 'Higher DPI (e.g. 1600) reduces input latency slightly and provides smoother movement, but only if you lower your in-game sensitivity to match your preferred eDPI.' },
+      { question: 'What eDPI does TenZ use?', answer: 'TenZ frequently changes settings, but often fluctuates between 280 and 320 eDPI (800 DPI * 0.35 to 0.4 Sens).' }
     ],
     proTips: ['Running 1600 DPI with lower in-game sensitivity reduces sensor input latency compared to 400 DPI.'],
     relatedToolIds: ['universal-mouse-sensitivity-converter', 'headshot-percentage-calculator']
@@ -494,11 +517,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Crosshair Geometry Vectoring',
-      details: 'Renders 4 directional line segments (North, East, South, West) around a center origin with customizable gap offset.',
+      details: 'Renders 4 directional line segments (North, East, South, West) around a center origin with customizable gap offset. Worked Examples: 1. Inner Lines: Length 4, Thickness 2, Gap 2. Creates a compact cross with a small center opening. 2. Dot Only: Length 0, Center Dot Enabled. Creates a single pixel or square point.',
       mathSnippet: 'Offset = CenterGap + LineLength'
     },
     faqs: [
-      { question: 'What crosshair color has the highest visibility?', answer: 'Cyan (#00FFFF) and Green (#00FF00) have the highest contrast against character models and map walls.' }
+      { question: 'What crosshair color has the highest visibility?', answer: 'Cyan (#00FFFF) and Green (#00FF00) have the highest contrast against character models and map walls.' },
+      { question: 'How do I import a crosshair code?', answer: 'In Valorant settings, go to Crosshair > Primary and click the "Import Profile Code" button (down arrow icon) to paste your code.' },
+      { question: 'What are "Outlines" for?', answer: 'Outlines add a black border around your crosshair lines, ensuring they remain visible even when aiming at very bright surfaces like the sky or white walls.' }
     ],
     proTips: ['Smaller crosshairs (lengths 3–4, thickness 1–2, gap 1–2) allow more precise long-distance headshot alignment.'],
     relatedToolIds: ['universal-mouse-sensitivity-converter', 'headshot-percentage-calculator']
@@ -529,11 +554,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Valorant Credit Distribution',
-      details: 'Round Win = 3,000 creds. Loss 1 = 1,900 creds. Loss 2 = 2,400 creds. Loss 3+ = 2,900 creds. Spike Plant bonus = +300 creds to entire attacking team.',
+      details: 'Round Win = 3,000 creds. Loss 1 = 1,900 creds. Loss 2 = 2,400 creds. Loss 3+ = 2,900 creds. Spike Plant bonus = +300 creds to entire attacking team. Worked Examples: 1. First Loss: 1,900 credits. 2. Third Loss + Plant: 2,900 + 300 = 3,200 credits.',
       mathSnippet: 'LossCreds = Min(2900, 1900 + (LossStreak - 1) * 500) + SpikePlantBonus'
     },
     faqs: [
-      { question: 'How much does a full rifle buy cost in Valorant?', answer: 'Vandal (2,900) + Heavy Shields (1,000) + Abilities (~400–600) = 4,300–4,500 total credits.' }
+      { question: 'How much does a full rifle buy cost in Valorant?', answer: 'Vandal (2,900) + Heavy Shields (1,000) + Abilities (~400–600) = 4,300–4,500 total credits.' },
+      { question: 'What is the maximum credits a player can hold?', answer: 'A player can hold a maximum of 9,000 credits in Valorant.' },
+      { question: 'Do I get more credits for a knife kill?', answer: 'No, unlike CS:GO, Valorant does not grant bonus credits for specific weapon kills; rewards are based on round outcome and plant status.' }
     ],
     proTips: ['If losing gives you 2,400+ credits next round and you currently have 1,500+, you can half-buy and still full-buy next round.'],
     relatedToolIds: ['universal-mouse-sensitivity-converter', 'ttk-time-to-kill-calculator']
@@ -564,11 +591,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Headshot Percentage Formula',
-      details: 'Evaluates precision percentile relative to competitive tier benchmarks (Gold: ~15%, Diamond: ~22%, Radiant: ~30%+).',
+      details: 'Evaluates precision percentile relative to competitive tier benchmarks (Gold: ~15%, Diamond: ~22%, Radiant: ~30%+). Worked Examples: 1. Match Stats: 20 Kills, 5 HS Kills. HS% = (5/20) * 100 = 25%. 2. Pro Level: 100 Hits, 35 Head Hits. HS% = 35%.',
       mathSnippet: 'HS% = (HeadshotHits / TotalHits) * 100'
     },
     faqs: [
-      { question: 'What is a good headshot percentage in tactical shooters?', answer: 'Above 20% is solid; above 28% indicates elite mechanical crosshair placement.' }
+      { question: 'What is a good headshot percentage in tactical shooters?', answer: 'Above 20% is solid; above 28% indicates elite mechanical crosshair placement.' },
+      { question: 'Does HS% count if the enemy doesn\'t die?', answer: 'In some games, HS% only counts kills (HS Kills / Total Kills), while in others it counts every individual bullet hit (Head Hits / Total Hits).' },
+      { question: 'How do I improve my headshot percentage?', answer: 'Focus on "Crosshair Placement" — always keeping your crosshair at head-height where an enemy is likely to appear, minimizing required adjustment time.' }
     ],
     proTips: ['Keeping crosshair at chin height when clearing corners eliminates vertical mouse adjustment before shooting.'],
     relatedToolIds: ['crosshair-generator', 'ttk-time-to-kill-calculator']
@@ -599,11 +628,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Time-To-Kill Mathematical Formula',
-      details: 'First bullet hits instantaneously at 0 ms. Subsequent bullets take (60 / RPM) seconds each.',
+      details: 'First bullet hits instantaneously at 0 ms. Subsequent bullets take (60 / RPM) seconds each. Worked Examples: 1. Vandal (600 RPM): 3 shots to kill. TTK = (3-1) * (60/600) = 0.20s (200ms). 2. Phantom (660 RPM): 4 shots to kill. TTK = (4-1) * (60/660) = 0.27s (272ms).',
       mathSnippet: 'TTK = (Ceiling(TotalHealth / BulletDamage) - 1) * (60000 / RPM) ms'
     },
     faqs: [
-      { question: 'Why does first bullet not add delay to TTK?', answer: 'The first bullet fires on trigger pull (0 ms delay); TTK only measures the interval for remaining shots needed to eliminate the target.' }
+      { question: 'Why does first bullet not add delay to TTK?', answer: 'The first bullet fires on trigger pull (0 ms delay); TTK only measures the interval for remaining shots needed to eliminate the target.' },
+      { question: 'What is "Effective TTK"?', answer: 'Effective TTK accounts for bullet travel time (in games with projectiles) and network latency (ping), which adds to the theoretical minimum time.' },
+      { question: 'Which gun has the fastest TTK in Valorant?', answer: 'One-tap weapons like the Vandal, Guardian, or Operator have an instantaneous TTK of 0ms if the first shot is a headshot.' }
     ],
     proTips: ['High fire-rate weapons are significantly more forgiving if a player misses the initial burst.'],
     relatedToolIds: ['universal-mouse-sensitivity-converter', 'headshot-percentage-calculator']
@@ -634,11 +665,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Trigonometric FOV Expansion',
-      details: 'hFOV = 2 * atan(tan(vFOV / 2) * (AspectRatioWidth / AspectRatioHeight)).',
+      details: 'hFOV = 2 * atan(tan(vFOV / 2) * (AspectRatioWidth / AspectRatioHeight)). Worked Examples: 1. 103 hFOV (16:9) to Vertical: vFOV is approx 71 degrees. 2. 4:3 Stretched: Character models are stretched by 33.3% relative to 16:9.',
       mathSnippet: 'hFOV = 2 * Math.atan(Math.tan((vFOV * PI / 180) / 2) * (16 / 9)) * 180 / PI'
     },
     faqs: [
-      { question: 'Why do pros play 4:3 stretched?', answer: 'Stretching 4:3 onto a 16:9 screen expands character models horizontally by 33%, making targets visually wider to hit.' }
+      { question: 'Why do pros play 4:3 stretched?', answer: 'Stretching 4:3 onto a 16:9 screen expands character models horizontally by 33%, making targets visually wider to hit.' },
+      { question: 'Does a higher FOV help with aim?', answer: 'Higher FOV provides better peripheral vision but makes targets appear smaller. Most tactical shooters prefer 90-103 hFOV, while arena shooters often use 110+.' },
+      { question: 'What is "Native" resolution?', answer: 'Native is the aspect ratio of your physical monitor, typically 16:9 for most modern gaming displays.' }
     ],
     proTips: ['In games like CS2, 4:3 stretched also makes enemy models appear to move faster across the screen horizontally.'],
     relatedToolIds: ['universal-mouse-sensitivity-converter', 'dpi-cm-360-calculator']
@@ -671,11 +704,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Human Visual Processing Latency',
-      details: 'Visual signal requires ~50ms from retina to visual cortex, ~80ms decision processing, and ~40ms motor signal to fingertip muscle.',
+      details: 'Visual signal requires ~50ms from retina to visual cortex, ~80ms decision processing, and ~40ms motor signal to fingertip muscle. Worked Examples: 1. Pro Tier: 150-180ms. 2. Average Human: 230-260ms. 3. Fatigued/Casual: 300ms+.',
       mathSnippet: 'AverageReaction = Sum(Trials) / TrialCount'
     },
     faqs: [
-      { question: 'What is average human reaction time?', answer: 'The human median visual reaction time is ~240–260 milliseconds on a standard 60Hz display.' }
+      { question: 'What is average human reaction time?', answer: 'The human median visual reaction time is ~240–260 milliseconds on a standard 60Hz display.' },
+      { question: 'How can I lower my reaction time?', answer: 'Consistent sleep, hydration, and using high-refresh rate monitors (144Hz+) can shave 10-20ms off your recorded time.' },
+      { question: 'Does age affect reaction time?', answer: 'Yes, peak reaction speed typically occurs in the early 20s and gradually slows by ~2-6ms per decade thereafter.' }
     ],
     proTips: ['Switching from a 60Hz to a 240Hz monitor lowers displayed input latency by approximately 12–14 milliseconds.'],
     relatedToolIds: ['cps-click-speed-test', 'universal-mouse-sensitivity-converter']
@@ -707,11 +742,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'CPS Calculation Formula',
-      details: 'CPS measures the total number of verified pointer-down clicks divided by the elapsed seconds.',
+      details: 'CPS measures the total number of verified pointer-down clicks divided by the elapsed seconds. Worked Examples: 1. 50 clicks in 5s = 10.0 CPS. 2. 120 clicks in 10s = 12.0 CPS.',
       mathSnippet: 'CPS = TotalClicks / ElapsedSeconds'
     },
     faqs: [
-      { question: 'What is a good CPS score for Minecraft PvP?', answer: 'Standard clicking reaches 6–8 CPS; jitter clicking reaches 10–13 CPS; butterfly clicking on optical switches reaches 15–20+ CPS.' }
+      { question: 'What is a good CPS score for Minecraft PvP?', answer: 'Standard clicking reaches 6–8 CPS; jitter clicking reaches 10–13 CPS; butterfly clicking on optical switches reaches 15–20+ CPS.' },
+      { question: 'What is "Butterfly Clicking"?', answer: 'A technique using two fingers to alternate clicks on the same button, effectively doubling potential speed.' },
+      { question: 'Can CPS be too high?', answer: 'Some servers may kick players for "Auto-clicker" detection if their CPS exceeds a certain threshold (often 20+ CPS) without natural variance.' }
     ],
     proTips: ['Butterfly clicking involves alternating index and middle fingers on a single mouse switch with low debounce time.'],
     relatedToolIds: ['reaction-time-benchmark', 'universal-mouse-sensitivity-converter']
@@ -741,11 +778,13 @@ export const EXTRA_TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'cm/360 Travel Distance Formula',
-      details: 'Counts = 360 / (InGameSens * m_yaw). Distance = (Counts / DPI) * 2.54 cm.',
+      details: 'Counts = 360 / (InGameSens * m_yaw). Distance = (Counts / DPI) * 2.54 cm. Worked Examples: 1. Valorant: 800 DPI, 0.5 Sens. cm/360 = (360 / (0.5 * 0.07 * 800)) * 2.54 = 32.65 cm. 2. CS2: 400 DPI, 2.0 Sens. cm/360 = (360 / (2.0 * 0.022 * 400)) * 2.54 = 51.95 cm.',
       mathSnippet: 'cm360 = (360 / (Sens * Yaw * DPI)) * 2.54'
     },
     faqs: [
-      { question: 'What is considered high vs low cm/360?', answer: 'Below 25 cm/360 is high sensitivity; 25–45 cm/360 is medium; above 45 cm/360 is low sensitivity.' }
+      { question: 'What is considered high vs low cm/360?', answer: 'Below 25 cm/360 is high sensitivity; 25–45 cm/360 is medium; above 45 cm/360 is low sensitivity.' },
+      { question: 'Is low sensitivity better for aiming?', answer: 'Generally, yes for precision. It allows for larger arm movements for coarse aiming while leaving micro-adjustments to the wrist/fingers.' },
+      { question: 'How big of a mousepad do I need?', answer: 'Measure your cm/360. Your mousepad should ideally be wide enough to accommodate at least a 180-degree turn without lifting the mouse.' }
     ],
     proTips: ['Low sensitivity (40–55 cm/360) provides greater micro-adjustment stability in tactical shooters like Valorant and CS2.'],
     relatedToolIds: ['universal-mouse-sensitivity-converter', 'valorant-edpi-calculator']

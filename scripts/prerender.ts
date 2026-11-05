@@ -879,6 +879,13 @@ const gameHubConfigs = [
     aliasPath: '/genshin',
     title: 'Genshin Impact Calculators & Pity Planners | GamingToolsHub',
     description: 'Wish pity estimators, Primogem planners, resin refill timers, and artifact crit value calculators for Genshin Impact.',
+  },
+  {
+    id: 'helldivers2',
+    path: '/games/helldivers-2',
+    aliasPath: '/helldivers-2',
+    title: 'Helldivers 2 Damage & Breakpoint Calculators | GamingToolsHub',
+    description: 'Precision ballistics, weapon TTK, shots-to-kill breakpoints, and enemy weak spot multipliers for Helldivers 2.',
   }
 ];
 

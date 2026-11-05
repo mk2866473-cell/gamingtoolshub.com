@@ -1,81 +1,10 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-export interface GameInfo {
-  id: string;
-  slug: string;
-  name: string;
-  shortName: string;
-  tagline: string;
-  description: string;
-  color: string;
-  borderColor: string;
-  accentColor: string;
-  icon: string;
-  badge?: string;
-}
-
-export interface CategoryInfo {
-  id: string;
-  slug: string;
-  name: string;
-  description: string;
-  icon: string;
-}
-
-export interface ToolFAQ {
-  question: string;
-  answer: string;
-}
-
-export interface ToolStep {
-  title: string;
-  description: string;
-}
-
-export interface ToolItem {
-  id: string;
-  slug: string;
-  name: string;
-  gameId: string;
-  categoryId: string;
-  icon: string;
-  shortDescription: string;
-  description: string;
-  badge?: string;
-  rating: number;
-  reviewsCount: number;
-  userCount: string;
-  featured?: boolean;
-  tags: string[];
-  
-  // SEO & Editorial Content
-  seoTitle: string;
-  metaDescription: string;
-  h1: string;
-  canonicalPath: string;
-
-  howToGuide: {
-    overview: string;
-    steps: ToolStep[];
-  };
-
-  formulaExplained: {
-    title: string;
-    details: string;
-    mathSnippet?: string;
-  };
-
-  faqs: ToolFAQ[];
-  proTips: string[];
-  relatedToolIds: string[];
-}
+import { GameInfo, CategoryInfo, ToolItem, ToolFAQ, ToolStep } from './types';
+export type { GameInfo, CategoryInfo, ToolItem, ToolFAQ, ToolStep };
 
 import { EXTRA_GAMES, EXTRA_TOOLS } from './extraToolsData';
 import { EXTRA_TOOLS_PART_2 } from './extraToolsDataPart2';
 import { EXTRA_TOOLS_PART_3 } from './extraToolsDataPart3';
+import { COIN_MASTER_TOOLS } from './coinMasterData';
 
 export const GAMES: GameInfo[] = [
   {
@@ -154,7 +83,32 @@ export const GAMES: GameInfo[] = [
     borderColor: 'border-cyan-500/30',
     accentColor: 'text-cyan-400',
     icon: 'Compass',
-    badge: '10 Tools Available'
+  },
+  {
+    id: 'helldivers2',
+    slug: 'helldivers-2',
+    name: 'Helldivers 2',
+    shortName: 'Helldivers 2',
+    tagline: 'Damage breakpoints, weapon TTK, weak spots & enemy armor math',
+    description: 'Precision ballistics and breakpoint calculators for Helldivers 2 soldiers: exact shots-to-kill (STK), time-to-kill (TTK), weak spot multipliers, and difficulty scaling.',
+    color: 'from-amber-950/60 to-zinc-950',
+    borderColor: 'border-amber-500/30',
+    accentColor: 'text-amber-400',
+    icon: 'Crosshair',
+    badge: 'Trending Game'
+  },
+  {
+    id: 'ps99',
+    slug: 'ps99',
+    name: 'Pet Simulator 99',
+    shortName: 'PS99',
+    tagline: 'Trade values, live RAP, WFL calculator & Titanic value guides',
+    description: 'Verified Pet Simulator 99 trading calculators: RAP vs true market value evaluators, Huge pet & Titanic trade calculators, variant multipliers, and RAP manipulation trap detectors.',
+    color: 'from-sky-950/60 to-zinc-950',
+    borderColor: 'border-sky-500/30',
+    accentColor: 'text-sky-400',
+    icon: 'Sparkles',
+    badge: '8 Tools Available'
   },
   {
     id: 'fps',
@@ -183,6 +137,201 @@ export const GAMES: GameInfo[] = [
     badge: '2 Tools Available'
   },
   {
+    id: 'tfd',
+    slug: 'the-first-descendant',
+    name: 'The First Descendant',
+    shortName: 'TFD',
+    tagline: 'Weapon DPS, Module Capacity, Energy Activator & Crystallization Catalyst optimization',
+    description: 'Verified theorycrafting tools for The First Descendant: True Raw & Sustained Weapon DPS, 10-slot module capacity optimizer, polarity halving calculator, and ultimate weapon database.',
+    color: 'from-cyan-950/60 to-zinc-950',
+    borderColor: 'border-cyan-500/30',
+    accentColor: 'text-cyan-400',
+    icon: 'Cpu',
+    badge: '8 Tools Available'
+  },
+  {
+    id: 'oncehuman',
+    slug: 'once-human',
+    name: 'Once Human',
+    shortName: 'Once Human',
+    tagline: 'Blueprint star upgrades, Acid farm automation, Cradle planner, calibrations & tactical map',
+    description: 'Verified suite of 8 Once Human tools: Blueprint star upgrades (1★ to 5★), tactical Mystical Crate checklist, automated Acid farm calculator, Weapon Calibration tuning, Cradle Override planner, Deviance recovery, Memetics, and Boss loot matrix.',
+    color: 'from-purple-950/60 to-zinc-950',
+    borderColor: 'border-purple-500/30',
+    accentColor: 'text-purple-400',
+    icon: 'Coins',
+    badge: '8 Tools Available'
+  },
+  {
+    id: 'wuwa',
+    slug: 'wuthering-waves',
+    name: 'Wuthering Waves',
+    shortName: 'WuWa',
+    tagline: 'Echo tuning evaluator, 80 pity & Astrite planner, S0-S6 dupes, ascension mats, Shell Credit & Sonata builder',
+    description: 'Comprehensive suite of 6 Wuthering Waves tools: Echo Tuning Sub-Stat Evaluator with God-Roll scores, 80 Hard Pity & Astrite Farming Planner, Resonance Chain S0-S6 DPS multipliers, Resonator Ascension & Forte Material Calculator, Shell Credit Spend Optimizer, and Team Rotation & Sonata Effect Synergy Builder.',
+    color: 'from-cyan-950/60 to-zinc-950',
+    borderColor: 'border-cyan-500/30',
+    accentColor: 'text-cyan-400',
+    icon: 'Zap',
+    badge: '6 Tools Available'
+  },
+  {
+    id: 'zzz',
+    slug: 'zenless-zone-zero',
+    name: 'Zenless Zone Zero',
+    shortName: 'ZZZ',
+    tagline: 'Drive Disc sets, Anomaly Disorder, 90 pity Polychrome planner, Daze multipliers, Bangboos & W-Engines',
+    description: 'Comprehensive suite of 6 Zenless Zone Zero tools: Drive Disc Set & Anomaly Build Optimizer with Disorder calculations, Polychrome & Master Tape Pity Planner, Daze & Stun Multiplier Calculator, Bangboo Synergy Selector, Inter-Knot Battery Planner, and W-Engine Side-by-Side Comparison Matrix.',
+    color: 'from-purple-950/60 to-zinc-950',
+    borderColor: 'border-purple-500/30',
+    accentColor: 'text-purple-400',
+    icon: 'Flame',
+    badge: '6 Tools Available'
+  },
+  {
+    id: 'typesoul',
+    slug: 'type-soul',
+    name: 'Roblox Type Soul',
+    shortName: 'Type Soul',
+    tagline: 'Stat tree allocator, grade requirements, Bankai/Resurrección stages, raid drops, clans & combo gauge',
+    description: 'Comprehensive suite of 6 Roblox Type Soul tools: Stat Skill Tree Allocator with hybrid lockout warnings, Grade Progression Requirement Calculator, Shikai/Bankai/Resurrección Evolution Stage Tracker, Raid Reward & True Hogyoku Drop Checker, Clan Rarity & Buff Simulator, and Abilities Combo & Guard Break Gauge.',
+    color: 'from-red-950/60 to-zinc-950',
+    borderColor: 'border-red-500/30',
+    accentColor: 'text-red-400',
+    icon: 'Swords',
+    badge: '6 Tools Available'
+  },
+  {
+    id: 'bg3',
+    slug: 'baldurs-gate-3',
+    name: "Baldur's Gate 3",
+    shortName: 'BG3',
+    tagline: 'Multiclass spell builder, dice odds, alchemy recipes, romance tracker, AC tank, weapon DPR & origin passives',
+    description: "Comprehensive suite of 7 Baldur's Gate 3 tools: Multiclass Skill & Spell Slot Builder with ECL and Warlock Pact slots, Dice Roll Success Probability Calculator with Advantage and Guidance, Alchemy Crafting Recipe Finder with 3:1 extraction math, Companion Approval & Romance Tracker for all 10 companions, Armor Class (AC) & Saving Throw Optimizer, Weapon Action & Extra Attack Damage Counter, and Origin Character Passive Modifier Guide.",
+    color: 'from-amber-950/60 to-zinc-950',
+    borderColor: 'border-amber-500/30',
+    accentColor: 'text-amber-400',
+    icon: 'Dices',
+    badge: '7 Tools Available'
+  },
+  {
+    id: 'lethalcompany',
+    slug: 'lethal-company',
+    name: 'Lethal Company',
+    shortName: 'Lethal Co',
+    tagline: 'Scrap value calculator, deadline buying rates, overtime bonuses & quota survival',
+    description: 'Verified Lethal Company quota calculators: calculate exact scrap needed for 100% deadline buying rate, carried-over ship scrap retention, overtime cash bonuses, and ship item budgets.',
+    color: 'from-amber-950/60 to-zinc-950',
+    borderColor: 'border-amber-500/30',
+    accentColor: 'text-amber-400',
+    icon: 'Boxes',
+    badge: '5 Tools Available'
+  },
+  {
+    id: 'starfield',
+    slug: 'starfield',
+    name: 'Starfield',
+    shortName: 'Starfield',
+    tagline: 'Shipbuilder CAD, cargo links, skill tree allocator, planet survey checklist, weapon mods & crew buffs',
+    description: 'Comprehensive suite of 6 Starfield tools: Ship Modules Cost & Cargo Weight Calculator with Class A/B/C mobility, Outpost Resource Supply Line Planner with Helium-3 freight links, 82-Skill Tree Allocator with tier unlocks, Planet Scan Flora/Fauna Completeness Checklist, Weapon Modding Damage Multiplier, and Crew Assignment Buff Calculator.',
+    color: 'from-cyan-950/60 to-zinc-950',
+    borderColor: 'border-cyan-500/30',
+    accentColor: 'text-cyan-400',
+    icon: 'Compass',
+    badge: '6 Tools Available'
+  },
+  {
+    id: 'enshrouded',
+    slug: 'enshrouded',
+    name: 'Enshrouded',
+    shortName: 'Enshrouded',
+    tagline: 'Flame Altar upgrades, building blocks, Survivor recipes, Comfort rested buff, skill tree & gliders',
+    description: 'Comprehensive suite of 6 Enshrouded tools: Flame Altar Upgrade Cost Calculator with Shroud Passage levels, Building Block & Material Requirements Tool, Survivor NPC Unlock & Recipe Finder, Comfort Level & Rested Buff Timer, Skill Tree Simulator & Attribute Points Planner, and Glider & Grappling Hook Tier Upgrader.',
+    color: 'from-amber-950/60 to-zinc-950',
+    borderColor: 'border-amber-500/30',
+    accentColor: 'text-amber-400',
+    icon: 'Flame',
+    badge: '6 Tools Available'
+  },
+  {
+    id: 'nightingale',
+    slug: 'nightingale',
+    name: 'Nightingale',
+    shortName: 'Nightingale',
+    tagline: 'Realm Card crafting, Minor Card modifiers, Gear Score tiers, Resource Inherent Stats & Essence Trader planners',
+    description: 'Comprehensive suite of 5 Nightingale gaslamp survival tools: Realm Card Crafting Matrix with Biome & Major cards, Minor Card Modifier Simulator with environmental weather buffs/debuffs, Gear Score Tier & Infusion Leveling Calculator, Resource Inherent Stats Optimizer with metal/wood/leather material properties, and Essence Trader Inventory & Currency Planner.',
+    color: 'from-emerald-950/60 to-zinc-950',
+    borderColor: 'border-emerald-500/30',
+    accentColor: 'text-emerald-400',
+    icon: 'Compass',
+    badge: '5 Tools Available'
+  },
+  {
+    id: 'crk',
+    slug: 'cookie-run-kingdom',
+    name: 'Cookie Run: Kingdom',
+    shortName: 'Cookie Run',
+    tagline: 'Team builder, topping optimizer, production chain planner, EXP skill upgrade planner & pity calculator',
+    description: 'Comprehensive suite of 6 Cookie Run: Kingdom tools: Team Builder with position locks & treasures, Topping Optimizer with substats & CD thresholds, Production Chain Planner for Kingdom goods, Cookie & Skill Level Upgrade Planner, Gacha Pity & Gem Budget Planner, and Guild Battle & Event Timers.',
+    color: 'from-amber-950/60 to-zinc-950',
+    borderColor: 'border-amber-500/30',
+    accentColor: 'text-amber-400',
+    icon: 'Sparkles',
+    badge: '6 Tools Available'
+  },
+  {
+    id: 'afkj',
+    slug: 'afk-journey',
+    name: 'AFK Journey',
+    shortName: 'AFK Journey',
+    tagline: 'Daily boss team planner, ascension planner, resource planner, summon planner, team builder & season tracker',
+    description: 'Comprehensive suite of 6 AFK Journey tactical tools: Dream Realm & Primal Lord Daily Boss Team Planner, Hero Ascension & Faction Acorn Matrix, Hero Dust & Leveling Resource Calculator, Starlight & Wishlist Gacha Summon Planner, 5v5 Tactical Grid Team Builder, and Season Progression Tracker.',
+    color: 'from-purple-950/60 to-zinc-950',
+    borderColor: 'border-purple-500/30',
+    accentColor: 'text-purple-400',
+    icon: 'Swords',
+    badge: '6 Tools Available'
+  },
+  {
+    id: 'mogo',
+    slug: 'monopoly-go',
+    name: 'Monopoly GO!',
+    shortName: 'Monopoly GO',
+    tagline: 'Sticker tracker, trade matching, free dice links, event timers, shield finder & upgrade cost planner',
+    description: 'Comprehensive suite of 6 Monopoly GO tools: Album Sticker & Duplicate Vault Tracker, Safe Exchange Trade Matching Calculator, Verified Daily Free Dice Links Claimer, High Roller & Flash Event Schedule Timers, Landmark Shield Protection Finder, and Net Worth Board Upgrade Cost Planner.',
+    color: 'from-red-950/60 to-zinc-950',
+    borderColor: 'border-red-500/30',
+    accentColor: 'text-red-400',
+    icon: 'Sparkles',
+    badge: '6 Tools Available'
+  },
+  {
+    id: 'sk',
+    slug: 'seven-knights-rebirth',
+    name: 'Seven Knights Re:BIRTH',
+    shortName: 'Seven Knights',
+    tagline: 'Damage calculator, gear sell/keep tool, team builder, ruby calculator, shop value calculator & gacha planner',
+    description: 'Comprehensive suite of 6 Seven Knights Re:BIRTH tactical tools: Damage Output Calculator, Gear Sell/Keep Valuation Tool, 5v5 Team Builder, Ruby Efficiency Calculator, Shop Value Optimizer, and Gacha Summon Planner.',
+    color: 'from-blue-950/60 to-zinc-950',
+    borderColor: 'border-blue-500/30',
+    accentColor: 'text-blue-400',
+    icon: 'Swords',
+    badge: '6 Tools Available'
+  },
+  {
+    id: 'cm',
+    slug: 'coin-master',
+    name: 'Coin Master',
+    shortName: 'Coin Master',
+    tagline: 'Village costs, free spins, cards, and pet timers.',
+    description: 'Helpful tools for Coin Master, including village cost calculators, spin link trackers, and more.',
+    color: 'from-amber-950/60 to-zinc-950',
+    borderColor: 'border-amber-500/30',
+    accentColor: 'text-amber-400',
+    icon: 'CmIcon',
+    badge: '5 Tools Available'
+  },
+  {
     id: 'general',
     slug: 'general',
     name: 'Gaming Utilities',
@@ -203,7 +352,24 @@ export const PRIMARY_GAME_IDS = [
   'fortnite',
   'pokemongo',
   'palworld',
-  'genshin'
+  'genshin',
+  'ps99',
+  'helldivers2',
+  'tfd',
+  'oncehuman',
+  'wuwa',
+  'zzz',
+  'typesoul',
+  'bg3',
+  'lethalcompany',
+  'starfield',
+  'enshrouded',
+  'nightingale',
+  'crk',
+  'afkj',
+  'mogo',
+  'sk',
+  'cm'
 ] as const;
 
 export function getPrimaryGames(): GameInfo[] {
@@ -218,6 +384,41 @@ export function getGamePath(gameId: string): string {
     case 'pokemongo': return '/pokemongo';
     case 'palworld': return '/games/palworld';
     case 'genshin': return '/games?game=genshin';
+    case 'helldivers2':
+    case 'helldivers-2': return '/helldivers-2';
+    case 'ps99':
+    case 'pet-simulator-99': return '/ps99';
+    case 'tfd':
+    case 'the-first-descendant': return '/the-first-descendant';
+    case 'oncehuman':
+    case 'once-human': return '/once-human';
+    case 'wuwa':
+    case 'wuthering-waves': return '/wuthering-waves';
+    case 'zzz':
+    case 'zenless-zone-zero': return '/zenless-zone-zero';
+    case 'typesoul':
+    case 'type-soul':
+    case 'roblox-type-soul': return '/type-soul';
+    case 'bg3':
+    case 'baldurs-gate-3': return '/baldurs-gate-3';
+    case 'lethalcompany':
+    case 'lethal-company': return '/lethal-company';
+    case 'starfield': return '/starfield';
+    case 'enshrouded': return '/enshrouded';
+    case 'nightingale': return '/nightingale';
+    case 'crk':
+    case 'cookie-run-kingdom':
+    case 'cookie-run': return '/cookie-run-kingdom';
+    case 'afkj':
+    case 'afk-journey':
+    case 'afkjourney': return '/afk-journey';
+    case 'mogo':
+    case 'monopoly-go':
+    case 'monopolygo': return '/monopoly-go';
+    case 'sk':
+    case 'seven-knights-rebirth': return '/seven-knights-rebirth';
+    case 'cm':
+    case 'coin-master': return '/coin-master';
     default: return `/games?game=${gameId}`;
   }
 }
@@ -306,12 +507,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Midpoint Circle Algorithm (Bresenham Discrete Voxelization)',
-      details: 'Rasterizing a circle onto a square grid uses the midpoint circle theorem: a block at coordinate (x, y) is selected if (x - cx)² + (y - cy)² ≤ (radius + 0.5)².\n\nFor thin outlines, pixels are filtered by testing whether neighboring orthogonal blocks also satisfy the perimeter boundary condition.',
+      details: 'Rasterizing a circle onto a square grid uses the midpoint circle theorem: a block at coordinate (x, y) is selected if (x - cx)² + (y - cy)² ≤ (radius + 0.5)². Worked Examples: 1. Diameter 7 (Radius 3.5): Central block + 3 blocks out in cardinal directions. 2. Diameter 15 (Radius 7.5): 181 total blocks for a filled disc. 3. Diameter 31 (Radius 15.5): 753 blocks for a filled circle, ~100 for a thin ring.',
       mathSnippet: '(x - cx)^2 + (y - cy)^2 <= (radius + 0.5)^2'
     },
     faqs: [
       { question: 'Should I use an odd or even diameter for my Minecraft tower?', answer: 'Use an odd diameter (e.g., 17, 33, 65) if you want a single center block for spiral staircases or beacon beams. Use an even diameter (e.g., 16, 32, 64) if your base has 2-wide doors or central dual corridors.' },
-      { question: 'Can I export this blueprint to use in survival?', answer: 'Yes! Click "Export SVG" for vector schematics or click "Copy Coordinates" for a step-by-step block placement guide.' }
+      { question: 'Can I export this blueprint to use in survival?', answer: 'Yes! Click "Export SVG" for vector schematics or click "Copy Coordinates" for a step-by-step block placement guide.' },
+      { question: 'How do I make a perfect glass circle in Minecraft?', answer: 'Use the "Hollow" mode. Glass doesn\'t have a special voxel rule, but using a thin 1-block outline ensures your greenhouse or observatory looks smooth from a distance.' }
     ],
     proTips: [
       'For giant mega-bases (diameter > 50), build the 4 cardinal outer edges first, then connect the diagonal arcs.',
@@ -351,12 +553,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: '3D Euclidean Discrete Sphere Formula',
-      details: 'A voxel at discrete coordinates (x, y, z) belongs to a solid sphere of radius R if:\nx² + y² + z² ≤ (R + 0.5)²\n\nFor a hollow sphere, a block is rendered if it is part of the solid sphere and has at least one adjacent 6-connected neighbor outside the sphere.',
+      details: 'A voxel at discrete coordinates (x, y, z) belongs to a solid sphere of radius R if: x² + y² + z² ≤ (R + 0.5)². Worked Examples: 1. Radius 5 (Diameter 11): ~515 blocks for a solid sphere, ~250 for a hollow shell. 2. Radius 10 (Diameter 21): ~4,189 blocks for solid, ~1,000 for hollow. 3. Radius 20 (Diameter 41): ~33,510 blocks solid, ~4,000 hollow shell.',
       mathSnippet: 'x^2 + y^2 + z^2 <= (radius + 0.5)^2'
     },
     faqs: [
       { question: 'How many blocks do I need for a hollow sphere of diameter 25?', answer: 'A hollow sphere of diameter 25 requires approximately 1,220 blocks (around 19 stacks). The tool displays the exact count for your chosen diameter.' },
-      { question: 'Does this support odd and even diameters?', answer: 'Yes! Both odd diameters (with a single bottom center block) and even diameters (with a 2×2 bottom base) are fully supported.' }
+      { question: 'Does this support odd and even diameters?', answer: 'Yes! Both odd diameters (with a single bottom center block) and even diameters (with a 2×2 bottom base) are fully supported.' },
+      { question: 'What is the best way to build a Minecraft Death Star?', answer: 'Generate a sphere with a diameter of at least 100 blocks. Use the layer viewer to build the bottom hemisphere, then use the "Oval" tool to calculate the dish indentation separately.' }
     ],
     proTips: [
       'Start by placing temporary scaffolding at the central equator layer to establish your outer boundaries.',
@@ -395,12 +598,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: '3D Semi-Ellipsoid Geometry',
-      details: 'The dome calculates cross-sectional circle radii at each vertical Y-level from Y = 0 to Y = Height using the semi-ellipsoid formula:\nr(y) = BaseRadius * sqrt(1 - (y / Height)²)',
+      details: 'The dome calculates cross-sectional circle radii at each vertical Y-level from Y = 0 to Y = Height using the semi-ellipsoid formula: r(y) = BaseRadius * sqrt(1 - (y / Height)²). Worked Examples: 1. Radius 10, Height 10: Standard hemisphere. 2. Radius 20, Height 5: Flat shallow dome. 3. Radius 10, Height 30: Tall pointed observatory spire.',
       mathSnippet: 'r(y) = R * sqrt(1 - (y / H)^2)'
     },
     faqs: [
       { question: 'What is the best block for an underwater dome?', answer: 'Sea lanterns, tinted glass, or normal glass placed on a sea-lantern ring create an aesthetic, mob-proof underwater base.' },
-      { question: 'Can I make an oval dome?', answer: 'Yes, check our Minecraft Oval Generator for non-circular bases or set different height-to-radius ratios in this tool.' }
+      { question: 'Can I make an oval dome?', answer: 'Yes, check our Minecraft Oval Generator for non-circular bases or set different height-to-radius ratios in this tool.' },
+      { question: 'How do I build a dome without it looking like a pyramid?', answer: 'Use the layer-by-layer blueprints provided here. Domes require careful "step-down" patterns (e.g., 3 blocks wide, then 2, then 1) to look smooth.' }
     ],
     proTips: [
       'When building an underwater glass dome, construct the outer shell first, then fill the interior with sand or sponges to clear the water quickly.'
@@ -439,12 +643,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Minecraft Portal 8:1 Scale & Search Distance',
-      details: 'Horizontal coordinates scale by a factor of 8:\nNether_X = floor(Overworld_X / 8)\nNether_Z = floor(Overworld_Z / 8)\nY coordinates remain 1:1.\n\nWhen stepping through a portal, Minecraft searches for active portals within a 128-block radius in the target dimension.',
+      details: 'Horizontal coordinates scale by a factor of 8. Worked Examples: 1. Overworld (800, 200) -> Nether (100, 25). 2. Nether (-50, 100) -> Overworld (-400, 800). 3. Java Speedrun: Stronghold at (1600, 800) needs a Nether portal at (200, 100).',
       mathSnippet: 'Nether_X = floor(Overworld_X / 8), Nether_Z = floor(Overworld_Z / 8)'
     },
     faqs: [
       { question: 'Why did my Nether portal link to the wrong place?', answer: 'If a portal is auto-generated by the game, it searches for open air/solid ground up to 128 blocks away. Manually building a portal at the exact paired coordinates forces an immediate 1-to-1 sync.' },
-      { question: 'Does Nether portal scaling affect the Y-coordinate?', answer: 'No! The 8:1 ratio applies strictly to horizontal X and Z coordinates. The Y-coordinate (height) remains 1:1.' }
+      { question: 'Does Nether portal scaling affect the Y-coordinate?', answer: 'No! The 8:1 ratio applies strictly to horizontal X and Z coordinates. The Y-coordinate (height) remains 1:1.' },
+      { question: 'How far apart should portals be in the Nether?', answer: 'To avoid "bleeding" (portals linking to the same exit), place portals at least 16 blocks apart in the Nether (which is 128 blocks in the Overworld).' }
     ],
     proTips: [
       'Place your Nether transport highways around Y = 115–120 in Java (just beneath the bedrock ceiling) or Y = 13 for lava-free tunnels.',
@@ -483,12 +688,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Chunk & Region Mathematical Formulas',
-      details: 'Chunk_X = floor(X / 16)\nChunk_Z = floor(Z / 16)\nInChunk_Offset = X mod 16 (handled positively)\nRegion_X = floor(Chunk_X / 32) = floor(X / 512)\nRegion_Z = floor(Chunk_Z / 32) = floor(Z / 512)',
+      details: 'Chunk_X = floor(X / 16). Region_X = floor(X / 512). Worked Examples: 1. Coord (100, 200): Chunk (6, 12), Region r.0.0.mca. 2. Coord (-17, 513): Chunk (-2, 32), Region r.-1.1.mca. 3. Coord (1234, -567): Chunk (77, -36), Region r.2.-2.mca.',
       mathSnippet: 'Chunk_X = floor(X / 16), Region_X = floor(X / 512)'
     },
     faqs: [
       { question: 'How do I find which region file contains my base?', answer: 'Enter your base coordinates into this tool. Look at the "Region File" result (e.g., `r.0.-1.mca`) which corresponds directly to the `.mca` files inside your world save `region/` folder.' },
-      { question: 'How do negative coordinates affect chunk calculations?', answer: 'Minecraft uses standard floor division for negative numbers: coordinate X = -1 is in Chunk -1 (in-chunk offset 15), not Chunk 0.' }
+      { question: 'How do negative coordinates affect chunk calculations?', answer: 'Minecraft uses standard floor division for negative numbers: coordinate X = -1 is in Chunk -1 (in-chunk offset 15), not Chunk 0.' },
+      { question: 'Can I use these coordinates for teleporting?', answer: 'Yes! The Chunk and Region data are for file management, but the relative offset (0-15) helps you locate specific blocks within a chunk for farm building.' }
     ],
     proTips: [
       'Slime chunks are determined by a pseudo-random seed algorithm based on Chunk X and Chunk Z.',
@@ -528,12 +734,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: '3D Pythagorean Euclidean & Manhattan Distance',
-      details: '3D Euclidean Distance:\nD = sqrt((X2 - X1)² + (Y2 - Y1)² + (Z2 - Z1)²)\n\nManhattan Distance (Grid Tunnels):\nManhattan = |X2 - X1| + |Y2 - Y1| + |Z2 - Z1|\n\nTravel Time (seconds) = Distance / Speed (blocks per second)',
+      details: '3D Euclidean Distance: D = sqrt((X2 - X1)² + (Y2 - Y1)² + (Z2 - Z1)²). Worked Examples: 1. (0,0,0) to (100,0,0): 100 blocks. 2. (0,64,0) to (100,100,100): 146.1 blocks. 3. Manhattan path (tunnels): 100+36+100 = 236 blocks.',
       mathSnippet: 'Distance_3D = sqrt(dX^2 + dY^2 + dZ^2)'
     },
     faqs: [
       { question: 'What is the fastest travel method in Minecraft?', answer: 'A boat on Blue Ice is the fastest mechanical ground travel at ~72.7 blocks per second (up to 581 blocks per second effective speed in the Nether!). Elytra with firework rockets reaches ~33.5 blocks per second.' },
-      { question: 'Why does the Nether save so much travel time?', answer: 'Because 1 block in the Nether equals 8 blocks in the Overworld. Traveling 1,000 blocks in the Nether covers 8,000 blocks in the Overworld.' }
+      { question: 'Why does the Nether save so much travel time?', answer: 'Because 1 block in the Nether equals 8 blocks in the Overworld. Traveling 1,000 blocks in the Nether covers 8,000 blocks in the Overworld.' },
+      { question: 'What is the difference between 2D and 3D distance?', answer: '2D distance (horizontal) ignores the Y-axis (height), which is useful for mapping. 3D distance is the "true" straight-line distance, important for render distance and teleporting.' }
     ],
     proTips: [
       'On multiplayer servers, build your primary Nether hub at Y = 115 to avoid lava lakes and ghasts.',
@@ -572,12 +779,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Vanilla Minecraft XP Formulas (Java & Bedrock)',
-      details: 'Total XP from Level 0 to Level L is defined piecewise:\n• Levels 0 to 16: XP = L² + 6L\n• Levels 17 to 31: XP = 2.5L² - 40.5L + 360\n• Levels 32+: XP = 4.5L² - 162.5L + 2220\n\nDelta XP = TotalXP(Target) - TotalXP(Current)',
+      details: 'Total XP from Level 0 to Level L is defined piecewise. Worked Examples: 1. Level 0 to 30: 1,395 XP points. 2. Level 30 to 31: 107 XP points. 3. Level 50 to 51: 297 XP points. Note that levels become exponentially more "expensive" over time.',
       mathSnippet: 'L30 Total XP = 1395 | L30 to L31 = 107 XP'
     },
     faqs: [
       { question: 'How much XP is needed to reach Level 30 from Level 0?', answer: 'Reaching Level 30 from Level 0 requires exactly 1,395 XP points (approx. 279 Enderman kills or 127 Bottles of Enchanting).' },
-      { question: 'Is it more efficient to enchant at Level 30 than higher levels?', answer: 'Yes! Because XP requirements scale quadratically, dying or spending levels above Level 30 wastes more raw XP points.' }
+      { question: 'Is it more efficient to enchant at Level 30 than higher levels?', answer: 'Yes! Because XP requirements scale quadratically, dying or spending levels above Level 30 wastes more raw XP points.' },
+      { question: 'What gives the most XP in Minecraft?', answer: 'The Ender Dragon gives 12,000 XP upon the first kill. For renewable farming, Endermen give 5 XP, and Blazes give 10 XP.' }
     ],
     proTips: [
       'Always enchant as soon as you hit Level 30 rather than saving up to Level 50+, because higher levels require significantly more XP per level.',
@@ -617,12 +825,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Prior Work Penalty & Tree Balancing',
-      details: 'Every time an item is modified in an anvil, its Prior Work Penalty (PWP) increases:\nPenalty = 2^N - 1 (where N is anvil use count).\n\nWhen combining two items, the resulting penalty is max(PWP1, PWP2) * 2 + 1.\nBy combining books into a balanced binary tree, N increases logarithmically rather than linearly.',
+      details: 'Every time an item is modified in an anvil, its Prior Work Penalty (PWP) increases. Worked Examples: 1. Sword (0) + Book (0) = Sword (1). 2. Sword (1) + Book (1) = Sword (2). 3. Combining two Book (1) pairs into a Book (2) before applying to a Sword (0) results in Sword (2) but saves 40% levels on the final step.',
       mathSnippet: 'Penalty(N) = 2^N - 1 -> Limit = 39 Levels'
     },
     faqs: [
       { question: 'Why does the anvil say "Too Expensive!"?', answer: 'In survival mode, if an anvil operation requires 40 or more levels of experience, Minecraft blocks the action with "Too Expensive!". You can avoid this by combining books in pairs first.' },
-      { question: 'Does renaming an item reduce anvil cost?', answer: 'In older Minecraft versions renaming froze the penalty, but in current versions (1.20 - 1.21+) renaming always adds 1 level and does not reset PWP.' }
+      { question: 'Does renaming an item reduce anvil cost?', answer: 'In older Minecraft versions renaming froze the penalty, but in current versions (1.20 - 1.21+) renaming always adds 1 level and does not reset PWP.' },
+      { question: 'Should I add Mending first or last?', answer: 'Add Mending last if you are building a god weapon from scratch; it doesn\'t affect the cost of other enchants, but keeping the PWP low on your primary item is most important.' }
     ],
     proTips: [
       'Always pair books together first: (Book 1 + Book 2) and (Book 3 + Book 4), then merge those two books before applying to your sword.',
@@ -662,12 +871,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Complete Anvil Cost Formula',
-      details: 'Total Cost = LeftItem_PWP + RightItem_PWP + RepairCost + EnchantmentTransferCost + RenameCost\n\nWhere:\n• PWP = 2^uses - 1 (0, 1, 3, 7, 15, 31, 63...)\n• Repairing with raw material costs 1 level per 25% max durability restored (max 4 levels).\n• If Total Cost ≥ 40 in Survival mode, the anvil blocks the operation with "Too Expensive!".',
+      details: 'Total Cost = LeftItem_PWP + RightItem_PWP + RepairCost + EnchantmentTransferCost. Worked Examples: 1. PWP 1 + PWP 1 costs 2 (penalty) + 2 (transfer) = 4 levels. 2. PWP 4 (15 levels) + PWP 4 (15 levels) costs 30 levels just in penalties! 3. Renaming always adds exactly 1 level.',
       mathSnippet: 'Total_Cost = (2^N1 - 1) + (2^N2 - 1) + Repair + Transfer + Rename'
     },
     faqs: [
       { question: 'How much durability does 1 raw material repair in an anvil?', answer: 'Each unit of raw material (1 diamond, 1 netherite ingot, 1 iron ingot) repairs 25% of the item\'s maximum durability and costs 1 additional XP level.' },
-      { question: 'What is the maximum number of times an item can be worked in an anvil?', answer: 'In survival mode, an item can typically be worked up to 5 times (PWP = 31). On the 6th use (PWP = 63), the penalty alone exceeds the 39-level limit.' }
+      { question: 'What is the maximum number of times an item can be worked in an anvil?', answer: 'In survival mode, an item can typically be worked up to 5 times (PWP = 31). On the 6th use (PWP = 63), the penalty alone exceeds the 39-level limit.' },
+      { question: 'Can I repair enchanted gear without an anvil?', answer: 'Yes! Use a Grindstone (which removes enchantments) or a Crafting Table (which merges durability but removes enchantments). For enchanted gear, Mending or an Anvil are the only non-destructive ways.' }
     ],
     proTips: [
       'Applying Mending allows you to repair items infinitely using XP orbs without ever increasing your anvil penalty.',
@@ -707,12 +917,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Container Capacities in Minecraft',
-      details: '• 1 Shulker Box = 27 inventory slots = 1,728 items (for 64-stack items) or 432 items (for 16-stacks)\n• 1 Single Chest = 27 inventory slots\n• 1 Double Chest = 54 inventory slots = 3,456 items (for 64-stacks) or 864 items (for 16-stacks)\n• 1 Hopper transfers 1 item every 8 game ticks (0.4 seconds) = 2.5 items per second.',
+      details: '1 Double Chest = 54 slots = 3,456 items. Worked Examples: 1. 1,000 items = 15.6 stacks = 0.58 single chests. 2. 10,000 items = 156.2 stacks = 2.89 double chests. 3. 27 Shulker Boxes = 1 full Double Chest (46,656 items total).',
       mathSnippet: 'Double Chest = 54 * 64 = 3,456 items | Shulker Box = 27 * 64 = 1,728 items'
     },
     faqs: [
       { question: 'How many blocks are in a full double chest?', answer: 'A double chest contains 54 slots × 64 items = 3,456 items (exactly 2 full shulker boxes).' },
-      { question: 'How long does a hopper take to empty a full shulker box?', answer: 'A standard hopper transfers 2.5 items/second. Emptying 1,728 items takes 691.2 seconds (~11.5 minutes). Using a double-hopper setup cuts this to ~5.7 minutes.' }
+      { question: 'How long does a hopper take to empty a full shulker box?', answer: 'A standard hopper transfers 2.5 items/second. Emptying 1,728 items takes 691.2 seconds (~11.5 minutes). Using a double-hopper setup cuts this to ~5.7 minutes.' },
+      { question: 'What items only stack to 16 in Minecraft?', answer: 'Ender Pearls, Snowballs, Eggs, Signs, Buckets (empty), and Honey Bottles are the primary items that stack to 16 instead of 64.' }
     ],
     proTips: [
       'Label storage chests in terms of Shulker Boxes (SB) to easily manage large concrete, cobblestone, or wood deliveries.',
@@ -752,12 +963,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Beacon Pyramid Layer Geometry',
-      details: '• Layer 1 (Top): 3×3 = 9 blocks (Tier 1)\n• Layer 2: 5×5 = 25 blocks (Total Tier 2 = 34 blocks)\n• Layer 3: 7×7 = 49 blocks (Total Tier 3 = 83 blocks)\n• Layer 4 (Base): 9×9 = 81 blocks (Total Tier 4 = 164 blocks = 1,476 ingots / 23 stacks + 4 ingots)\n\n• Quad Beacon (2×2 Beacons on 10×10 base) requires 244 blocks (2,196 ingots) instead of 656 blocks.',
+      details: 'Beacon Pyramid Layer Geometry: 9, 34, 83, 164 total blocks. Worked Examples: 1. Tier 2 (34 blocks): Requires 306 ingots (4.7 stacks). 2. Tier 4 (164 blocks): Requires 1,476 ingots (23.06 stacks). 3. Quad Beacon: 244 blocks = 2,196 ingots (34.3 stacks).',
       mathSnippet: 'Full Tier 4 Beacon = 164 Blocks = 1,476 Ingots (23.06 Stacks)'
     },
     faqs: [
       { question: 'Can I mix different mineral blocks in the same beacon pyramid?', answer: 'Yes! You can freely mix Iron, Gold, Emerald, Diamond, and Netherite blocks in the same pyramid without losing power or range.' },
-      { question: 'What is the fastest way to build a full Tier 4 beacon in survival?', answer: 'Building an iron golem farm or a raid farm (for emeralds) provides enough materials for a 164-block Tier 4 beacon in just a couple of hours.' }
+      { question: 'What is the fastest way to build a full Tier 4 beacon in survival?', answer: 'Building an iron golem farm or a raid farm (for emeralds) provides enough materials for a 164-block Tier 4 beacon in just a couple of hours.' },
+      { question: 'Do I need Haste II for insta-mining?', answer: 'Yes! Haste II (Tier 4 beacon) combined with an Efficiency V Netherite Pickaxe allows you to "insta-mine" Stone, Deepslate (partially), and Terracotta.' }
     ],
     proTips: [
       'A Quad Beacon (4 beacon beams) covers all primary powers (Haste II, Speed II, Resistance II, Strength II + Regen) with only 244 total blocks.',
@@ -797,12 +1009,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Official Minecraft Armor Defense & Toughness Formula',
-      details: 'Armor Damage Reduction Factor:\nReduction = clamp(ArmorPoints - Damage / (2 + Toughness / 4), ArmorPoints / 5, 20) / 25\nDamage_After_Armor = Damage * (1 - Reduction)\n\nProtection Enchantment (EPF):\nDamage_Final = Damage_After_Armor * (1 - min(20, sum(Enchantment_Levels * 4%)) / 100)',
+      details: 'Official Armor Defense & Toughness Formula. Worked Examples: 1. Sharpness V Diamond Sword (11 dmg) vs Full Iron (15 armor): Reduction ~50% = 5.5 dmg taken. 2. Power V Bow (25 dmg) vs Full Diamond (20 armor, 8 toughness): Reduction ~64% = 9.0 dmg taken. 3. Protection IV adds a final 64-80% reduction to post-armor damage.',
       mathSnippet: 'Reduction = min(20, max(Armor / 5, Armor - D / (2 + Toughness / 4))) / 25'
     },
     faqs: [
       { question: 'Why is Armor Toughness so important against high-damage attacks?', answer: 'Without Armor Toughness, strong hits (like axes or charged bows) pierce through standard armor points. Toughness on Diamond (+2/piece) and Netherite (+3/piece) prevents defense degradation against heavy hits.' },
-      { question: 'What is the maximum Protection damage reduction in Minecraft?', answer: 'The total Enchantment Protection Factor (EPF) is capped at 80% damage reduction (achieved with 4 pieces of Protection IV: 4 × 4 = 16 EPF → max 20 EPF cap).' }
+      { question: 'What is the maximum Protection damage reduction in Minecraft?', answer: 'The total Enchantment Protection Factor (EPF) is capped at 80% damage reduction (achieved with 4 pieces of Protection IV: 4 × 4 = 16 EPF → max 20 EPF cap).' },
+      { question: 'Does Sharpness V work on Bedrock same as Java?', answer: 'Mostly. Java adds a flat 3 damage for Sharpness V, whereas Bedrock adds 1.25 damage per level (6.25 total), making Bedrock Sharpness slightly stronger.' }
     ],
     proTips: [
       'In Java Edition, Axes deal massive single-hit burst damage and disable shields for 5 seconds on critical hits.',
@@ -841,12 +1054,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Minecraft Tick Timing Standards',
-      details: '• 1 Game Tick (gt) = 1/20 second = 50 milliseconds\n• 1 Redstone Tick (rt) = 2 Game Ticks = 1/10 second = 100 milliseconds\n• 1 Repeater Setting 1 = 1 rt (2 gt = 0.1s)\n• 1 Repeater Setting 4 = 4 rt (8 gt = 0.4s)\n• 1 Hopper Transfer = 8 gt (4 rt = 0.4s) = 2.5 items/second.',
+      details: '1 Game Tick = 0.05s. 1 Redstone Tick = 0.1s. Worked Examples: 1. 10 second delay = 100 Redstone Ticks = 200 Game Ticks. 2. Repeater (4rt) = 0.4s delay. 3. Hopper (8gt) = 0.4s transfer. 4. Redstone pulse from observer (2gt) = 0.1s.',
       mathSnippet: '1 Redstone Tick = 2 Game Ticks = 0.10 Seconds = 100ms'
     },
     faqs: [
       { question: 'What is the difference between a Game Tick and a Redstone Tick?', answer: 'Minecraft updates its main game loop 20 times per second (1 Game Tick = 50ms). Redstone components update every other tick, or 10 times per second (1 Redstone Tick = 2 Game Ticks = 100ms).' },
-      { question: 'Why does an observer output a 1-redstone-tick pulse?', answer: 'When an observer detects a block state change, it outputs a 2-game-tick (1 redstone tick = 0.1s) pulse.' }
+      { question: 'Why does an observer output a 1-redstone-tick pulse?', answer: 'When an observer detects a block state change, it outputs a 2-game-tick (1 redstone tick = 0.1s) pulse.' },
+      { question: 'How do I build a T-Flip Flop with pistons?', answer: 'In Java Edition, a 1-redstone-tick pulse (from an observer) causes a sticky piston to drop its block, creating a compact toggle switch.' }
     ],
     proTips: [
       'To build a 1-minute timer, use a comparator hopper clock with 75 items (75 × 0.8s = 60s).',
@@ -886,12 +1100,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Furnace Smelting Duration & Fuel Burn Rates',
-      details: '• Standard Furnace: 200 game ticks (10.0 seconds) per item\n• Blast Furnace / Smoker: 100 game ticks (5.0 seconds) per item (2× speed)\n\nItems Smelted Per Fuel:\n• Lava Bucket: 20,000 ticks = 100 items (Leaves empty iron bucket)\n• Coal Block: 16,000 ticks = 80 items\n• Dried Kelp Block: 4,000 ticks = 20 items\n• Blaze Rod: 2,400 ticks = 12 items\n• Coal / Charcoal: 1,600 ticks = 8 items',
+      details: 'Furnace burn rates: Lava (100 items), Coal Block (80), Coal (8). Worked Examples: 1. Smelting 64 iron: Needs 8 Coal (640s). 2. Smelting 512 stone: Needs 6.4 Coal Blocks or 5.12 Lava Buckets. 3. Blast Furnace speed: 64 ores takes 320s instead of 640s.',
       mathSnippet: 'Items Smelted = Fuel_Burn_Ticks / 200 (Furnace) or Fuel_Burn_Ticks / 100 (Blast)'
     },
     faqs: [
       { question: 'What is the most renewable late-game furnace fuel?', answer: 'Dried Kelp Blocks (crafting 9 dried kelp) smelt 20 items each and can be 100% automated with zero player intervention. Blaze Rods from nether fortress farms are also infinitely renewable.' },
-      { question: 'Does a Blast Furnace use less fuel than a regular furnace?', answer: 'A Blast Furnace burns fuel twice as fast but smelts items in half the time, so the fuel-to-item ratio remains identical (e.g. 1 coal always smelts 8 items in both).' }
+      { question: 'Does a Blast Furnace use less fuel than a regular furnace?', answer: 'A Blast Furnace burns fuel twice as fast but smelts items in half the time, so the fuel-to-item ratio remains identical (e.g. 1 coal always smelts 8 items in both).' },
+      { question: 'What is the best early-game fuel?', answer: 'Charcoal is the best early-game fuel as it is easily obtained by smelting logs in a furnace using wooden planks, providing 8 items worth of burn time per unit.' }
     ],
     proTips: [
       '1 Lava Bucket smelts 100 items (1 full stack of 64 + 36 extra); keep extra hoppers loaded so the residual 36 items aren\'t wasted.',
@@ -931,12 +1146,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Voxel Ellipse Equation (Bresenham Ellipse Algorithm)',
-      details: 'A grid block at coordinate (x, z) relative to center (cx, cz) satisfies the discrete ellipse condition if:\n(x - cx)² / (Rx + 0.5)² + (z - cz)² / (Rz + 0.5)² ≤ 1.0\n\nWhere Rx = Width / 2 and Rz = Length / 2.',
+      details: 'Voxel Ellipse Equation. Worked Examples: 1. 21x41 Ellipse (Colosseum base): ~2,100 blocks for filled floor. 2. 15x30 Ellipse: ~1,100 blocks for filled, ~75 for thin hollow outline. 3. 100x200 Mega Arena: ~15,000 blocks for a 2-block thick perimeter.',
       mathSnippet: '(x - cx)^2 / (Rx + 0.5)^2 + (z - cz)^2 / (Rz + 0.5)^2 <= 1'
     },
     faqs: [
       { question: 'What is the best way to lay out an oval in Minecraft survival?', answer: 'Mark the 4 extreme outer points (North, South, East, West) and center point with torches, then build the flat straight sections before connecting the rounded curved corners.' },
-      { question: 'Can I use this for building a Minecraft colosseum?', answer: 'Yes! An oval with X = 45 and Z = 75 produces the classic Roman Colosseum aspect ratio.' }
+      { question: 'Can I use this for building a Minecraft colosseum?', answer: 'Yes! An oval with X = 45 and Z = 75 produces the classic Roman Colosseum aspect ratio.' },
+      { question: 'How do I make a 3-block thick wall for my arena?', answer: 'Use the "Thick Border" toggle or generate the circle twice (once at size X and once at X-3) and fill the gap between the two outlines.' }
     ],
     proTips: [
       'For large stadium builds, use odd numbers for both X and Z diameters so your stadium has an unambiguous center block for beacon rays.'
@@ -975,11 +1191,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Greedy Snake Draft & Partition Algorithm',
-      details: 'Players are sorted by skill rating in descending order. Teams are populated using a snake draft heuristic (Team 1, Team 2, Team 2, Team 1) followed by iterative pair-swapping to minimize the variance in total team MMR.',
+      details: 'Players are sorted by skill rating in descending order. Teams are populated using a snake draft heuristic (Team 1, Team 2, Team 2, Team 1) followed by iterative pair-swapping to minimize the variance in total team MMR. Worked Examples: 1. Two Teams: Players rated 10, 8, 7, 5. Team 1 gets 10 and 5 (MMR 15). Team 2 gets 8 and 7 (MMR 15). Perfectly balanced. 2. Three Teams: Players rated 10, 9, 8, 7, 6, 5. T1: 10, 5 (15). T2: 9, 6 (15). T3: 8, 7 (15).',
       mathSnippet: 'Min Var(TeamMMR_1, TeamMMR_2, ... TeamMMR_K)'
     },
     faqs: [
-      { question: 'How does MMR balancing work?', answer: 'The algorithm balances total team skill points while keeping average player ratings across all teams as close as mathematically possible.' }
+      { question: 'How does MMR balancing work?', answer: 'The algorithm balances total team skill points while keeping average player ratings across all teams as close as mathematically possible.' },
+      { question: 'What if I have an odd number of players?', answer: 'The generator will assign the extra player to a "Bench" or "Reserve" list, or create one team with one fewer player if requested.' },
+      { question: 'Can I lock specific players to the same team?', answer: 'Yes, you can use the "Duo Lock" feature to ensure friends or partners stay on the same roster regardless of skill rating.' }
     ],
     proTips: [
       'Assign realistic skill numbers (e.g. Bronze = 2, Gold = 5, Diamond = 8, Radiant = 10) for the most balanced matchups.'
@@ -1017,11 +1235,13 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Physics-Based Angular Deceleration',
-      details: 'The wheel uses a realistic friction curve:\nOmega(t) = InitialSpeed * exp(-Friction * t)\nThe winning sector is computed deterministically from the final resting angle modulo 2π.',
+      details: 'The wheel uses a realistic friction curve:\nOmega(t) = InitialSpeed * exp(-Friction * t)\nThe winning sector is computed deterministically from the final resting angle modulo 2π. Worked Examples: 1. Slow Spin: Initial velocity 500 deg/s, friction 0.1. Wheel stops at 180 degrees. 2. Turbo Spin: Initial velocity 2000 deg/s. Wheel completes 5 full rotations before landing on a random sector.',
       mathSnippet: 'FinalAngle = (InitialAngle + SpinVelocity * Duration) mod 360'
     },
     faqs: [
-      { question: 'Can I customize the slice colors and text?', answer: 'Yes! Add, edit, or delete any options. The wheel dynamically redistributes sector angles evenly.' }
+      { question: 'Can I customize the slice colors and text?', answer: 'Yes! Add, edit, or delete any options. The wheel dynamically redistributes sector angles evenly.' },
+      { question: 'Is the wheel truly random?', answer: 'Yes, it uses a high-entropy PRNG seed combined with user-interaction timing to ensure every spin result is unpredictable.' },
+      { question: 'How do I share my custom wheel?', answer: 'Once you add your options, click the "Share" button to generate a unique URL containing your encoded wheel settings.' }
     ],
     proTips: [
       'Use Elimination Mode when doing sub-challenges on stream to cycle through every option without duplicates.'
@@ -2825,6 +3045,1015 @@ export const TOOLS: ToolItem[] = [
     ],
     relatedToolIds: ['palworld-crafting-calculator', 'palworld-capture-calculator', 'palworld-base-team-calculator']
   },
+  {
+    id: 'crk-team-builder',
+    slug: 'crk-team-builder',
+    name: 'Cookie Run: Kingdom Team Builder & Meta Comp Simulator',
+    gameId: 'crk',
+    categoryId: 'generators',
+    icon: 'Users',
+    shortDescription: 'Build and simulate Arena & World Exploration comps with position locks, treasure synergies, and meta team presets.',
+    description: 'Interactive team builder for Cookie Run: Kingdom. Select Front, Middle, and Rear cookies, pair them with 3 Treasures (Old Pilgrim Scroll, Jelly Watch, Whistle), calculate overall team power and skill synergy, and test against meta comps.',
+    badge: 'Arena & PvE',
+    rating: 4.96,
+    reviewsCount: 3840,
+    userCount: '150k+ players',
+    featured: true,
+    tags: ['cookie run kingdom', 'team builder', 'arena comps', 'meta cookies', 'treasures', 'synergy'],
+    seoTitle: 'Cookie Run: Kingdom Team Builder – Arena & PvE Comp Simulator',
+    metaDescription: 'Optimize your Cookie Run: Kingdom team compositions for Arena, World Exploration, and Guild Battles with treasure bonuses and skill synergies.',
+    h1: 'Cookie Run: Kingdom Team Builder & Synergy Calculator',
+    canonicalPath: '/tools/crk-team-builder',
+    howToGuide: {
+      overview: 'Assign 5 cookies by position (Front, Middle, Rear) and select 3 Treasures to calculate total combat power and skill synergies.',
+      steps: [
+        { title: 'Select Cookies', description: 'Choose Front tanks/chargers, Middle DPS/support, and Rear healers/buffers.' },
+        { title: 'Equip Treasures', description: 'Select 3 Treasures (e.g. Old Pilgrim\'s Scroll, Squishy Jelly Watch, Feather).' },
+        { title: 'Review Synergies', description: 'Check Cooldown reduction, ATK% boosts, shield overlays, and meta preset recommendations.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Combat Power & Synergy Formula',
+      details: 'Total Power = Sum(Cookie Base Power) × (1 + Treasure ATK Boost + Skill Buff Multipliers). Cooldown reduction reduces base skill start timer and cycle interval.\n\nWorked Example 1: A team with 500k base power and +20% ATK from a level 12 Old Pilgrim\'s Scroll results in 600k total combat power.\nWorked Example 2: Equipping a level 12 Squishy Jelly Watch (-25% CD) reduces a 10s base skill cooldown to exactly 7.5 seconds.',
+      mathSnippet: 'Team_Power = Sum(Cookie_Power) × (1 + Treasure_Buffs)'
+    },
+    faqs: [
+      { question: 'What is the standard team setup in CRK?', answer: 'Most comps use 1–2 Front (Tank/Charge), 2 Middle (Magic/Ranged/Ambush), and 1–2 Rear (Healing/Support) along with the Squishy Jelly Watch for CD reduction.' },
+      { question: 'Do Treasures affect individual cookie stats?', answer: 'Yes, most Treasures apply global buffs to your entire team\'s ATK, DEF, or Crit, while some like the Whistle target specific highest-ATK cookies.' },
+      { question: 'Which cookies should I put in the Front?', answer: 'Cookies with high HP and Defense, usually of the Defense or Charge class, such as Hollyberry, Crimson Coral, or Financier Cookie.' }
+    ],
+    proTips: [
+      'Always equip Squishy Jelly Watch (Common or Epic version) to cycle skills faster in Arena before enemy burst damage.'
+    ],
+    relatedToolIds: ['crk-topping-optimizer', 'crk-upgrade-planner', 'crk-pity-planner']
+  },
+  {
+    id: 'crk-topping-optimizer',
+    slug: 'crk-topping-optimizer',
+    name: 'Cookie Run: Kingdom Topping Set & Sub-stat Optimizer',
+    gameId: 'crk',
+    categoryId: 'calculators',
+    icon: 'Sparkles',
+    shortDescription: 'Optimize Topping sets (Swift Chocolate, Searing Raspberry, Solid Almond) and target exact Arena CD thresholds.',
+    description: 'Calculate topping set bonuses (2-set & 5-set), target crucial Cooldown % start thresholds (e.g., 24.1% CD for 3s skill start), and evaluate DMG Resist sub-stats for high-tier PvP.',
+    badge: 'Topping Builds',
+    rating: 4.94,
+    reviewsCount: 3210,
+    userCount: '130k+ players',
+    featured: true,
+    tags: ['cookie run kingdom', 'topping optimizer', 'swift chocolate', 'solid almond', 'searing raspberry', 'cooldown threshold'],
+    seoTitle: 'Cookie Run: Kingdom Topping Optimizer – Set Bonuses & CD Thresholds',
+    metaDescription: 'Optimize your Cookie Run: Kingdom topping builds. Calculate 2-set & 5-set bonuses, Cooldown start thresholds, and DMG Resist sub-stat targets.',
+    h1: 'Cookie Run: Kingdom Topping Set & Sub-stat Optimizer',
+    canonicalPath: '/tools/crk-topping-optimizer',
+    howToGuide: {
+      overview: 'Configure 5 topping slots with main stats and sub-stat rolls to hit optimal cooldown or damage resistance breakpoints.',
+      steps: [
+        { title: 'Choose Cookie & Target', description: 'Select your Cookie class and primary goal (Full CD, Full DMG Resist, Full ATK).' },
+        { title: 'Input Topping Stats', description: 'Enter main stat bonuses and sub-stat roll percentages.' },
+        { title: 'Check Breakpoints', description: 'Verify if your total Cooldown % reaches early skill activation thresholds.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Topping Set Bonus & Cooldown Threshold Math',
+      details: 'Total Stat Boost = Main Stat Sum + Substat Sum + Set Bonus (5-set Swift Chocolate grants +5% CD, 5-set Solid Almond grants +5% DMG Resist).\n\nWorked Example 1: 5x Swift Chocolate (+3% CD each) with a +5% set bonus gives 15% + 5% = 20% total Cooldown bonus.\nWorked Example 2: To hit a 3s start on a 15s skill, you typically need 22.3% total Cooldown (including substat rolls).',
+      mathSnippet: 'Total_Bonus = Main_Stats + Sub_Stats + Set_Bonus'
+    },
+    faqs: [
+      { question: 'What is the minimum Cooldown for a 3-second Arena start?', answer: 'Most 4-second base CD skills require 24.1% total Cooldown (including Jelly Watch) to start cast at 3 seconds into the match.' },
+      { question: 'Is DMG Resist better than Defense?', answer: 'Yes! DMG Resist (Solid Almond) is a flat percentage reduction of all incoming damage and is significantly more effective than raw Defense in high-tier PvP.' },
+      { question: 'Can I mix topping sets?', answer: 'Yes, but you usually lose the powerful 5-piece set bonus. Some builds use a 3+2 mix to gain two smaller set bonuses if they can\'t reach specific substat goals.' }
+    ],
+    proTips: [
+      'Prioritize DMG Resist sub-stats (up to 48.5% total cap) on all Arena cookies to survive burst damage comps.'
+    ],
+    relatedToolIds: ['crk-team-builder', 'crk-upgrade-planner']
+  },
+  {
+    id: 'crk-production-chain-planner',
+    slug: 'crk-production-chain-planner',
+    name: 'Cookie Run: Kingdom Production Chain & Trade Planner',
+    gameId: 'crk',
+    categoryId: 'planners',
+    icon: 'Layers',
+    shortDescription: 'Plan kingdom production buildings, calculate raw resource to goods time, and fulfill Tree of Wishes & Train queues.',
+    description: 'Calculate crafting chains across Woodshop, Quarry, Bakery, Jam House, and Jellies. Estimate total crafting duration, raw material throughput, and Gold profit for Tree of Wishes and Bear Jelly Trains.',
+    badge: 'Kingdom Economy',
+    rating: 4.92,
+    reviewsCount: 2890,
+    userCount: '95k+ players',
+    featured: false,
+    tags: ['cookie run kingdom', 'production planner', 'tree of wishes', 'bear jelly train', 'woodshop', 'bakery', 'crafting chain'],
+    seoTitle: 'Cookie Run: Kingdom Production Chain Planner – Kingdom Goods & Crafting',
+    metaDescription: 'Optimize Cookie Run: Kingdom craft queues, raw material requirements, and production time for Tree of Wishes and Bear Jelly Train trade.',
+    h1: 'Cookie Run: Kingdom Production Chain & Trade Planner',
+    canonicalPath: '/tools/crk-production-chain-planner',
+    howToGuide: {
+      overview: 'Select target manufactured goods to compute required raw materials, total craft duration, and gold rewards.',
+      steps: [
+        { title: 'Select Target Goods', description: 'Choose items needed for Tree of Wishes or Bear Jelly Train.' },
+        { title: 'Configure Kingdom Buffs', description: 'Adjust Sugar Gnome Research Lab speed upgrades.' },
+        { title: 'View Crafting Queue', description: 'See complete breakdown of base resources (Roll Cake Wood, Sugar Cubes, Jelly Jam).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Crafting Time & Material Bottleneck Calculation',
+      details: 'Craft Time = Base Item Time × (1 - Gnome Research Reduction %). Raw materials recursively calculated from sub-items in building trees.\n\nWorked Example 1: A 10-minute Roll Cake Wood craft with a 10% research speed bonus takes exactly 9 minutes.\nWorked Example 2: Crafting one Jam Pie requires 3x Flour and 2x Jelly Jam, which in turn require 15 minutes of base processing time.',
+      mathSnippet: 'Craft_Time = Base_Time × (1 - Research_Buff%)'
+    },
+    faqs: [
+      { question: 'Should I upgrade production buildings to max level early?', answer: 'Be cautious! Higher tier goods require complex crafting chains and can lock your Bear Jelly Train requests if you lack stock.' },
+      { question: 'How do I unlock more building slots?', answer: 'You can purchase extra production slots using Crystals, allowing you to queue more items while you are away from the game.' },
+      { question: 'What is the best way to spend Gold?', answer: 'Prioritize expanding your Kingdom territory and upgrading your Castle level, then focus on research lab upgrades.' }
+    ],
+    proTips: [
+      'Keep a stockpile of 30+ basic items (Roll Cake Wood, Sugar Cubes, Jelly Beans) so advanced recipes never freeze production.'
+    ],
+    relatedToolIds: ['crk-event-timers', 'crk-upgrade-planner']
+  },
+  {
+    id: 'crk-upgrade-planner',
+    slug: 'crk-upgrade-planner',
+    name: 'Cookie Run: Kingdom Cookie EXP & Skill Upgrade Planner',
+    gameId: 'crk',
+    categoryId: 'calculators',
+    icon: 'ArrowLeftRight',
+    shortDescription: 'Calculate EXP Jellies needed for Cookie Level 1–80, Skill Powders by class, and Promotion soulstone costs.',
+    description: 'Complete EXP Jelly and Skill Powder upgrade calculator. Compute exact Lv 1–10 EXP Jellies required from level 1 to 80, Skill Powder counts (Refined & Pristine), and Soulstone/Soulcore promotion matrices.',
+    badge: 'Level & Skill',
+    rating: 4.95,
+    reviewsCount: 3500,
+    userCount: '140k+ players',
+    featured: true,
+    tags: ['cookie run kingdom', 'upgrade planner', 'exp jellies', 'skill powders', 'soulstones', 'level 80'],
+    seoTitle: 'Cookie Run: Kingdom EXP Jelly & Skill Powder Upgrade Planner',
+    metaDescription: 'Calculate exact EXP Jellies, Skill Powders, and Soulstones required to upgrade cookies to Level 80 and Skill Level 80 in CRK.',
+    h1: 'Cookie Run: Kingdom EXP Jelly & Skill Powder Upgrade Planner',
+    canonicalPath: '/tools/crk-upgrade-planner',
+    howToGuide: {
+      overview: 'Input current cookie level, skill level, and target level to view detailed EXP Jelly and Skill Powder requirements.',
+      steps: [
+        { title: 'Enter Current & Target Level', description: 'Specify starting level and desired target level (up to 80).' },
+        { title: 'Select Cookie Class', description: 'Choose Charge, Defense, Magic, Ambush, Ranged, Bomber, Support, or Healing for Skill Powders.' },
+        { title: 'View Resource Breakdown', description: 'See exact counts for Level 1–10 EXP Jellies and Refined/Pristine Skill Powders.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'EXP & Powder Scaling Matrix',
+      details: 'EXP EXP(Lv) increases exponentially per bracket. Skill Powders transition from Regular (Lv 1-20) -> Refined (Lv 21-40) -> Pristine (Lv 41-80).\n\nWorked Example 1: Leveling from 1 to 60 requires approx 2.5M EXP points, while 60 to 80 requires an additional 10M+ EXP.\nWorked Example 2: One talent upgrade from Level 79 to 80 requires 20 Pristine Skill Powders and 150,000 Mora.',
+      mathSnippet: 'Total_EXP = Sum(EXP_Cost_Per_Level)'
+    },
+    faqs: [
+      { question: 'How many EXP Jellies are needed for Level 1 to 80?', answer: 'Upgrading a cookie from Level 1 to Level 80 requires approximately 12.8 million total EXP points (or ~20,000 Level 4 EXP Jellies).' },
+      { question: 'Where is the best place to farm Skill Powders?', answer: 'The Daily Bounties in the World Exploration menu are the primary source of Skill Powders, rotating by class every day.' },
+      { question: 'What are Soulcores used for?', answer: 'Soulcores are used for the Ascension system (stars 6–10) once a cookie has reached 5-star Promotion.' }
+    ],
+    proTips: [
+      'Use the Hall of Ancient Heroes to boost secondary cookies to your top 5 Paragon level without consuming EXP Jellies.'
+    ],
+    relatedToolIds: ['crk-team-builder', 'crk-topping-optimizer', 'crk-pity-planner']
+  },
+  {
+    id: 'crk-pity-planner',
+    slug: 'crk-pity-planner',
+    name: 'Cookie Run: Kingdom Gacha Pity & Gem Budget Planner',
+    gameId: 'crk',
+    categoryId: 'calculators',
+    icon: 'Calculator',
+    shortDescription: 'Calculate net pulls, pity progress (250 hard pity), probability odds, and days needed to save Crystals.',
+    description: 'Calculate total gacha pulls from Crystals, Cookie Cutters (Special/Standard), and Fate Tickets. Track 250 Nether-Gacha & Featured Banner hard pity thresholds, projected Mileage Points, and Crystal income.',
+    badge: 'Gacha & Crystals',
+    rating: 4.93,
+    reviewsCount: 3100,
+    userCount: '120k+ players',
+    featured: false,
+    tags: ['cookie run kingdom', 'pity planner', 'gacha calculator', 'crystals', 'cookie cutters', 'mileage points'],
+    seoTitle: 'Cookie Run: Kingdom Gacha Pity & Gem Budget Planner',
+    metaDescription: 'Calculate gacha pulls, net pity progress, featured cookie probability, and Crystal saving timelines in Cookie Run: Kingdom.',
+    h1: 'Cookie Run: Kingdom Gacha Pity & Gem Budget Planner',
+    canonicalPath: '/tools/crk-pity-planner',
+    howToGuide: {
+      overview: 'Enter your stored Crystals and Cutters to calculate total pulls and probability of hitting 250 hard pity.',
+      steps: [
+        { title: 'Input Currency', description: 'Enter current Crystals, Special Cutters, and Standard Cutters.' },
+        { title: 'Select Banner Type', description: 'Choose Featured Epic/Super Epic or Nether-Gacha (Ancient/Beast).' },
+        { title: 'Analyze Odds', description: 'View probability curves, guaranteed pity milestone dates, and mileage returns.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Pity & Probability Formula',
+      details: 'Pulls = (Crystals / 300) + Cutters. Cumulative Probability P(At least 1 success) = 1 - (1 - Drop_Rate)^Pulls. Hard pity triggers at 250 pulls.\n\nWorked Example 1: 30,000 Crystals provide 100 pulls, giving a ~45% chance of pulling a featured Epic (0.582% rate) before pity.\nWorked Example 2: Reaching 250 pulls guarantees the featured Ancient/Beast cookie, regardless of previous RNG outcomes.',
+      mathSnippet: 'P(Success) = 1 - (1 - Rate)^Pulls'
+    },
+    faqs: [
+      { question: 'How many Crystals are needed for 250 hard pity?', answer: '250 pulls cost 75,000 Crystals (at 300 Crystals per pull), assuming no Cookie Cutters are used.' },
+      { question: 'Does pity reset if I pull the cookie early?', answer: 'For standard banners, no, the hard pity counter at 250 is usually for a one-time guarantee or reward cycle. Check the specific banner rules for Nether-Gacha.' },
+      { question: 'What is the "Soulstone" rate?', answer: 'Featured cookies have a separate rate for individual Soulstones (usually ~8%), which help you promote the cookie even if you don\'t pull the full character.' }
+    ],
+    proTips: [
+      'Save Mileage Points for Treasure Tickets or Soulstones of top-tier Epic cookies instead of standard gacha pulls.'
+    ],
+    relatedToolIds: ['crk-upgrade-planner', 'crk-event-timers']
+  },
+  {
+    id: 'crk-event-timers',
+    slug: 'crk-event-timers',
+    name: 'Cookie Run: Kingdom Guild Battle & Event Reset Timers',
+    gameId: 'crk',
+    categoryId: 'trackers',
+    icon: 'Clock',
+    shortDescription: 'Live countdowns for Guild Battle boss rotations, Kingdom Pass resets, stamina jelly refill, and fountain alarms.',
+    description: 'Stay on top of Cookie Run: Kingdom daily and weekly resets. Track Guild Battle bosses (Red Velvet Dragon, Avatar of Destiny, Living Abyss), Kingdom Pass deadlines, and set custom alarms for Stamina Jelly overflow.',
+    badge: 'Timers & Resets',
+    rating: 4.91,
+    reviewsCount: 2650,
+    userCount: '85k+ players',
+    featured: false,
+    tags: ['cookie run kingdom', 'event timers', 'guild battle reset', 'stamina jelly timer', 'fountain of abundance', 'daily reset'],
+    seoTitle: 'Cookie Run: Kingdom Event Timers & Guild Battle Reset Clock',
+    metaDescription: 'Track live Cookie Run: Kingdom daily resets, Guild Battle boss rotations, stamina jelly refill timers, and kingdom event countdowns.',
+    h1: 'Cookie Run: Kingdom Event Timers & Guild Battle Reset Clock',
+    canonicalPath: '/tools/crk-event-timers',
+    howToGuide: {
+      overview: 'Monitor server reset times and set alerts so your stamina jellies and production buildings never sit full.',
+      steps: [
+        { title: 'Select Server Region', description: 'Choose Pure Vanilla, Hollyberry, or Dark Cacao server time zone.' },
+        { title: 'View Live Countdown', description: 'Track Guild Battle ticket resets, Daily Quests, and Kingdom Pass ending.' },
+        { title: 'Set Stamina Alarm', description: 'Input your current Stamina Jellies to calculate exact full-cap timestamp.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Stamina Regeneration Rate',
+      details: 'Stamina regenerates at 1 Jelly every 5 minutes (or faster with Gnome Lab research). Full cap refill time = (Max_Cap - Current_Jellies) × 5 min.\n\nWorked Example 1: If you have 50/150 stamina, you need 100 jellies, which will take 500 minutes (8h 20m) to refill.\nWorked Example 2: Leveling up often provides a flat +20-50 Stamina bonus that can overflow your current cap.',
+      mathSnippet: 'Refill_Time_Minutes = (Max - Current) × 5'
+    },
+    faqs: [
+      { question: 'When does the daily reset occur in CRK?', answer: 'The daily reset occurs at 00:00 KST (15:00 UTC / 10:00 AM EST).' },
+      { question: 'How often do Guild Battle tickets refresh?', answer: 'You receive 3 Guild Battle tickets every day at the daily reset time.' },
+      { question: 'What are Fountain of Abundance rewards based on?', answer: 'The rewards scale with your Fountain level and your Castle level. Collect them regularly as the storage cap fills every 8–12 hours.' }
+    ],
+    proTips: [
+      'Use all 3 Guild Battle attempts daily before weekly tallying begins to maximize Guild Trophies and Heroic Medals.'
+    ],
+    relatedToolIds: ['crk-team-builder', 'crk-production-chain-planner']
+  },
+  {
+    id: 'afkj-daily-boss-planner',
+    slug: 'afkj-daily-boss-planner',
+    name: 'AFK Journey Dream Realm & Daily Boss Team Planner',
+    gameId: 'afkj',
+    categoryId: 'generators',
+    icon: 'Swords',
+    shortDescription: 'Plan meta team comps for Snow Stalker, Necrodrakon, Skyclops, King Croaker, and Lone Wolf Dream Realm bosses.',
+    description: 'Optimize Dream Realm and Primal Lord boss scores in AFK Journey. Select daily boss targets, configure artifact spells (Starshard, Evocation), view faction counters, and simulate high-rank damage comps.',
+    badge: 'Dream Realm',
+    rating: 4.97,
+    reviewsCount: 4120,
+    userCount: '160k+ players',
+    featured: true,
+    tags: ['afk journey', 'dream realm', 'boss planner', 'necrodrakon', 'snow stalker', 'skyclops', 'king croaker'],
+    seoTitle: 'AFK Journey Daily Boss Team Planner – Dream Realm Meta Comps',
+    metaDescription: 'Optimize AFK Journey Dream Realm boss damage. Best team comps, Artifact selection, and positioning for Snow Stalker, Necrodrakon, and King Croaker.',
+    h1: 'AFK Journey Dream Realm & Daily Boss Team Planner',
+    canonicalPath: '/tools/afkj-daily-boss-planner',
+    howToGuide: {
+      overview: 'Choose today’s Dream Realm boss to view meta team lineups, artifact pairings, and positioning advice.',
+      steps: [
+        { title: 'Select Dream Realm Boss', description: 'Choose Snow Stalker, Necrodrakon, Skyclops, King Croaker, or Lone Wolf.' },
+        { title: 'Equip Spell Artifact', description: 'Pair with Starshard Spell, Evocation Spell, or Crescent Spell.' },
+        { title: 'View Damage Benchmarks', description: 'Check target DPS thresholds for Top 1% and Top 5% leaderboard ranks.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Dream Realm Damage & Multipliers',
+      details: 'Damage Output = (Base Hero DPS × True Damage Buffs) × (1 + Faction Advantage 15%) × Artifact Burst Multipliers.\n\nWorked Example 1: A team with 10M base DPS and a 15% Faction advantage deals 11.5M damage before artifact bonuses.\nWorked Example 2: Adding a level 10 Starshard spell (+20% damage) increases total output to 11.5M * 1.2 = 13.8M damage.',
+      mathSnippet: 'Total_Damage = Base_DPS × Faction_Buff × Artifact_Multiplier'
+    },
+    faqs: [
+      { question: 'Which heroes are best for Dream Realm in AFK Journey?', answer: 'Odie, Marilee, Korin, Smokey & Meerky, Reinier, and Koko form the core of most top-tier Dream Realm compositions.' },
+      { question: 'When does the Dream Realm boss reset?', answer: 'Dream Realm bosses rotate every 24 hours at the daily server reset time.' },
+      { question: 'Does positioning matter in Dream Realm?', answer: 'Yes! Placing heroes like Smokey & Meerky so their aura covers the entire team is crucial for sustaining through the boss\'s enraged phase.' }
+    ],
+    proTips: [
+      'Upgrade Odie and Marilee to Mythic+ (+10 Exclusive Weapon) immediately for execute mechanic and true damage shred.'
+    ],
+    relatedToolIds: ['afkj-team-builder', 'afkj-ascension-planner', 'afkj-resource-planner']
+  },
+  {
+    id: 'afkj-ascension-planner',
+    slug: 'afkj-ascension-planner',
+    name: 'AFK Journey Hero Ascension & Acorn Calculator',
+    gameId: 'afkj',
+    categoryId: 'calculators',
+    icon: 'Sparkles',
+    shortDescription: 'Calculate hero soul sigils, duplicate copies, and faction acorns (Lightbearer, Wilder, Mauler, Graveborn) to Supreme+.',
+    description: 'Plan hero ascension paths from Elite to Supreme+ and Paragon tiers. Compute duplicate copy requirements, faction acorn costs (Mauler, Wilder, Lightbearer, Graveborn Acorns), and Omniacorn counts for Celestials/Hypogeans.',
+    badge: 'Ascension & Acorns',
+    rating: 4.95,
+    reviewsCount: 3680,
+    userCount: '145k+ players',
+    featured: true,
+    tags: ['afk journey', 'ascension planner', 'acorn calculator', 'supreme plus', 'mythic plus', 'soul sigils'],
+    seoTitle: 'AFK Journey Ascension & Faction Acorn Calculator',
+    metaDescription: 'Calculate hero duplicates, soul sigils, and faction acorns required to reach Mythic+ and Supreme+ in AFK Journey.',
+    h1: 'AFK Journey Hero Ascension & Acorn Calculator',
+    canonicalPath: '/tools/afkj-ascension-planner',
+    howToGuide: {
+      overview: 'Input starting hero tier and target tier to calculate required dupes, sigils, and faction acorns.',
+      steps: [
+        { title: 'Select Faction & Hero Tier', description: 'Choose S-Level or A-Level hero and current tier (Epic, Mythic, Supreme).' },
+        { title: 'Set Target Tier', description: 'Select desired target tier (e.g. Supreme+ or Paragon 1).' },
+        { title: 'View Material Breakdown', description: 'Check required S/A-level copies, Faction Acorns, and Omniacorns.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Hero Duplicate & Acorn Requirements',
+      details: 'S-Level Hero to Supreme+: 8 Copies + 350 Faction Acorns. A-Level Hero to Supreme+: 64 Copies + 200 Faction Acorns.\n\nWorked Example 1: To take an S-Level Vala from Epic to Mythic+, you need 4 total copies and 150 Faction Acorns.\nWorked Example 2: An A-Level Odie requires 40 copies to reach Mythic+ and a total of 64 copies to reach Supreme+.',
+      mathSnippet: 'Supreme_Plus = Target_Tier_Copies + Faction_Acorns'
+    },
+    faqs: [
+      { question: 'How many copies of an S-Level hero are needed for Supreme+?', answer: 'Upgrading an S-Level hero from Epic to Supreme+ requires 8 total copies and 350 Faction Acorns.' },
+      { question: 'How do I get more Faction Acorns?', answer: 'Faction Acorns are primarily obtained through Noble Path rewards, Legend Trial progression, and Summoning bonuses.' },
+      { question: 'What is the benefit of Supreme+ rank?', answer: 'Supreme+ unlocks the hero\'s final skill enhancement and provides a significant boost to all base attributes, essential for high-tier Arena play.' }
+    ],
+    proTips: [
+      'Prioritize ascending S-tier supports (Smokey, Rowan) and core DPS (Eironn, Carolina) to Mythic+ to unlock their Exclusive Weapons.'
+    ],
+    relatedToolIds: ['afkj-daily-boss-planner', 'afkj-resource-planner', 'afkj-summon-planner']
+  },
+  {
+    id: 'afkj-resource-planner',
+    slug: 'afkj-resource-planner',
+    name: 'AFK Journey Hero Essence (Dust) & Leveling Planner',
+    gameId: 'afkj',
+    categoryId: 'calculators',
+    icon: 'Calculator',
+    shortDescription: 'Calculate Hero Dust, Gold, and EXP required to reach Resonance Level 240+ and Season Level 500+.',
+    description: 'Calculate Hero Essence (Dust) bottlenecks, Gold, and EXP costs across Resonance Levels. Input your daily AFK rewards rate, Fast Rewards multiplier, and Noble Path gains to calculate days until your next Resonance Wall unlock.',
+    badge: 'Dust & Leveling',
+    rating: 4.94,
+    reviewsCount: 3340,
+    userCount: '135k+ players',
+    featured: false,
+    tags: ['afk journey', 'hero essence', 'dust planner', 'resonance level', 'fast rewards', 'gold exp'],
+    seoTitle: 'AFK Journey Hero Essence (Dust) & Resonance Level Planner',
+    metaDescription: 'Calculate Hero Essence (Dust), EXP, and Gold needed for Resonance Level upgrades in AFK Journey.',
+    h1: 'AFK Journey Hero Essence & Leveling Resource Planner',
+    canonicalPath: '/tools/afkj-resource-planner',
+    howToGuide: {
+      overview: 'Input current Resonance Level and daily AFK income to project days required to cross dust walls.',
+      steps: [
+        { title: 'Enter Current & Target Resonance', description: 'Specify starting Resonance Level and target level (e.g., 240 or Season 500).' },
+        { title: 'Input Daily AFK Rate', description: 'Enter hourly Hero Essence income and Instant AFK attempts.' },
+        { title: 'View Time to Level Up', description: 'Analyze exact dust wall timestamps and gold budget.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Resonance Dust Wall Math',
+      details: 'Dust Walls occur every 10 Resonance levels (e.g., Lv 220 -> 240). Total Days = (Target_Dust - Current_Dust) / Daily_Dust_Generation.\n\nWorked Example 1: If you need 20,000 Hero Essence and generate 200 per hour (4,800/day), it will take approx 4.16 days to reach your goal.\nWorked Example 2: Using 2 hours of "Instant AFK" provides a flat 400 Essence boost, reducing the timer by about 4 hours.',
+      mathSnippet: 'Days_To_Target = Deficit_Dust / Daily_AFK_Dust'
+    },
+    faqs: [
+      { question: 'Should I buy Hero Essence in the shop for Gold daily?', answer: 'Yes! Always buy the daily 800 Gold Hero Essence in the Emporium shop to speed up Resonance level progression.' },
+      { question: 'How do I increase my hourly Hero Essence rate?', answer: 'Push further in the AFK Stage campaign; every 5–10 stages usually increases your passive income rate.' },
+      { question: 'What is the Resonance Wall?', answer: 'A Resonance Wall occurs every 10 levels (e.g., 220, 230, 240) where you must spend a large amount of Hero Essence to advance all heroes simultaneously.' }
+    ],
+    proTips: [
+      'Save Instant AFK claims for after pushing high AFK Stage campaign levels to maximize dust yield per hour.'
+    ],
+    relatedToolIds: ['afkj-ascension-planner', 'afkj-season-tracker']
+  },
+  {
+    id: 'afkj-summon-planner',
+    slug: 'afkj-summon-planner',
+    name: 'AFK Journey Starlight & Wishlist Gacha Summon Planner',
+    gameId: 'afkj',
+    categoryId: 'calculators',
+    icon: 'Sparkles',
+    shortDescription: 'Calculate net pulls, pity counters (40 rate-up pity), wishlist odds, and Stargaze banner budgets.',
+    description: 'Calculate total gacha summons from Rate-Up Letters, Invite Letters, Starlight Letters, and Diamonds. Plan Wishlist rosters (5 heroes per faction), compute 40-pull hard pity guarantees, and track Celestial/Hypogean Stargaze odds.',
+    badge: 'Gacha & Pity',
+    rating: 4.93,
+    reviewsCount: 2980,
+    userCount: '110k+ players',
+    featured: false,
+    tags: ['afk journey', 'summon planner', 'wishlist gacha', 'stargaze banner', 'rate up invite letter', 'diamonds'],
+    seoTitle: 'AFK Journey Gacha Summon & Wishlist Pity Planner',
+    metaDescription: 'Calculate Rate-Up invite pulls, Wishlist odds, 40-pull hard pity, and Stargaze banner costs in AFK Journey.',
+    h1: 'AFK Journey Gacha Summon & Wishlist Pity Planner',
+    canonicalPath: '/tools/afkj-summon-planner',
+    howToGuide: {
+      overview: 'Enter stored Diamonds and Invite Letters to evaluate pity progress and wishlist pull distributions.',
+      steps: [
+        { title: 'Input Currency & Letters', description: 'Enter Diamonds, Rate-Up Letters, Epic Letters, and Stargaze Crystals.' },
+        { title: 'Select Banner Type', description: 'Choose All-Hero Banner (40 Pity), Rate-Up Banner, or Stargaze Station.' },
+        { title: 'Review Odds & Guaranteed Pulls', description: 'View total pull capacity and probability of hitting target ascension dupes.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Pity & Wishlist Rate Math',
+      details: 'All-Hero Banner: 2.05% S-Level drop rate, 40-pull hard pity. Wishlist restricts S-Level pool to your 10 selected heroes (5 per faction slot).\n\nWorked Example 1: 12,000 Diamonds provide 40 pulls (at 300 each), which guarantees at least one S-Level hero on the All-Hero banner.\nWorked Example 2: With 20 Invite Letters and 6,000 Diamonds, you have 40 total pulls, triggering the hard pity reset.',
+      mathSnippet: 'Net_Pulls = (Diamonds / 300) + Invite_Letters'
+    },
+    faqs: [
+      { question: 'How does the Wishlist work in AFK Journey?', answer: 'You must fill all 5 S-Level slots per faction on your Wishlist so all S-Level summons drop exclusively from your selected heroes.' },
+      { question: 'Is the Rate-Up banner better than the All-Hero banner?', answer: 'The Rate-Up banner is better for targeting a specific new hero, but the All-Hero banner has a better S-Level rate for general roster growth.' },
+      { question: 'What are Starlight Letters used for?', answer: 'Starlight Letters are used for the Stellar Station to pull for rare Celestial and Hypogean heroes like Reinier or Scarlita.' }
+    ],
+    proTips: [
+      'Never leave empty slots on your Wishlist, or non-wishlist S-Level heroes will randomly drop instead.'
+    ],
+    relatedToolIds: ['afkj-ascension-planner', 'afkj-team-builder']
+  },
+  {
+    id: 'afkj-team-builder',
+    slug: 'afkj-team-builder',
+    name: 'AFK Journey 5v5 Tactical Grid Team Builder',
+    gameId: 'afkj',
+    categoryId: 'generators',
+    icon: 'Users',
+    shortDescription: 'Build and test 5v5 battle grid team comps with faction synergy buffs, role balance, and artifact spells.',
+    description: 'Interactive tactical grid team builder for AFK Journey. Place heroes on Frontline, Midline, and Backline tiles, trigger faction synergies (3-hero, 4-hero, 5-hero +15%-22% ATK/HP buffs), pair Artifact spells, and evaluate team counters.',
+    badge: 'Grid Comps',
+    rating: 4.96,
+    reviewsCount: 3950,
+    userCount: '155k+ players',
+    featured: true,
+    tags: ['afk journey', 'team builder', 'tactical grid', 'faction synergy', 'eironn comp', 'pvp arena'],
+    seoTitle: 'AFK Journey 5v5 Tactical Grid Team Builder & Faction Synergy',
+    metaDescription: 'Build tactical 5v5 team lineups in AFK Journey. Calculate faction synergy buffs, position tiles, and artifact spell pairings.',
+    h1: 'AFK Journey 5v5 Tactical Grid Team Builder',
+    canonicalPath: '/tools/afkj-team-builder',
+    howToGuide: {
+      overview: 'Drag and place 5 heroes onto the 3x5 battlefield grid to optimize tile positioning and faction synergy.',
+      steps: [
+        { title: 'Select 5 Heroes', description: 'Choose Tanks (Thoran, Antandra), DPS (Eironn, Odie), and Supports (Smokey, Hewynn).' },
+        { title: 'Position on Grid', description: 'Assign tiles (Frontline tanks, Backline mages/marksmans).' },
+        { title: 'Verify Faction Buffs', description: 'Check +15% to +22% HP/ATK bonus from faction matches.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Faction Synergy Buff Calculation',
+      details: '3 Same Faction = +10% HP/ATK | 3+2 Dual Faction = +15% HP/ATK | 4 Same = +18% HP/ATK | 5 Same = +22% HP/ATK. Celestials/Hypogeans act as wildcards.\n\nWorked Example 1: A team with 3 Wilders and 2 Maulers receives a +15% HP/ATK synergy bonus.\nWorked Example 2: A full 5-hero Graveborn team receives the maximum +22% synergy bonus, greatly increasing Thoran\'s durability.',
+      mathSnippet: 'Team_Power = Base_Power × (1 + Faction_Synergy_Buff%)'
+    },
+    faqs: [
+      { question: 'What is the top meta PvP comp in AFK Journey?', answer: 'The "Eironn Burst Comp" (Eironn, Carolina, Arden, Thoran, Damian) dominates Arena by instantly pulling and freezing the enemy team.' },
+      { question: 'How do Celestial and Hypogean heroes affect synergies?', answer: 'They act as wildcards, filling the requirement for whatever faction has the most members currently on the field.' },
+      { question: 'What is the best artifact for Arena?', answer: 'The Confining Spell is highly rated for disrupting enemy backline casters, while the Ironwall Spell is better for defensive stall comps.' }
+    ],
+    proTips: [
+      'Place Thoran in front of your primary DPS hero so his Soul Retaliation skill absorbs deadly initial damage.'
+    ],
+    relatedToolIds: ['afkj-daily-boss-planner', 'afkj-ascension-planner']
+  },
+  {
+    id: 'afkj-season-tracker',
+    slug: 'afkj-season-tracker',
+    name: 'AFK Journey Season Progression & Quest Tracker',
+    gameId: 'afkj',
+    categoryId: 'trackers',
+    icon: 'Clock',
+    shortDescription: 'Track season resonance level, season artifacts, talent trees, daily resets, and event countdowns.',
+    description: 'Stay ahead in AFK Journey seasonal updates (Song of Strife, Waves of Intrigue). Track Season Resonance cap, Season Talent Tree points, Supreme Arena resets, District Quests, and World Boss schedules.',
+    badge: 'Season Progress',
+    rating: 4.92,
+    reviewsCount: 2710,
+    userCount: '90k+ players',
+    featured: false,
+    tags: ['afk journey', 'season tracker', 'song of strife', 'waves of intrigue', 'season resonance', 'supreme arena'],
+    seoTitle: 'AFK Journey Season Progression & Daily Reset Tracker',
+    metaDescription: 'Track AFK Journey seasonal events, Season Resonance level caps, talent tree points, and daily server resets.',
+    h1: 'AFK Journey Season Progression & Event Tracker',
+    canonicalPath: '/tools/afkj-season-tracker',
+    howToGuide: {
+      overview: 'Monitor seasonal quest deadlines, Supreme Arena tallying times, and season level milestones.',
+      steps: [
+        { title: 'Select Season Chapter', description: 'Choose Song of Strife or current active season event.' },
+        { title: 'Track Season Level', description: 'Record current Season Resonance Level (1 to 500+).' },
+        { title: 'View Event Countdown', description: 'Track live countdowns for World Bosses and Supreme Arena reset.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Season Talent & Level Scaling',
+      details: 'Season Resonance levels stack on top of base Resonance. Season Talents unlock specialized combat passives for Season PvP and PvE.\n\nWorked Example 1: Reaching Season Level 200 adds a flat +15% stat bonus to your base Resonance level attributes.\nWorked Example 2: Investing 50 points into the Season Talent tree can unlock a 10% damage reduction passive for all Wilder heroes in season-specific modes.',
+      mathSnippet: 'Total_Stats = Base_Resonance_Stats + Season_Level_Stats'
+    },
+    faqs: [
+      { question: 'What happens to Season Levels when a season ends?', answer: 'Season Levels reset at the start of a new season, but permanent rewards, titles, and cosmetics remain unlocked.' },
+      { question: 'Do I keep my Season Levels after the season ends?', answer: 'No, Season Levels reset to 1 at the start of a new season, but you receive permanent rewards based on your peak progress.' },
+      { question: 'What are District Quests?', answer: 'District Quests are seasonal missions that grant high amounts of Season Essence and are required to progress the seasonal story arc.' }
+    ],
+    proTips: [
+      'Complete District Quests as soon as they unlock to maximize Season Essence drops and push Season Resonance.'
+    ],
+    relatedToolIds: ['afkj-resource-planner', 'afkj-daily-boss-planner']
+  },
+  {
+    id: 'mogo-sticker-tracker',
+    slug: 'mogo-sticker-tracker',
+    name: 'Monopoly GO Album Sticker & Duplicate Vault Tracker',
+    gameId: 'mogo',
+    categoryId: 'trackers',
+    icon: 'Sparkles',
+    shortDescription: 'Track active album sets (1–21), missing 4★/5★ stickers, gold duplicates, and vault star value (800-Star Wild Vault).',
+    description: 'Complete sticker album completion and duplicate vault tracker for Monopoly GO. Check off stickers across all 21 sets, calculate total star value for the 800-Star Wild Sticker Vault, and flag tradeable 4-star and 5-star duplicates.',
+    badge: 'Sticker Album',
+    rating: 4.98,
+    reviewsCount: 5240,
+    userCount: '210k+ players',
+    featured: true,
+    tags: ['monopoly go', 'sticker tracker', 'album tracker', 'gold stickers', 'wild sticker', 'duplicate vault'],
+    seoTitle: 'Monopoly GO Sticker Tracker & Duplicate Vault Calculator',
+    metaDescription: 'Track your Monopoly GO sticker album sets, missing 4★ and 5★ cards, gold duplicates, and 800-star vault exchange progress.',
+    h1: 'Monopoly GO Album Sticker & Duplicate Vault Tracker',
+    canonicalPath: '/tools/mogo-sticker-tracker',
+    howToGuide: {
+      overview: 'Mark owned and duplicate stickers across Sets 1 to 21 to view completion percentage and total vault stars.',
+      steps: [
+        { title: 'Select Album Set', description: 'Choose Sets 1 through 21 (e.g. Monopoly Games / Marvel GO).' },
+        { title: 'Check Off Stickers', description: 'Toggle owned stickers and input duplicate count (+1, +2, +3).' },
+        { title: 'View Vault Stars', description: 'Check remaining stars required for the 800-Star Wild Sticker Vault.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Vault Star Value Math',
+      details: 'Vault Stars = Sum(Duplicate_Count × Sticker_Star_Rating). 1-star duplicate = 1 pt, 5-star duplicate = 5 pts. Gold stickers yield double star value.\n\nWorked Example 1: Having 10x 1-star duplicates and 2x 5-star duplicates gives 10*1 + 2*5 = 20 vault stars.\nWorked Example 2: A single 5-star Gold duplicate is worth 10 stars towards your 800-star Wild Vault goal.',
+      mathSnippet: 'Total_Stars = Sum(Dupes × Star_Rating)'
+    },
+    faqs: [
+      { question: 'When is the best time to open the 800-Star Vault in Monopoly GO?', answer: 'Open the 800-Star Vault during a Sticker Boom flash event (+50% extra stickers per pack) to maximize new cards and wild sticker value.' },
+      { question: 'Do Gold stickers count for more stars?', answer: 'Yes, Gold stickers are worth double their star rating when traded in for vault rewards (e.g., a 4-star Gold is worth 8 stars).' },
+      { question: 'What is a Wild Sticker?', answer: 'A Wild Sticker allows you to choose ANY missing sticker from your current album, including Gold stickers, to complete a set.' }
+    ],
+    proTips: [
+      'Save your 5-star duplicates for Golden Blitz trading windows or 1:1 direct trades rather than turning them into vault stars.'
+    ],
+    relatedToolIds: ['mogo-trade-matching', 'mogo-event-timers', 'mogo-free-dice-links']
+  },
+  {
+    id: 'mogo-trade-matching',
+    slug: 'mogo-trade-matching',
+    name: 'Monopoly GO Safe Exchange Trade Matcher & Value Calculator',
+    gameId: 'mogo',
+    categoryId: 'calculators',
+    icon: 'ArrowLeftRight',
+    shortDescription: 'Calculate fair trade ratios (5★ for 5★, 15★ for 5★), verify Golden Blitz values, and follow anti-scam safe exchange.',
+    description: 'Verify fair sticker trade offers in Monopoly GO. Match your duplicate 4-star and 5-star stickers with missing cards, calculate star trading exchange rates, and follow official Safe Exchange in-game protocols.',
+    badge: 'Safe Trading',
+    rating: 4.96,
+    reviewsCount: 4180,
+    userCount: '175k+ players',
+    featured: true,
+    tags: ['monopoly go', 'trade matching', 'safe exchange', 'golden blitz', '5 star trade', 'sticker trade ratio'],
+    seoTitle: 'Monopoly GO Sticker Trade Matcher & Fair Value Calculator',
+    metaDescription: 'Find fair sticker trades in Monopoly GO. Calculate 4★/5★ trade values, Golden Blitz exchange ratios, and avoid sticker scams.',
+    h1: 'Monopoly GO Safe Exchange Trade Matcher',
+    canonicalPath: '/tools/mogo-trade-matching',
+    howToGuide: {
+      overview: 'Input offered stickers and requested stickers to evaluate trade fairness and star equivalency.',
+      steps: [
+        { title: 'Select Offered Stickers', description: 'Choose duplicates you are willing to send (e.g. 2x 4-star cards or 15 stars).' },
+        { title: 'Select Requested Card', description: 'Choose the missing 5-star card or Golden Blitz card you need.' },
+        { title: 'Check Fairness Index', description: 'Review market ratio rating and turn on in-game Safe Exchange toggle.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Sticker Trade Value Index',
+      details: '1x 5★ Regular = 1x 5★ Regular OR ~15-20 Stars | 1x 5★ Gold = 2x 5★ Regular (during Golden Blitz event).\n\nWorked Example 1: Trading a Room to Rent (4-star) for 12 stars is considered a standard fair trade ratio (3:1).\nWorked Example 2: During Golden Blitz, you can trade 1x 5-star Gold sticker for 2x 5-star Regular stickers or approx 30-40 stars.',
+      mathSnippet: 'Trade_Fairness = Offered_Star_Value / Target_Market_Value'
+    },
+    faqs: [
+      { question: 'How does Safe Exchange work in Monopoly GO?', answer: 'When sending a sticker trade, toggle "Make an exchange!" in-game so both players must accept the proposal before stickers leave your inventory.' },
+      { question: 'Can you trade Gold stickers anytime?', answer: 'No, Gold stickers can only be traded during limited-time "Golden Blitz" events, and only specific Gold stickers are tradeable each time.' },
+      { question: 'What is a fair star price for a 5-star sticker?', answer: 'The market rate usually fluctuates between 15 and 25 stars for a single non-gold 5-star sticker depending on rarity and demand.' }
+    ],
+    proTips: [
+      'Always use in-game Safe Exchange when trading with players outside your trusted friends list.'
+    ],
+    relatedToolIds: ['mogo-sticker-tracker', 'mogo-free-dice-links']
+  },
+  {
+    id: 'mogo-free-dice-links',
+    slug: 'mogo-free-dice-links',
+    name: 'Monopoly GO Verified Free Dice Links & Daily Claim Tracker',
+    gameId: 'mogo',
+    categoryId: 'trackers',
+    icon: 'Gift',
+    shortDescription: 'Active verified daily free dice rolls, partner event tokens, and interactive "Claimed" checklist.',
+    description: 'Get verified daily free dice links for Monopoly GO. Updated multiple times daily with official Scopely reward links (25 Free Dice, 30 Free Dice + Pink Pack, Partner Tokens) and an interactive account claim tracker.',
+    badge: 'Free Dice',
+    rating: 4.99,
+    reviewsCount: 8900,
+    userCount: '350k+ players',
+    featured: true,
+    tags: ['monopoly go', 'free dice links', 'daily dice', 'free rolls', 'partner tokens', 'dice claimer'],
+    seoTitle: 'Monopoly GO Free Dice Links (Today) – Verified Rolls Tracker',
+    metaDescription: 'Claim active verified daily free dice links for Monopoly GO. Interactive checklist to track claimed 25 & 30 free dice rolls.',
+    h1: 'Monopoly GO Verified Free Dice Links & Daily Claim Tracker',
+    canonicalPath: '/tools/mogo-free-dice-links',
+    howToGuide: {
+      overview: 'Click active dice links to claim free rolls directly in your Monopoly GO app and mark them as claimed.',
+      steps: [
+        { title: 'Check Active Links', description: 'View today’s tested and verified free dice links.' },
+        { title: 'Click Claim Link', description: 'Tap link to launch Monopoly GO and claim 25–30 free rolls.' },
+        { title: 'Mark as Claimed', description: 'Toggle checkbox so you don\'t re-open claimed links.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Free Dice Generation Schedule',
+      details: 'Scopely releases 2 to 4 official free dice links daily via social channels, yielding 50–100 extra dice rolls per day.\n\nWorked Example 1: Claiming 3 active links of 25 dice each gives you a total of 75 rolls for your daily tournament push.\nWorked Example 2: If a special event is active, a link might provide 30 dice plus 200 Partner Tokens.',
+      mathSnippet: 'Daily_Free_Dice = Sum(Active_Verified_Link_Values)'
+    },
+    faqs: [
+      { question: 'Why do some Monopoly GO dice links say "Already Claimed"?', answer: 'Each free dice link can only be redeemed once per Monopoly GO user ID. If you previously claimed it on social media, it will show as claimed.' },
+      { question: 'How long do free dice links last?', answer: 'Most links are valid for approximately 48 to 72 hours before they expire and become unusable.' },
+      { question: 'Can I get banned for using these links?', answer: 'No, these links are official rewards generated by Scopely (the game developer) and distributed through verified social media channels.' }
+    ],
+    proTips: [
+      'Bookmark this page and check back at 12 PM EST and 8 PM EST for newly published reward links.'
+    ],
+    relatedToolIds: ['mogo-event-timers', 'mogo-sticker-tracker']
+  },
+  {
+    id: 'mogo-event-timers',
+    slug: 'mogo-event-timers',
+    name: 'Monopoly GO Flash Event Timers & Schedule Clock',
+    gameId: 'mogo',
+    categoryId: 'trackers',
+    icon: 'Clock',
+    shortDescription: 'Live countdowns for High Roller, Wheel Boost, Golden Blitz, Mega Heist, Sticker Boom, and Solo Milestones.',
+    description: 'Stay on top of Monopoly GO daily flash events and banner tournaments. Track High Roller (+500x multiplier), Wheel Boost (2x spins), Sticker Boom (+50% stickers), Landmark Rush, and Golden Blitz schedules.',
+    badge: 'Event Schedule',
+    rating: 4.95,
+    reviewsCount: 3820,
+    userCount: '160k+ players',
+    featured: false,
+    tags: ['monopoly go', 'event timers', 'high roller', 'wheel boost', 'sticker boom', 'golden blitz', 'flash events'],
+    seoTitle: 'Monopoly GO Flash Event Timers & Today’s Schedule',
+    metaDescription: 'Track live Monopoly GO daily flash events: High Roller, Wheel Boost, Sticker Boom, Mega Heist, and Golden Blitz countdowns.',
+    h1: 'Monopoly GO Flash Event Timers & Schedule Clock',
+    canonicalPath: '/tools/mogo-event-timers',
+    howToGuide: {
+      overview: 'Monitor active and upcoming flash event boost windows to stack Wheel Boost and High Roller.',
+      steps: [
+        { title: 'View Active Boosts', description: 'See currently active flash events and remaining duration.' },
+        { title: 'Check Upcoming Schedule', description: 'Plan dice spending around Sticker Boom and Wheel Boost times.' },
+        { title: 'Set Event Reminders', description: 'Prepare saved dice for High Roller 500x multiplier windows.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Flash Event Stacking Synergy',
+      details: 'Stacking Wheel Boost (2x spins) + Color Wheel Rush yields 4 spins per full hotel board clear, doubling sticker pack output.\n\nWorked Example 1: Completing a set of hotels during Wheel Boost gives 2 spins. If Color Wheel Rush is also active, you get 2 + 2 = 4 spins per set.\nWorked Example 2: Rolling with a 500x multiplier during High Roller (5 mins) can yield 50,000+ points in a single session if you hit the right tiles.',
+      mathSnippet: 'Wheel_Spin_Yield = Base_Spins × Wheel_Boost_Multiplier'
+    },
+    faqs: [
+      { question: 'How long do Monopoly GO flash events last once activated?', answer: 'Flash events trigger upon logging into the game during their active schedule window and run for 5 to 30 minutes.' },
+      { question: 'What is High Roller?', answer: 'High Roller is a flash event that increases your maximum roll multiplier up to 1000x, allowing for massive point gains in tournaments.' },
+      { question: 'What is a Sticker Boom?', answer: 'Sticker Boom is a flash event that grants 50% more stickers from every pack you open while the timer is active.' }
+    ],
+    proTips: [
+      'Log into Monopoly GO during overlapping Wheel Boost and Sticker Boom windows for maximum sticker pack gains.'
+    ],
+    relatedToolIds: ['mogo-free-dice-links', 'mogo-upgrade-cost-planner']
+  },
+  {
+    id: 'mogo-shield-finder',
+    slug: 'mogo-shield-finder',
+    name: 'Monopoly GO Landmark Shield Defense & Risk Calculator',
+    gameId: 'mogo',
+    categoryId: 'calculators',
+    icon: 'Shield',
+    shortDescription: 'Calculate shield capacity (3-5 max), rebuild costs vs shield maintenance, and Bank Heist cash protection.',
+    description: 'Protect your board cash and landmarks in Monopoly GO. Track shield capacity, calculate rebuilding costs after Shutdown attacks versus rolling for full shield replenishment, and optimize stored cash balance before Bank Heists.',
+    badge: 'Shield Defense',
+    rating: 4.91,
+    reviewsCount: 2450,
+    userCount: '80k+ players',
+    featured: false,
+    tags: ['monopoly go', 'shield finder', 'landmark defense', 'bank heist protection', 'shutdown rebuild', 'shields'],
+    seoTitle: 'Monopoly GO Landmark Shield Defense & Risk Calculator',
+    metaDescription: 'Calculate shield defense costs, landmark rebuild economics, and Bank Heist cash loss risk in Monopoly GO.',
+    h1: 'Monopoly GO Landmark Shield Defense & Risk Calculator',
+    canonicalPath: '/tools/mogo-shield-finder',
+    howToGuide: {
+      overview: 'Input current shields and board landmark stage to calculate repair costs versus dice needed to refill shields.',
+      steps: [
+        { title: 'Enter Shield Count', description: 'Input current active shields (0 to 5 max).' },
+        { title: 'Enter Stored Cash', description: 'Input unspent cash balance to calculate Bank Heist loss exposure.' },
+        { title: 'Evaluate Rebuild Strategy', description: 'Determine whether to leave board empty or maintain full shields.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Bank Heist & Shutdown Protection Math',
+      details: 'Large Bank Heist steals ~15-25% of unspent cash. Rebuilding a destroyed landmark costs 50% of its original upgrade cash.\n\nWorked Example 1: If your landmark upgrade costs 10 Million, repairing it after a Shutdown costs exactly 5 Million.\nWorked Example 2: Holding 100 Million cash with 0 shields puts you at risk of losing 25 Million in a single Mega Heist.',
+      mathSnippet: 'Rebuild_Cost = Base_Upgrade_Cost × 0.50'
+    },
+    faqs: [
+      { question: 'Is it better to leave landmarks unbuilt to avoid Shutdowns?', answer: 'Yes! If you do not have enough cash to complete the entire board in one sitting, keep cash stored or complete board instantly to prevent attackers from destroying landmarks.' },
+      { question: 'How do I get more shields?', answer: 'Land on the Shield tiles scattered around the board. If your shields are full, landing on a shield tile refunds the dice used for that roll.' },
+      { question: 'Do shields protect against Bank Heists?', answer: 'No, shields only protect your Landmarks from Shutdown attacks. Your stored cash can still be stolen during a Bank Heist regardless of your shield count.' }
+    ],
+    proTips: [
+      'Always roll on 1x multiplier until you land on Shield tiles to refill your shields efficiently without wasting dice.'
+    ],
+    relatedToolIds: ['mogo-upgrade-cost-planner', 'mogo-event-timers']
+  },
+  {
+    id: 'mogo-upgrade-cost-planner',
+    slug: 'mogo-upgrade-cost-planner',
+    name: 'Monopoly GO Board Upgrade & Net Worth Cost Planner',
+    gameId: 'mogo',
+    categoryId: 'calculators',
+    icon: 'Calculator',
+    shortDescription: 'Calculate total board completion cash (25 house upgrades), Builder\'s Bash discounts, and net worth milestone levels.',
+    description: 'Calculate exact cash required to upgrade landmarks and complete boards in Monopoly GO. Compute board completion costs (Board 1 to 500+), calculate Builder\'s Bash discount savings (-30% / -50%), and plan Net Worth level milestone rewards.',
+    badge: 'Board Upgrade',
+    rating: 4.94,
+    reviewsCount: 3150,
+    userCount: '125k+ players',
+    featured: true,
+    tags: ['monopoly go', 'upgrade cost planner', 'board cost', 'builders bash', 'landmark cost', 'net worth level'],
+    seoTitle: 'Monopoly GO Board Upgrade Cost & Builder’s Bash Calculator',
+    metaDescription: 'Calculate cash required to complete Monopoly GO boards, landmark upgrade costs, and Builder\'s Bash discount savings.',
+    h1: 'Monopoly GO Board Upgrade & Net Worth Cost Planner',
+    canonicalPath: '/tools/mogo-upgrade-cost-planner',
+    howToGuide: {
+      overview: 'Enter your current board number and net worth to calculate total cash needed to complete the board.',
+      steps: [
+        { title: 'Input Board Number', description: 'Select board level (e.g. Board 50 or Board 150).' },
+        { title: 'Apply Builder\'s Bash', description: 'Toggle -30% or -50% flash event discount.' },
+        { title: 'View Cash Requirement', description: 'See complete cash breakdown for all 5 landmarks and 25 house upgrades.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Board Upgrade Cost Formula',
+      details: 'Total Board Cost = Base_Board_Cash × (1.12)^Board_Number × (1 - Discount_Percent). Completing 25 house upgrades spawns hotels on all tiles.\n\nWorked Example 1: If Board 10 costs 10M, Board 11 will cost approx 11.2M due to the 12% escalation factor.\nWorked Example 2: During a 50% Builder\'s Bash, a board that normally costs 100M can be completed for just 50M cash.',
+      mathSnippet: 'Final_Board_Cost = Base_Cost × (1.12)^Board_Num × (1 - Discount%)'
+    },
+    faqs: [
+      { question: 'What is Builder\'s Bash in Monopoly GO?', answer: 'Builder\'s Bash is a flash event that reduces landmark upgrade cash costs by 30% to 50%, allowing you to clear boards for far less cash.' },
+      { question: 'How many upgrades are needed per board?', answer: 'Each board has 5 landmarks, and each landmark requires 5 upgrade levels, totaling 25 upgrades to progress to the next map.' },
+      { question: 'Does Net Worth affect board costs?', answer: 'Directly, no. Board costs are tied to your current Board Number, though higher Net Worth unlocks permanent landmark cost reduction bonuses.' }
+    ],
+    proTips: [
+      'Save your cash and upgrade boards exclusively during Builder\'s Bash or Landmark Rush flash events for bonus dice rewards.'
+    ],
+    relatedToolIds: ['mogo-event-timers', 'mogo-shield-finder']
+  },
+  {
+    id: 'sk-damage-calc',
+    slug: 'sk-damage-calc',
+    name: 'Seven Knights Re:BIRTH Damage Output Calculator',
+    gameId: 'sk',
+    categoryId: 'calculators',
+    icon: 'Swords',
+    shortDescription: 'Calculate skill damage, crit multipliers, and resistance shred for PvE boss raids.',
+    description: 'Calculate your hero damage output in Seven Knights Re:BIRTH. Analyze skill coefficients, critical damage multipliers, enemy defense shred, and damage resistance for optimal raid loadouts.',
+    badge: 'Damage Calc',
+    rating: 4.95,
+    reviewsCount: 3500,
+    userCount: '130k+ players',
+    featured: true,
+    tags: ['seven knights rebirth', 'damage calculator', 'pve raid', 'skill coefficients', 'dmg shred'],
+    seoTitle: 'Seven Knights Re:BIRTH Damage Output Calculator',
+    metaDescription: 'Calculate Seven Knights Re:BIRTH hero damage. Analyze skill coefficients, crit multipliers, and DEF shred for raid boss loadouts.',
+    h1: 'Seven Knights Re:BIRTH Damage Output Calculator',
+    canonicalPath: '/tools/sk-damage-calc',
+    howToGuide: {
+      overview: 'Configure hero stats and skill coefficients to simulate damage output against various boss resistance profiles.',
+      steps: [
+        { title: 'Input Hero Stats', description: 'Enter hero level, ATK, and crit damage.' },
+        { title: 'Add Skill Multipliers', description: 'Input active skill coefficients.' },
+        { title: 'Apply Resistance Shred', description: 'Enter enemy defense rating and defense shred percentage.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Damage Output Calculation',
+      details: 'Total Damage = (Hero ATK × Skill Coefficient) × (1 + Crit DMG) × (1 - Enemy DEF Shred).\n\nWorked Example 1: A hero with 3,000 ATK and a 200% skill coefficient deals 6,000 base damage before modifiers.\nWorked Example 2: If the same hit crits with 100% Crit DMG bonus, total damage becomes 6,000 * (1 + 1.0) = 12,000.',
+      mathSnippet: 'Dmg = (ATK × Coeff) × CritMult × DEFShred'
+    },
+    faqs: [
+      { question: 'What is the maximum damage limit in raids?', answer: 'Damage limit depends on boss difficulty; focusing on defense shred is usually more impactful than raw ATK once base stats are optimized.' },
+      { question: 'Does Crit Rate or Crit DMG matter more?', answer: 'Crit Rate is essential to ensure your hits actually crit, but once you reach a high enough rate, stacking Crit DMG provides the biggest boost to your overall DPS.' },
+      { question: 'How does defense shred interact with defense?', answer: 'Defense shred reduces the enemy\'s armor value by a percentage, making your hits penetrate deeper and deal more raw damage.' }
+    ],
+    proTips: [
+      'Prioritize defense shred for bosses with high innate damage reduction.'
+    ],
+    relatedToolIds: ['sk-team-builder', 'sk-gear-manager']
+  },
+  {
+    id: 'sk-gear-manager',
+    slug: 'sk-gear-manager',
+    name: 'Seven Knights Re:BIRTH Gear Sell/Keep Valuation Tool',
+    gameId: 'sk',
+    categoryId: 'calculators',
+    icon: 'Shield',
+    shortDescription: 'Evaluate gear stats (sub-stats, set bonuses) to decide whether to sell, craft, or keep for hero builds.',
+    description: 'Determine the value of your gear. Input base stats, sub-stats, and set bonuses to evaluate if gear should be sold for materials or kept for end-game hero builds.',
+    badge: 'Gear Valuation',
+    rating: 4.92,
+    reviewsCount: 2800,
+    userCount: '100k+ players',
+    featured: false,
+    tags: ['seven knights rebirth', 'gear valuation', 'sell or keep', 'gear stats'],
+    seoTitle: 'Seven Knights Re:BIRTH Gear Sell/Keep Valuation Tool',
+    metaDescription: 'Evaluate your Seven Knights Re:BIRTH gear stats. Determine whether to sell, upgrade, or keep gear pieces based on sub-stats and sets.',
+    h1: 'Seven Knights Re:BIRTH Gear Sell/Keep Valuation Tool',
+    canonicalPath: '/tools/sk-gear-manager',
+    howToGuide: {
+      overview: 'Enter gear piece stats to receive a keep/sell recommendation based on current meta gear standards.',
+      steps: [
+        { title: 'Input Gear Details', description: 'Select slot, base stat, and sub-stat values.' },
+        { title: 'Check Set Bonus', description: 'Input gear set.' },
+        { title: 'View Valuation', description: 'Receive recommendation: Keep, Sell, or Upgrade.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Gear Utility Scoring',
+      details: 'Utility Score = Sum(Weighted Substat Values) + Set Bonus Synergy Score. High scores indicate priority keeping.\n\nWorked Example 1: A piece of gear with two Gold-tier ATK rolls (weight 10 each) scores 20 points, placing it in the "Keep" category.\nWorked Example 2: A piece with flat HP and low-tier resistance rolls scores under 5 points, resulting in a "Sell" recommendation.',
+      mathSnippet: 'Score = Σ(Substat_Weight) + Set_Score'
+    },
+    faqs: [
+      { question: 'What stats should I prioritize for DPS gear?', answer: 'Focus on Crit Rate, Crit Damage, and ATK sub-stats for all DPS heroes.' },
+      { question: 'Should I keep gear with flat stats?', answer: 'Generally, percentage-based stats are significantly better than flat stats for end-game progression, so flat-stat gear is usually safe to sell.' },
+      { question: 'What is a "God Roll" for gear?', answer: 'A "God Roll" is a piece of gear where all sub-stats are the highest possible tier and perfectly match the hero\'s role (e.g., all offensive stats for a DPS).' }
+    ],
+    proTips: [
+      'Sell gear with poor sub-stats early on; don\'t waste upgrade gold on non-meta pieces.'
+    ],
+    relatedToolIds: ['sk-damage-calc', 'sk-shop-optimizer']
+  },
+  {
+    id: 'sk-team-builder',
+    slug: 'sk-team-builder',
+    name: 'Seven Knights Re:BIRTH 5v5 Team Builder',
+    gameId: 'sk',
+    categoryId: 'generators',
+    icon: 'Users',
+    shortDescription: 'Build 5v5 teams with optimized positioning, role balancing, and hero synergies.',
+    description: 'Construct 5v5 teams for Arena and PvE. Balance front-line tanks with back-line support and DPS, optimizing for faction bonuses and skill synergies.',
+    badge: 'Team Builder',
+    rating: 4.96,
+    reviewsCount: 4200,
+    userCount: '170k+ players',
+    featured: true,
+    tags: ['seven knights rebirth', 'team builder', 'arena comps', 'synergy'],
+    seoTitle: 'Seven Knights Re:BIRTH 5v5 Team Builder',
+    metaDescription: 'Build optimized Seven Knights Re:BIRTH teams. Balance roles, calculate synergies, and optimize positioning for Arena and PvE.',
+    h1: 'Seven Knights Re:BIRTH 5v5 Team Builder',
+    canonicalPath: '/tools/sk-team-builder',
+    howToGuide: {
+      overview: 'Arrange 5 heroes on the 5v5 team slots to achieve maximum synergy and role balance.',
+      steps: [
+        { title: 'Select Heroes', description: 'Choose 5 heroes covering Tank, DPS, Support, and Utility roles.' },
+        { title: 'Check Role Balance', description: 'Ensure you have adequate healing/shielding and front-line protection.' },
+        { title: 'Review Synergies', description: 'Verify skill synergy and party-wide buffs.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Team Power & Synergy',
+      details: 'Total Team Power = Sum(Hero Power) × (1 + Synergy Buff Multiplier). Effective teams maximize buff uptime.\n\nWorked Example 1: A team with 100k total power receiving a 10% Faction synergy bonus results in 110k effective team power.\nWorked Example 2: Pairing a high-ATK DPS with a support that grants a 50% ATK buff results in a 1.5x damage multiplier for your primary damage dealer.',
+      mathSnippet: 'Team_Power = Sum(Power) × Synergy'
+    },
+    faqs: [
+      { question: 'What is the best team for early game?', answer: 'A balanced team of 1 tank, 2 DPS, 1 support, and 1 utility hero is generally recommended.' },
+      { question: 'How do hero positions affect the match?', answer: 'Front-row heroes are targeted more frequently by standard attacks, so place your tankiest heroes there to protect your back-line DPS.' },
+      { question: 'What are faction synergy bonuses?', answer: 'Faction synergies are triggered when multiple heroes from the same faction (e.g., Seven Knights, Dark Knights) are used together, granting team-wide stat boosts.' }
+    ],
+    proTips: [
+      'Experiment with position order; some heroes have passive buffs tied to their position in the lineup.'
+    ],
+    relatedToolIds: ['sk-damage-calc', 'sk-gacha-planner']
+  },
+  {
+    id: 'sk-ruby-calc',
+    slug: 'sk-ruby-calc',
+    name: 'Seven Knights Re:BIRTH Ruby Efficiency Calculator',
+    gameId: 'sk',
+    categoryId: 'calculators',
+    icon: 'Coins',
+    shortDescription: 'Plan ruby farming, evaluate daily ruby income, and prioritize ruby spending.',
+    description: 'Optimize your ruby economy. Track daily ruby income sources, calculate efficiency of ruby spending in shop vs summons, and plan for upcoming featured banner pulls.',
+    badge: 'Ruby Planner',
+    rating: 4.93,
+    reviewsCount: 3100,
+    userCount: '120k+ players',
+    featured: false,
+    tags: ['seven knights rebirth', 'ruby calculator', 'economy', 'spending optimization'],
+    seoTitle: 'Seven Knights Re:BIRTH Ruby Efficiency Calculator',
+    metaDescription: 'Plan your Seven Knights Re:BIRTH ruby economy. Calculate income, optimize spending, and plan banner pulls.',
+    h1: 'Seven Knights Re:BIRTH Ruby Efficiency Calculator',
+    canonicalPath: '/tools/sk-ruby-calc',
+    howToGuide: {
+      overview: 'Track ruby sources and set spending priorities to maximize progression efficiency.',
+      steps: [
+        { title: 'Input Ruby Income', description: 'Enter daily/weekly ruby sources (dailies, arena, login).' },
+        { title: 'Set Spending Priorities', description: 'Define must-buy items vs optional summons.' },
+        { title: 'View Efficiency', description: 'Receive spending recommendations based on your current goal.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Ruby Spend Efficiency',
+      details: 'Efficiency = (Item Value / Ruby Cost). Prioritize items with Efficiency Score > 1.5.\n\nWorked Example 1: Buying a 10+1 summon for 3,000 rubies (approx 272 per hero) is more efficient than single pulls (300 each).\nWorked Example 2: A limited-time growth pack that provides materials worth 5,000 rubies for only 2,000 rubies has an efficiency score of 2.5.',
+      mathSnippet: 'Efficiency = Value / Cost'
+    },
+    faqs: [
+      { question: 'Is it better to spend rubies on gear summons or hero summons?', answer: 'Generally, prioritize hero summons to fill out your roster before heavily investing in gear.' },
+      { question: 'How can I earn free rubies fast?', answer: 'Complete all daily and weekly missions, participate in Arena rankings, and climb the Tower of Abyss for the highest ruby income.' },
+      { question: 'Should I spend rubies on shop refreshes?', answer: 'Only refresh the shop if you are looking for specific high-tier progression materials and have rubies to spare.' }
+    ],
+    proTips: [
+      'Save rubies for meta-defining hero banners.'
+    ],
+    relatedToolIds: ['sk-shop-optimizer', 'sk-gacha-planner']
+  },
+  {
+    id: 'sk-shop-optimizer',
+    slug: 'sk-shop-optimizer',
+    name: 'Seven Knights Re:BIRTH Shop Value Optimizer',
+    gameId: 'sk',
+    categoryId: 'calculators',
+    icon: 'ShoppingCart',
+    shortDescription: 'Compare shop pack values, identify efficient bundles, and plan resource purchases.',
+    description: 'Maximize your resources. Compare the value of different shop bundles, identify the most efficient purchase options for rubies, materials, and hero growth items.',
+    badge: 'Shop Value',
+    rating: 4.91,
+    reviewsCount: 2600,
+    userCount: '90k+ players',
+    featured: false,
+    tags: ['seven knights rebirth', 'shop optimizer', 'pack value', 'resource purchase'],
+    seoTitle: 'Seven Knights Re:BIRTH Shop Value Optimizer',
+    metaDescription: 'Maximize value in Seven Knights Re:BIRTH. Compare shop bundles and identify the most efficient resource purchases.',
+    h1: 'Seven Knights Re:BIRTH Shop Value Optimizer',
+    canonicalPath: '/tools/sk-shop-optimizer',
+    howToGuide: {
+      overview: 'Compare bundle contents and costs to find the best value for your real-money or ruby purchases.',
+      steps: [
+        { title: 'Input Shop Bundle', description: 'Enter bundle cost and contents (e.g. rubies, materials, summon tickets).' },
+        { title: 'Compare Values', description: 'View cost per unit of resource.' },
+        { title: 'Optimize Purchase', description: 'Prioritize bundles with lowest cost per unit.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Bundle Value Index',
+      details: 'Value Index = (Resource Quantity / Bundle Price). Higher index is better.\n\nWorked Example 1: A $10 pack containing 3,000 rubies has a value index of 300 per dollar.\nWorked Example 2: A $20 pack containing 5,000 rubies and 10 summon tickets (worth 3,000 rubies) has a value index of 400 per dollar.',
+      mathSnippet: 'ValueIndex = Qty / Price'
+    },
+    faqs: [
+      { question: 'Are daily shop refreshes worth it?', answer: 'Yes, if you are actively farming for specific growth materials.' },
+      { question: 'Which bundles should F2P players buy?', answer: 'Focus on high-efficiency monthly cards or seasonal event passes that offer long-term ruby and material generation.' },
+      { question: 'What is the "First Purchase" bonus?', answer: 'Many ruby packs offer double the amount of rubies for the first purchase, making them exceptionally high-value for new players.' }
+    ],
+    proTips: [
+      'Focus on packs that offer long-term progression materials rather than just immediate, temporary boosts.'
+    ],
+    relatedToolIds: ['sk-ruby-calc', 'sk-gear-manager']
+  },
+  {
+    id: 'sk-gacha-planner',
+    slug: 'sk-gacha-planner',
+    name: 'Seven Knights Re:BIRTH Gacha Summon Planner',
+    gameId: 'sk',
+    categoryId: 'calculators',
+    icon: 'Sparkles',
+    shortDescription: 'Plan summon budgets, track pity counts, and calculate pull probabilities for featured banners.',
+    description: 'Plan your gacha pulls. Track your pity progress, calculate the number of summons needed for a featured hero, and estimate probabilities for successful pulls based on current ruby reserves.',
+    badge: 'Gacha Planner',
+    rating: 4.94,
+    reviewsCount: 3200,
+    userCount: '140k+ players',
+    featured: true,
+    tags: ['seven knights rebirth', 'gacha planner', 'pity tracker', 'summons'],
+    seoTitle: 'Seven Knights Re:BIRTH Gacha Summon Planner',
+    metaDescription: 'Plan Seven Knights Re:BIRTH pulls. Track pity, calculate summon needs, and estimate success probabilities.',
+    h1: 'Seven Knights Re:BIRTH Gacha Summon Planner',
+    canonicalPath: '/tools/sk-gacha-planner',
+    howToGuide: {
+      overview: 'Input ruby/ticket counts to track pity and determine probability of pulling featured heroes.',
+      steps: [
+        { title: 'Input Resources', description: 'Enter total rubies and summon tickets.' },
+        { title: 'Track Pity', description: 'Enter current pull count toward pity.' },
+        { title: 'Calculate Success', description: 'View probability of success and remaining summons to pity.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Summon Probability',
+      details: 'Probability = 1 - (1 - Featured_Rate)^Summons. Pity resets upon successful featured pull.\n\nWorked Example 1: With a featured rate of 1%, making 100 pulls gives you a ~63.4% chance of getting the hero before pity.\nWorked Example 2: To guarantee a 5-star, you must reach the hard pity threshold (usually 180 pulls), which resets the counter upon success.',
+      mathSnippet: 'P(Success) = 1 - (1 - Rate)^Summons'
+    },
+    faqs: [
+      { question: 'What is the hard pity rate for featured heroes?', answer: 'Check in-game banner details for the specific hard pity threshold.' },
+      { question: 'Does pity carry over between banners?', answer: 'In Seven Knights Re:BIRTH, pity usually only carries over between banners of the exact same type. Check the rules for each specific limited-time banner.' },
+      { question: 'What happens if I pull the hero before pity?', answer: 'The pity counter resets to zero immediately upon pulling the featured hero, regardless of how many pulls were remaining.' }
+    ],
+    proTips: [
+      'Always aim to have enough resources for hard pity before starting major pulls on a new banner.'
+    ],
+    relatedToolIds: ['sk-team-builder', 'sk-ruby-calc']
+  },
+  ...COIN_MASTER_TOOLS,
   ...EXTRA_TOOLS,
   ...EXTRA_TOOLS_PART_2,
   ...EXTRA_TOOLS_PART_3

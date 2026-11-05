@@ -9,7 +9,8 @@ import { GAMES, TOOLS, getGamePath } from '../data/gamesAndTools';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
 import ToolCard from '../components/ToolCard';
-import { PokeballIcon, PalSphereIcon } from '../components/GameIcons';
+import { getGameIcon } from '../components/GameIcons';
+import AdLayout from '../components/ads/AdLayout';
 
 interface GamesPageProps {
   selectedGameSlug?: string | null;
@@ -33,12 +34,20 @@ export default function GamesPage({ selectedGameSlug, onNavigate }: GamesPagePro
       />
 
       <div className="space-y-8">
+        {/* Hub Top Banner Ad Slot */}
+        <AdLayout.HubTop />
+
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-indigo-950/80">
             <div>
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                {activeGame ? `${activeGame.name} Calculators & Tools` : 'Browse Calculators by Game'}
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-3.5 flex-wrap">
+                {activeGame && (
+                  <span className="p-2 sm:p-2.5 rounded-xl bg-[#0c122e] border border-indigo-800/80 shadow-md inline-flex items-center justify-center shrink-0">
+                    {getGameIcon(activeGame.id, 'w-7 h-7 sm:w-8 sm:h-8')}
+                  </span>
+                )}
+                <span>{activeGame ? `${activeGame.name} Calculators & Tools` : 'Browse Calculators by Game'}</span>
               </h1>
               <p className="text-xs sm:text-sm text-slate-400 mt-1">
                 {activeGame ? activeGame.description : 'Select your favorite game to find tailored calculators and utilities.'}
@@ -47,7 +56,7 @@ export default function GamesPage({ selectedGameSlug, onNavigate }: GamesPagePro
             {activeGame && (
               <button
                 onClick={() => onNavigate('/games')}
-                className="text-xs text-emerald-400 hover:text-emerald-300 self-start sm:self-auto"
+                className="text-xs font-semibold text-violet-400 hover:text-cyan-300 self-start sm:self-auto transition-colors"
               >
                 ← View All Games
               </button>
@@ -64,35 +73,19 @@ export default function GamesPage({ selectedGameSlug, onNavigate }: GamesPagePro
                 <div
                   key={game.id}
                   onClick={() => onNavigate(getGamePath(game.id))}
-                  className="group bg-[#0e1422] hover:bg-[#12192a] border border-slate-800/90 hover:border-emerald-500/50 rounded-xl p-5 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl flex flex-col justify-between"
+                  className="group bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 hover:border-violet-500/50 rounded-xl p-5 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-950/20 flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#090d16] border border-slate-800 flex items-center justify-center group-hover:border-emerald-500/40">
-                        {game.id === 'pokemongo' ? (
-                          <PokeballIcon className="w-5 h-5 text-rose-400" />
-                        ) : game.id === 'palworld' ? (
-                          <PalSphereIcon className="w-5 h-5 text-cyan-400" />
-                        ) : game.id === 'minecraft' ? (
-                          <Box className="w-5 h-5 text-emerald-400" />
-                        ) : game.id === 'fortnite' ? (
-                          <Swords className="w-5 h-5 text-amber-400" />
-                        ) : game.id === 'roblox' ? (
-                          <Gamepad2 className="w-5 h-5 text-rose-400" />
-                        ) : game.id === 'genshin' ? (
-                          <Compass className="w-5 h-5 text-cyan-400" />
-                        ) : game.id === 'fps' ? (
-                          <Crosshair className="w-5 h-5 text-violet-400" />
-                        ) : (
-                          <Gamepad2 className="w-5 h-5 text-emerald-400" />
-                        )}
+                      <div className="w-10 h-10 rounded-lg bg-[#070b19] border border-indigo-950 flex items-center justify-center group-hover:border-violet-500/50 transition-colors">
+                        {getGameIcon(game.id, 'w-5 h-5')}
                       </div>
-                      <span className="text-xs font-mono font-medium text-slate-400 bg-[#090d16] px-2 py-0.5 rounded border border-slate-800">
+                      <span className="text-xs font-mono font-medium text-slate-300 bg-[#070b19] px-2 py-0.5 rounded border border-indigo-950">
                         {count} {count === 1 ? 'Tool' : 'Tools'}
                       </span>
                     </div>
 
-                    <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors">
+                    <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors">
                       {game.name}
                     </h3>
                     <p className="text-xs text-slate-400 mt-1 leading-relaxed">
@@ -100,7 +93,7 @@ export default function GamesPage({ selectedGameSlug, onNavigate }: GamesPagePro
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-emerald-400">
+                  <div className="mt-4 pt-3 border-t border-indigo-950/80 flex items-center justify-between text-xs font-semibold text-violet-400 group-hover:text-cyan-300 transition-colors">
                     <span>View Tools</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </div>
@@ -117,15 +110,20 @@ export default function GamesPage({ selectedGameSlug, onNavigate }: GamesPagePro
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {TOOLS.filter(t => !activeGame || t.gameId === activeGame.id).map((tool) => (
-              <ToolCard
-                key={tool.id}
-                tool={tool}
-                onSelectTool={(slug) => onNavigate(`/tools/${slug}`)}
-              />
+            {TOOLS.filter(t => !activeGame || t.gameId === activeGame.id).map((tool, idx) => (
+              <React.Fragment key={tool.id}>
+                {idx === 9 && <AdLayout.HubInFeed />}
+                <ToolCard
+                  tool={tool}
+                  onSelectTool={(slug) => onNavigate(`/tools/${slug}`)}
+                />
+              </React.Fragment>
             ))}
           </div>
         </div>
+
+        {/* Hub Above Footer Banner Ad Slot */}
+        <AdLayout.HubAboveFooter />
       </div>
     </>
   );

@@ -12,6 +12,7 @@ import {
 import { TOOLS } from '../data/gamesAndTools';
 import SEOHead from '../components/SEOHead';
 import { PalSphereIcon } from '../components/GameIcons';
+import AdLayout from '../components/ads/AdLayout';
 
 interface PalworldHubPageProps {
   onNavigate: (path: string) => void;
@@ -69,6 +70,9 @@ export default function PalworldHubPage({ onNavigate }: PalworldHubPageProps) {
       />
 
       <div className="space-y-12">
+        {/* Hub Top Banner Ad Slot */}
+        <AdLayout.HubTop currentPath="/palworld" />
+
         {/* Navigation Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs font-mono text-zinc-400">
           <button onClick={() => onNavigate('/')} className="hover:text-white transition-colors">Home</button>
@@ -88,8 +92,11 @@ export default function PalworldHubPage({ onNavigate }: PalworldHubPageProps) {
               Palworld v0.3.5 & Sakurajima Verified Tools
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Palworld Breeding, IV & Base Automation Suite
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-4 flex-wrap">
+              <span className="p-2 sm:p-2.5 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
+                <PalSphereIcon className="w-8 h-8 sm:w-11 sm:h-11 text-cyan-400" />
+              </span>
+              <span>Palworld Breeding, IV & Base Automation Suite</span>
             </h1>
 
             <p className="text-base sm:text-lg text-zinc-300 leading-relaxed">
@@ -156,43 +163,48 @@ export default function PalworldHubPage({ onNavigate }: PalworldHubPageProps) {
 
         {/* Tools Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredTools.map(tool => (
-            <div
-              key={tool.id}
-              onClick={() => onNavigate(tool.canonicalPath)}
-              className="group p-6 rounded-2xl bg-zinc-900/70 border border-zinc-800 hover:border-cyan-500/50 hover:bg-zinc-900 transition-all cursor-pointer flex flex-col justify-between space-y-4 shadow-sm hover:shadow-xl hover:shadow-cyan-500/5"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all">
-                    {PALWORLD_TOOL_ICONS[tool.id] || <PalSphereIcon className="w-5 h-5 text-cyan-400 group-hover:text-black" />}
+          {filteredTools.map((tool, idx) => (
+            <React.Fragment key={tool.id}>
+              {idx === 9 && <AdLayout.HubInFeed />}
+              <div
+                onClick={() => onNavigate(tool.canonicalPath)}
+                className="group p-6 rounded-2xl bg-zinc-900/70 border border-zinc-800 hover:border-cyan-500/50 hover:bg-zinc-900 transition-all cursor-pointer flex flex-col justify-between space-y-4 shadow-sm hover:shadow-xl hover:shadow-cyan-500/5"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all">
+                      {PALWORLD_TOOL_ICONS[tool.id] || <PalSphereIcon className="w-5 h-5 text-cyan-400 group-hover:text-black" />}
+                    </div>
+                    {tool.badge && (
+                      <span className="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">
+                        {tool.badge}
+                      </span>
+                    )}
                   </div>
-                  {tool.badge && (
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">
-                      {tool.badge}
-                    </span>
-                  )}
+
+                  <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
+                    {tool.name}
+                  </h3>
+
+                  <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
+                    {tool.shortDescription}
+                  </p>
                 </div>
 
-                <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
-                  {tool.name}
-                </h3>
-
-                <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
-                  {tool.shortDescription}
-                </p>
+                <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-xs">
+                  <span className="text-zinc-500 font-mono">Client-Side Instant</span>
+                  <span className="inline-flex items-center gap-1 font-semibold text-cyan-400 group-hover:translate-x-1 transition-transform">
+                    Launch Tool
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
               </div>
-
-              <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-xs">
-                <span className="text-zinc-500 font-mono">Client-Side Instant</span>
-                <span className="inline-flex items-center gap-1 font-semibold text-cyan-400 group-hover:translate-x-1 transition-transform">
-                  Launch Tool
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-            </div>
+            </React.Fragment>
           ))}
         </div>
+
+        {/* Hub Above Footer Banner Ad Slot */}
+        <AdLayout.HubAboveFooter />
       </div>
     </>
   );

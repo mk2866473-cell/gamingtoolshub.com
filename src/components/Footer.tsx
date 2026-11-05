@@ -12,15 +12,15 @@ interface FooterProps {
 
 export default function Footer({ onNavigate }: FooterProps) {
   return (
-    <footer className="bg-[#070a12] border-t border-slate-800/80 pt-14 pb-12 mt-24 text-slate-400 text-xs">
+    <footer className="bg-[#050814] border-t border-indigo-950/80 pt-14 pb-12 mt-24 text-slate-400 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-800/80">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-indigo-950/80">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-3.5 pr-6">
             <div className="flex items-center gap-2.5">
               <BrandLogo size="sm" />
               <span className="text-base font-extrabold text-white">
-                GamingTools<span className="text-emerald-400 font-mono">Hub</span>
+                GamingTools<span className="text-violet-400 font-mono">Hub</span>
               </span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
@@ -38,38 +38,48 @@ export default function Footer({ onNavigate }: FooterProps) {
             </h4>
             <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('/minecraft')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/minecraft')} className="hover:text-cyan-300 transition-colors text-left">
                   Minecraft Tools
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/roblox')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/roblox')} className="hover:text-cyan-300 transition-colors text-left">
                   Roblox Tools
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/fortnite')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/fortnite')} className="hover:text-cyan-300 transition-colors text-left">
                   Fortnite Tools
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/pokemongo')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/pokemongo')} className="hover:text-cyan-300 transition-colors text-left">
                   Pokémon GO Tools
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/games/palworld')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/games/palworld')} className="hover:text-cyan-300 transition-colors text-left">
                   Palworld Tools
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/games?game=genshin')} className="hover:text-emerald-400 transition-colors text-left">
-                  Genshin Impact Tools
+                <button onClick={() => onNavigate('/coin-master')} className="hover:text-cyan-300 transition-colors text-left">
+                  Coin Master Tools
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/games')} className="hover:text-emerald-400 transition-colors text-left text-slate-500 hover:text-slate-300">
-                  More Games →
+                <button onClick={() => onNavigate('/seven-knights-rebirth')} className="hover:text-cyan-300 transition-colors text-left">
+                  Seven Knights Re:BIRTH
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('/monopoly-go')} className="hover:text-cyan-300 transition-colors text-left">
+                  Monopoly GO! Tools
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('/games')} className="hover:text-violet-400 transition-colors text-left text-slate-500 hover:text-slate-300">
+                  All 23 Game Hubs →
                 </button>
               </li>
             </ul>
@@ -82,32 +92,32 @@ export default function Footer({ onNavigate }: FooterProps) {
             </h4>
             <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('/tools')} className="hover:text-emerald-400 transition-colors text-left font-semibold text-slate-200">
+                <button onClick={() => onNavigate('/tools')} className="hover:text-violet-400 transition-colors text-left font-semibold text-slate-200">
                   Complete Tools Directory
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/tools?category=calculators')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/tools?category=calculators')} className="hover:text-cyan-300 transition-colors text-left">
                   Math & XP Calculators
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/tools?category=generators')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/tools?category=generators')} className="hover:text-cyan-300 transition-colors text-left">
                   Voxel & Crosshair Generators
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/tools?category=converters')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/tools?category=converters')} className="hover:text-cyan-300 transition-colors text-left">
                   Sensitivity & Unit Converters
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/categories')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/categories')} className="hover:text-cyan-300 transition-colors text-left">
                   All Categories
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/games')} className="hover:text-emerald-400 transition-colors text-left">
+                <button onClick={() => onNavigate('/games')} className="hover:text-cyan-300 transition-colors text-left">
                   All Supported Games
                 </button>
               </li>
@@ -121,22 +131,22 @@ export default function Footer({ onNavigate }: FooterProps) {
             </h4>
             <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('/about')} className="hover:text-emerald-400 transition-colors">
+                <button onClick={() => onNavigate('/about')} className="hover:text-violet-400 transition-colors">
                   About the Project
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/privacy')} className="hover:text-emerald-400 transition-colors">
+                <button onClick={() => onNavigate('/privacy')} className="hover:text-violet-400 transition-colors">
                   Privacy Policy
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/terms')} className="hover:text-emerald-400 transition-colors">
+                <button onClick={() => onNavigate('/terms')} className="hover:text-violet-400 transition-colors">
                   Terms of Service
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/disclaimer')} className="hover:text-emerald-400 transition-colors">
+                <button onClick={() => onNavigate('/disclaimer')} className="hover:text-violet-400 transition-colors">
                   Disclaimer & Trademarks
                 </button>
               </li>
@@ -146,7 +156,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         {/* Clear Independent Publisher Disclaimer */}
         <div className="pt-6 space-y-4 text-[11px] leading-relaxed text-slate-500">
-          <div className="p-4 rounded-xl bg-[#0b0f17] border border-slate-800/80">
+          <div className="p-4 rounded-xl bg-[#080d21] border border-indigo-950/80">
             <p className="font-semibold text-slate-300 mb-1">
               Independent Community Resource
             </p>

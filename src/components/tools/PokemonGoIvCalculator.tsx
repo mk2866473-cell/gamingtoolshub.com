@@ -178,7 +178,7 @@ export default function PokemonGoIvCalculator() {
         <div className="bg-zinc-950 border border-purple-500/40 rounded-xl p-4 text-center">
           <span className="text-[10px] uppercase font-bold text-purple-300 block">Best Game Use Recommendation</span>
           <span className="text-lg font-bold font-mono text-purple-300 my-1 block">
-            {stats.isHundo ? 'Master League & Raids 👑' : atkIv === 0 && defIv >= 13 ? 'Great/Ultra League PvP ⚔️' : stats.total >= 37 ? 'Gyms & PvE Raids ⚡' : 'Trade / Candy 🍬'}
+            {stats.isHundo ? 'Master League & Raids (Max Rank)' : atkIv === 0 && defIv >= 13 ? 'Great/Ultra League PvP (Optimal Stat Product)' : stats.total >= 37 ? 'Gyms & PvE Raids (High Tier)' : 'Trade / Transfer for Candy'}
           </span>
           <span className="text-[11px] text-zinc-400">
             {atkIv === 0 ? 'Low Attack optimizes PvP stat product' : 'High stats maximize total CP cap'}

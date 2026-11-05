@@ -23,7 +23,7 @@ export default function NotFoundPage({ onNavigate, onOpenSearch }: NotFoundPageP
       />
 
       <div className="text-center py-12 max-w-2xl mx-auto space-y-6">
-        <div className="w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 text-emerald-400 flex items-center justify-center mx-auto text-2xl font-mono font-extrabold shadow-xl">
+        <div className="w-16 h-16 rounded-2xl bg-[#0c122e] border border-indigo-900/60 text-violet-400 flex items-center justify-center mx-auto text-2xl font-mono font-extrabold shadow-xl">
           404
         </div>
 
@@ -38,15 +38,15 @@ export default function NotFoundPage({ onNavigate, onOpenSearch }: NotFoundPageP
         <div className="flex justify-center gap-3 pt-2">
           <button
             onClick={() => onNavigate('/')}
-            className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs rounded-xl shadow-lg glow-emerald transition-all"
+            className="px-5 py-2.5 bg-violet-600 hover:bg-violet-500 text-white font-semibold text-xs rounded-xl shadow-lg glow-violet transition-all"
           >
             Back to Home
           </button>
           <button
             onClick={onOpenSearch}
-            className="px-5 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-200 font-semibold text-xs rounded-xl flex items-center gap-2 transition-all"
+            className="px-5 py-2.5 bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 text-slate-200 font-semibold text-xs rounded-xl flex items-center gap-2 transition-all"
           >
-            <Search className="w-3.5 h-3.5 text-emerald-400" />
+            <Search className="w-3.5 h-3.5 text-cyan-400" />
             Search All Tools
           </button>
         </div>

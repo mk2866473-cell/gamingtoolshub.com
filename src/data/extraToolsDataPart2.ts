@@ -27,17 +27,21 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
     howToGuide: {
       overview: 'Enter base trade price and curing status to see discounted emerald cost.',
       steps: [
-        { title: 'Base Trade Price', description: 'Enter standard item price (e.g. 32 Emeralds for Mending).' },
-        { title: 'Curing Count', description: 'Select cured status (single cure maximum in 1.20.2+).' }
+        { title: 'Base Trade Price', description: 'Enter standard item price (e.g. 32 Emeralds for Mending or 24 Paper for an Emerald).' },
+        { title: 'Curing Count', description: 'Toggle the "Cured" status (single cure maximum benefit in 1.20.2+).' },
+        { title: 'Hero of the Village', description: 'Set your Hero level (1-5) to apply further economic discounts from Raid victories.' },
+        { title: 'Calculate Savings', description: 'Review the final emerald cost and total savings percentage compared to the base price.' }
       ]
     },
     formulaExplained: {
       title: 'Villager Major Positive Gossip',
-      details: 'Curing provides 20 Major Positive gossip points (-20 emerald price discount, capped at minimum 1 emerald).',
+      details: 'Curing provides 20 Major Positive gossip points (-20 emerald price discount, capped at minimum 1 emerald). Worked Examples: 1. Mending (32 Emeralds) + 1 Cure = 12 Emeralds. 2. Paper (24) + 1 Cure = 4 Emeralds. 3. Bookshelf (9) + 1 Cure = 1 Emerald.',
       mathSnippet: 'DiscountedPrice = Max(1, BasePrice - (CureDiscount + HeroDiscount))'
     },
     faqs: [
-      { question: 'Can you stack 5 zombie villager cures in 1.20.2+?', answer: 'No. Mojang patched cure stacking in 1.20.2; only 1 cure discount now applies to prevent 1-emerald exploits.' }
+      { question: 'Can you stack 5 zombie villager cures in 1.20.2+?', answer: 'No. Mojang patched cure stacking in 1.20.2; only 1 cure discount now applies to prevent 1-emerald exploits.' },
+      { question: 'What is the best profession for Emeralds?', answer: 'Fletchers (Sticks) and Librarians (Paper) are the most efficient because their resources are easily automated with tree and sugar cane farms.' },
+      { question: 'How do I get Hero of the Village V?', answer: 'Defeat a Level 5 Raid by killing a Pillager Captain with a Bad Omen V effect active.' }
     ],
     proTips: ['Hero of the Village level V provides an additional 30% discount on non-cured items.'],
     relatedToolIds: ['minecraft-anvil-cost-calculator', 'minecraft-enchantment-calculator']
@@ -62,17 +66,20 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
     howToGuide: {
       overview: 'Input trip distance in overworld blocks to find required rockets and trip flight time.',
       steps: [
-        { title: 'Distance', description: 'Enter distance in blocks to your destination.' },
-        { title: 'Rocket Duration', description: 'Select Flight Duration 1, 2, or 3.' }
+        { title: 'Distance', description: 'Enter distance in blocks to your destination (e.g., 5000 blocks to an outer End island).' },
+        { title: 'Rocket Duration', description: 'Select Flight Duration 1, 2, or 3 based on your firework recipe.' },
+        { title: 'Flight Pitch', description: 'Adjust your viewing angle (0° to 40°) to find the balance between speed and glide distance.' }
       ]
     },
     formulaExplained: {
       title: 'Elytra Speed Dynamics',
-      details: 'Average cruising speed is 33.5 blocks per second with rockets. Flight Duration 1 lasts ~1.2s; Duration 3 lasts ~2.4s.',
+      details: 'Average cruising speed is 33.5 blocks per second with rockets. Worked Examples: 1. 1,000 block trip: Requires ~30 seconds and ~4 Duration-3 rockets. 2. 10,000 block trip: Requires ~300 seconds (5 mins) and ~40 Duration-3 rockets. 3. Durability: Unbreaking III Elytra lasts ~72 minutes of continuous flight.',
       mathSnippet: 'RocketsNeeded = Ceiling(Distance / (Speed * BoostSeconds))'
     },
     faqs: [
-      { question: 'Which firework rocket is most gunpowder efficient?', answer: 'Flight Duration 1 is the most gunpowder efficient per second of flight boost.' }
+      { question: 'Which firework rocket is most gunpowder efficient?', answer: 'Flight Duration 1 is the most gunpowder efficient per second of flight boost.' },
+      { question: 'How do I launch an Elytra from the ground?', answer: 'Jump twice quickly to deploy the wings, then immediately right-click with a firework rocket to propel yourself upward.' },
+      { question: 'Does Unbreaking work on Elytra?', answer: 'Yes! Unbreaking III gives each durability point a 75% chance to be ignored, effectively quadrupling your flight time per repair.' }
     ],
     proTips: ['Gliding at a pitch of 0° to 10° maintains forward momentum with minimal altitude decay.'],
     relatedToolIds: ['minecraft-distance-calculator', 'minecraft-coordinate-converter']
@@ -97,16 +104,20 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
     howToGuide: {
       overview: 'Choose desired pyramid tier (1 to 4) and mineral block type to get total blocks and stacks needed.',
       steps: [
-        { title: 'Pyramid Tier', description: 'Select Tier 1 (9 blocks), Tier 2 (34), Tier 3 (83), or Tier 4 (164 blocks).' }
+        { title: 'Pyramid Tier', description: 'Select Tier 1 (9 blocks), Tier 2 (34), Tier 3 (83), or Tier 4 (164 blocks).' },
+        { title: 'Mineral Type', description: 'Choose your material (Iron, Gold, Emerald, Diamond, or Netherite) to see the total ingot cost.' },
+        { title: 'Inventory Breakdown', description: 'Review the total stacks and items needed to fill your shulker boxes before building.' }
       ]
     },
     formulaExplained: {
       title: 'Full Pyramid Layer Mathematics',
-      details: 'Layer 1 = 9x9 (81 blocks), Layer 2 = 7x7 (49 blocks), Layer 3 = 5x5 (25 blocks), Layer 4 = 3x3 (9 blocks) = 164 total blocks.',
+      details: 'Full Pyramid Layer Mathematics: Layer 1 = 9x9, Layer 2 = 7x7, Layer 3 = 5x5, Layer 4 = 3x3. Worked Examples: 1. Full 4-Tier Pyramid: 164 blocks = 1,476 ingots. 2. Total Stacks: ~23 stacks of iron blocks. 3. Mixed Pyramid: Using 81 Iron + 83 Gold blocks provides the same power as a pure diamond pyramid.',
       mathSnippet: 'TotalIngots = 164 * 9 = 1,476 ingots = 23 stacks + 4 ingots'
     },
     faqs: [
-      { question: 'Does Netherite make the beacon beam stronger?', answer: 'No. Netherite provides identical beacon power and range as Iron or Emerald; it is purely ornamental.' }
+      { question: 'Does Netherite make the beacon beam stronger?', answer: 'No. Netherite provides identical beacon power and range as Iron or Emerald; it is purely ornamental.' },
+      { question: 'How far does a 4-tier beacon reach?', answer: 'A full 4-tier beacon has a range of 50 blocks in every direction from the beacon block.' },
+      { question: 'Can I use raw ore for beacons?', answer: 'No. You must smelt ores into ingots and craft them into solid 3x3 blocks (9 ingots each) to build the pyramid.' }
     ],
     proTips: ['Iron and Emeralds are the easiest blocks to mass produce using iron golem farms or villager trading halls.'],
     relatedToolIds: ['minecraft-stack-calculator', 'minecraft-beacon-calculator']
@@ -131,16 +142,20 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
     howToGuide: {
       overview: 'Enter Overworld X, Y, Z coordinates to compute the ideal Nether portal coordinates and vice-versa.',
       steps: [
-        { title: 'Overworld Coords', description: 'Enter Overworld X, Y, and Z values.' }
+        { title: 'Overworld Coords', description: 'Enter Overworld X, Y, and Z values from your F3 menu.' },
+        { title: 'Dimension Mapping', description: 'Review the 8:1 horizontal scale results and identical Y-level recommendation.' },
+        { title: 'Linking Radius', description: 'Ensure no other portals are within 128 blocks of your calculated Nether exit.' }
       ]
     },
     formulaExplained: {
       title: '3D Euclidean Distance Matching',
-      details: 'NetherX = Floor(OverworldX / 8), NetherZ = Floor(OverworldZ / 8). NetherY should match OverworldY closely to avoid pairing with higher portals.',
+      details: 'NetherX = Floor(OverworldX / 8). Worked Examples: 1. Overworld (800, 70, 400) -> Nether (100, 70, 50). 2. Nether (-5, 120, 10) -> Overworld (-40, 120, 80). 3. Avoid bleeding by placing 3D pairs at exactly these offsets.',
       mathSnippet: 'NetherCoord = Math.floor(OverworldCoord / 8)'
     },
     faqs: [
-      { question: 'Why does Y coordinate matter when linking portals?', answer: 'If multiple portals exist within the 128-block radius, the game chooses the one with the smallest 3D Euclidean distance (including Y elevation).' }
+      { question: 'Why does Y coordinate matter when linking portals?', answer: 'If multiple portals exist within the 128-block radius, the game chooses the one with the smallest 3D Euclidean distance (including Y elevation).' },
+      { question: 'How do I link portals on a roof at Y=128?', answer: 'Build your Nether portal at exactly Y=128. If your Overworld portal is at Y=64, the game will still link them, but manual syncing is safer to prevent falling through the ceiling.' },
+      { question: 'What is "portal bleeding"?', answer: 'This occurs when two Overworld portals link to the same Nether portal because they are within each other\'s 128-block search radius.' }
     ],
     proTips: ['Build your Nether portal roof at Y=120 near the bedrock ceiling for unobstructed highways.'],
     relatedToolIds: ['minecraft-nether-portal-calculator', 'minecraft-coordinate-converter']
@@ -166,16 +181,20 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
       overview: 'Select crop type and planting pattern to view average minutes to fully mature.',
       steps: [
         { title: 'Crop Type', description: 'Choose Wheat, Carrots, Potatoes, or Beetroots.' },
-        { title: 'Pattern', description: 'Choose Alternating Rows (Fastest) or Monoculture.' }
+        { title: 'Planting Pattern', description: 'Choose Alternating Rows (Fastest) or Monoculture (Slower).' },
+        { title: 'Hydration Level', description: 'Set whether the soil is hydrated (water within 4 blocks) or dry.' },
+        { title: 'Light Level', description: 'Ensure light is 9 or higher to prevent crops from popping out of the ground.' }
       ]
     },
     formulaExplained: {
       title: 'Random Tick Growth Probability',
-      details: 'With alternating rows and hydrated farmland, growth chance is 1/3 (~33%) per random tick, averaging 37 minutes to mature.',
+      details: 'Random Tick Growth Probability. Worked Examples: 1. Wheat (Hydrated + Alternating): ~33% growth chance per tick, ~37 mins to harvest. 2. Carrots (Dry + Monoculture): ~8% growth chance, ~140 mins to harvest. 3. Light 15 vs 9: Light 15 ensures growth continues through the night.',
       mathSnippet: 'ChancePerTick = Points / (Floor(25 / Points) + 1)'
     },
     faqs: [
-      { question: 'Why do alternating rows grow twice as fast?', answer: 'Minecraft applies a 50% growth penalty if the same crop is planted directly adjacent horizontally or diagonally.' }
+      { question: 'Why do alternating rows grow twice as fast?', answer: 'Minecraft applies a 50% growth penalty if the same crop is planted directly adjacent horizontally or diagonally.' },
+      { question: 'How far does one water source reach?', answer: 'One water block can hydrate farmland up to 4 blocks away in every direction (a 9x9 square with water in the center).' },
+      { question: 'Do crops grow faster in the dark?', answer: 'No. Crops require a light level of at least 9 to grow. Total darkness or low light will cause crops to uproot or stop growing.' }
     ],
     proTips: ['Alternating rows of Wheat and Carrots eliminates the penalty and cuts growth time in half.'],
     relatedToolIds: ['minecraft-redstone-tick-calculator', 'minecraft-stack-calculator']
@@ -200,17 +219,21 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
     howToGuide: {
       overview: 'Select star shape, primary dye colors, fade colors, and trail effects to generate the crafting grid.',
       steps: [
-        { title: 'Shape', description: 'Select Small Ball, Large Ball (Fire Charge), Creeper Head, or Star (Gold Nugget).' },
-        { title: 'Effects', description: 'Add Diamond for Trail and Glowstone for Twinkle.' }
+        { title: 'Shape Modifier', description: 'Select Small Ball (none), Large Ball (Fire Charge), Creeper Head, or Star (Gold Nugget).' },
+        { title: 'Primary Colors', description: 'Add 1-8 dyes to set the initial explosion burst colors.' },
+        { title: 'Fade Effects', description: 'Add dyes to set the secondary "fade-to" colors as the sparks vanish.' },
+        { title: 'Twinkle & Trail', description: 'Toggle Glowstone (Twinkle) and Diamond (Trail) for high-end cinematic effects.' }
       ]
     },
     formulaExplained: {
       title: 'Firework Crafting Matrix',
-      details: 'A Firework Star requires 1 Gunpowder + 1–8 Dyes + optional Shape Item + Diamond + Glowstone. A Rocket requires 1 Paper + 1–3 Gunpowder + 1–7 Stars.',
+      details: 'Firework Crafting Matrix. Worked Examples: 1. 1 Diamond + 1 Glowstone + 1 Fire Charge + 1 Dye = Large Ball with Trail & Twinkle. 2. 7-Star Rocket: Paper + 3 Gunpowder + 7 Stars = Max flight duration with 7 massive explosions. 3. Flight 3 Blank: 1 Paper + 3 Gunpowder.',
       mathSnippet: 'ExplosionDamage = StarCount * 5 + 1'
     },
     faqs: [
-      { question: 'Do firework rockets deal damage when fired from a crossbow?', answer: 'Yes! Crossbow rockets with 7 firework stars deal up to 18 points of splash damage.' }
+      { question: 'Do firework rockets deal damage when fired from a crossbow?', answer: 'Yes! Crossbow rockets with 7 firework stars deal up to 18 points of splash damage.' },
+      { question: 'How many stars can I put in one rocket?', answer: 'A single rocket can hold up to 7 firework stars in its crafting recipe, resulting in 7 simultaneous explosions.' },
+      { question: 'What is the most expensive firework recipe?', answer: 'A Large Ball, Star-shaped, Twinkle, Trail firework with 8 dyes and a 7-star rocket configuration requires diamonds, gold, and fire charges.' }
     ],
     proTips: ['Use Flight Duration 1 blank rockets (1 paper + 1 gunpowder) for Elytra flying to avoid self-inflicted damage.'],
     relatedToolIds: ['minecraft-elytra-rocket-calculator', 'minecraft-anvil-cost-calculator']
@@ -235,17 +258,21 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
     howToGuide: {
       overview: 'Enter incoming attack damage, total armor defense points, toughness, and Protection levels to see final hearts lost.',
       steps: [
-        { title: 'Incoming Damage', description: 'Enter raw damage points (e.g., 20 for Warden sonic boom or creeper).' },
-        { title: 'Armor & Toughness', description: 'Enter armor points (20 for full diamond/netherite) and toughness (8 or 12).' }
+        { title: 'Incoming Damage', description: 'Enter raw damage points (e.g., 20 for Warden sonic boom, 49 for Charged Creeper).' },
+        { title: 'Armor Points', description: 'Enter total armor chest icons (20 for full diamond/netherite, 15 for iron).' },
+        { title: 'Armor Toughness', description: 'Enter toughness points (8 for Diamond, 12 for Netherite).' },
+        { title: 'Protection Levels', description: 'Sum your Protection enchantments (max 16 for Prot IV on all 4 pieces).' }
       ]
     },
     formulaExplained: {
       title: 'Official 1.9+ Armor Reduction Formula',
-      details: 'Damage = IncomingDamage * (1 - Min(20, Max(Armor / 5, Armor - IncomingDamage / (2 + Toughness / 4))) / 25).',
+      details: 'Official 1.9+ Armor Reduction Formula. Worked Examples: 1. 20 Damage vs Full Netherite: ~14.4 damage taken. 2. 10 Damage vs Iron: ~4.0 damage taken. 3. Protection IV adds 64-80% further reduction to the final value.',
       mathSnippet: 'DamageAfterArmor = RawDamage * (1 - ArmorReduction / 25)'
     },
     faqs: [
-      { question: 'What does Armor Toughness actually do?', answer: 'Toughness prevents high-damage attacks (like Creepers or heavy axes) from bypassing your base armor defense percentage.' }
+      { question: 'What does Armor Toughness actually do?', answer: 'Toughness prevents high-damage attacks (like Creepers or heavy axes) from bypassing your base armor defense percentage.' },
+      { question: 'What is the maximum damage reduction possible?', answer: 'By combining Full Netherite (base armor) with Protection IV (EPF) and Resistance II (potions), you can reach over 95% total damage reduction.' },
+      { question: 'Is gold armor better than iron?', answer: 'No. Gold armor has lower durability and lower defense points (11 total) compared to Iron (15 total).' }
     ],
     proTips: ['Full Protection IV armor provides 64% flat damage reduction applied after base armor calculations.'],
     relatedToolIds: ['minecraft-damage-calculator', 'minecraft-enchantment-calculator']
@@ -270,16 +297,20 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
     howToGuide: {
       overview: 'Select world difficulty and Bad Omen level to view total waves and mob breakdown.',
       steps: [
-        { title: 'Difficulty', description: 'Select Easy (3 waves), Normal (5 waves), or Hard (7 waves).' }
+        { title: 'Difficulty', description: 'Select Easy (3 waves), Normal (5 waves), or Hard (7 waves).' },
+        { title: 'Bad Omen Level', description: 'Select Bad Omen I to V to calculate bonus mob spawns and loot quality.' },
+        { title: 'Wave Analysis', description: 'Review the mob breakdown for each wave, specifically counting Evokers and Ravagers.' }
       ]
     },
     formulaExplained: {
       title: 'Raid Wave Scaling',
-      details: 'Hard difficulty features 7 full waves with bonus waves on Bad Omen II–V, spawning up to 5 Evokers (5 guaranteed Totems).',
+      details: 'Raid Wave Scaling. Worked Examples: 1. Hard Mode (Wave 7): Spawns 2 Evokers and 2 Ravagers. 2. Bad Omen V: Adds significant bonus waves and higher gear levels to mobs. 3. Loot: ~5-12 Totems of Undying possible per full raid session.',
       mathSnippet: 'TotalTotems = EvokerCount * 1.0'
     },
     faqs: [
-      { question: 'Do Evokers always drop a Totem of Undying?', answer: 'Yes! Every Evoker killed drops exactly 1 Totem of Undying regardless of Looting enchantments.' }
+      { question: 'Do Evokers always drop a Totem of Undying?', answer: 'Yes! Every Evoker killed drops exactly 1 Totem of Undying regardless of Looting enchantments.' },
+      { question: 'How do I end a raid quickly?', answer: 'Locate the bell in the village center; ringing it applies a Glowing effect to all raid mobs, highlighting them through walls for 10 seconds.' },
+      { question: 'What is the "Hero of the Village" effect?', answer: 'This status effect is given after winning a raid, granting massive trading discounts and occasional free items thrown by villagers.' }
     ],
     proTips: ['Trapping a raid in a water funnel allows effortless semi-automatic emerald and totem farming.'],
     relatedToolIds: ['minecraft-villager-trade-calculator', 'minecraft-damage-calculator']

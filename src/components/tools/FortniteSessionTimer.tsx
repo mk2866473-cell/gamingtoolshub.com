@@ -89,19 +89,21 @@ export default function FortniteSessionTimer() {
       <div className="grid grid-cols-2 gap-2 p-1 bg-zinc-950 rounded-xl border border-zinc-800">
         <button
           onClick={() => setActiveTab('match')}
-          className={`py-2 rounded-lg text-xs font-bold transition-all ${
+          className={`py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
             activeTab === 'match' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/50' : 'text-zinc-400 hover:text-white'
           }`}
         >
-          ⚔️ Live Match & Storm Surge Timer
+          <Timer className="w-3.5 h-3.5" />
+          <span>Live Match & Storm Surge Timer</span>
         </button>
         <button
           onClick={() => setActiveTab('reboot')}
-          className={`py-2 rounded-lg text-xs font-bold transition-all ${
+          className={`py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
             activeTab === 'reboot' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50' : 'text-zinc-400 hover:text-white'
           }`}
         >
-          🔄 Reboot Card Expiration (250s)
+          <RotateCcw className="w-3.5 h-3.5" />
+          <span>Reboot Card Expiration (250s)</span>
         </button>
       </div>
 

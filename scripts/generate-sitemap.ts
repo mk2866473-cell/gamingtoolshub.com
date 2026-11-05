@@ -33,6 +33,7 @@ const staticRoutes = [
   { path: '/games/pokemongo', priority: '0.8', changefreq: 'weekly' },
   { path: '/games/palworld', priority: '0.8', changefreq: 'weekly' },
   { path: '/games/genshin', priority: '0.8', changefreq: 'weekly' },
+  { path: '/games/helldivers-2', priority: '0.8', changefreq: 'weekly' },
   { path: '/about', priority: '0.6', changefreq: 'monthly' },
   { path: '/privacy', priority: '0.5', changefreq: 'monthly' },
   { path: '/terms', priority: '0.5', changefreq: 'monthly' },

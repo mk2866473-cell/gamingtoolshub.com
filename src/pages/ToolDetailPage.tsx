@@ -5,15 +5,16 @@
 
 import React, { useState, useMemo } from 'react';
 import { 
-  Star, Users, Clock, ArrowRight, BookOpen, Lightbulb, 
+  Star, Users, Clock, ArrowRight, ArrowLeft, BookOpen, Lightbulb, 
   HelpCircle, ChevronDown, ChevronUp, Share2, Check, Cpu, Binary,
-  Calculator, CheckCircle2, Compass, Layers, ExternalLink, Zap
+  Calculator, CheckCircle2, Compass, Layers, ExternalLink, Zap, ShieldCheck
 } from 'lucide-react';
 import { ToolItem, getGameById, getCategoryById, TOOLS, getGamePath } from '../data/gamesAndTools';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
 import ToolCard from '../components/ToolCard';
 import AdLayout from '../components/ads/AdLayout';
+import { getGameIcon } from '../components/GameIcons';
 import { 
   getToolWorkedExamples, 
   getToolDeepDive, 
@@ -85,6 +86,126 @@ import PalworldCondensationCalculator from '../components/tools/PalworldCondensa
 import PalworldTechPointCalculator from '../components/tools/PalworldTechPointCalculator';
 import TeamGenerator from '../components/tools/TeamGenerator';
 import GamingDecisionWheel from '../components/tools/GamingDecisionWheel';
+import HelldiversBreakpointCalculator from '../components/tools/HelldiversBreakpointCalculator';
+import HelldiversArmorCalculator from '../components/tools/HelldiversArmorCalculator';
+import HelldiversStratagemSyncCalculator from '../components/tools/HelldiversStratagemSyncCalculator';
+import HelldiversXpWarbondCalculator from '../components/tools/HelldiversXpWarbondCalculator';
+import HelldiversDpsRecoilCalculator from '../components/tools/HelldiversDpsRecoilCalculator';
+import HelldiversMajorOrderTracker from '../components/tools/HelldiversMajorOrderTracker';
+import HelldiversSampleCalculator from '../components/tools/HelldiversSampleCalculator';
+import HelldiversShipModuleCalculator from '../components/tools/HelldiversShipModuleCalculator';
+import HelldiversTtkCalculator from '../components/tools/HelldiversTtkCalculator';
+import HelldiversStratagemUnlockCalculator from '../components/tools/HelldiversStratagemUnlockCalculator';
+import HelldiversSuperCreditsCalculator from '../components/tools/HelldiversSuperCreditsCalculator';
+import HelldiversWarbondMedalCalculator from '../components/tools/HelldiversWarbondMedalCalculator';
+import HelldiversEnemyWeaknessCalculator from '../components/tools/HelldiversEnemyWeaknessCalculator';
+import HelldiversArmorTierList from '../components/tools/HelldiversArmorTierList';
+import HelldiversRecoilVisualizer from '../components/tools/HelldiversRecoilVisualizer';
+import HelldiversSampleShipPlanner from '../components/tools/HelldiversSampleShipPlanner';
+import Ps99TradeCalculator from '../components/tools/Ps99TradeCalculator';
+import Ps99ExclusiveDaycareCalculator from '../components/tools/Ps99ExclusiveDaycareCalculator';
+import Ps99EnchantBuilder from '../components/tools/Ps99EnchantBuilder';
+import Ps99EggHatchingCalculator from '../components/tools/Ps99EggHatchingCalculator';
+import Ps99MasteryCalculator from '../components/tools/Ps99MasteryCalculator';
+import Ps99RapTracker from '../components/tools/Ps99RapTracker';
+import Ps99ClanBattleCalculator from '../components/tools/Ps99ClanBattleCalculator';
+import Ps99DiamondGrindOptimizer from '../components/tools/Ps99DiamondGrindOptimizer';
+import FirstDescendantDpsCalculator from '../components/tools/FirstDescendantDpsCalculator';
+import TfdSkillDamageSimulator from '../components/tools/TfdSkillDamageSimulator';
+import TfdReactorChecker from '../components/tools/TfdReactorChecker';
+import TfdAmorphousTracker from '../components/tools/TfdAmorphousTracker';
+import TfdComponentOptimizer from '../components/tools/TfdComponentOptimizer';
+import TfdGoldKuiperCalculator from '../components/tools/TfdGoldKuiperCalculator';
+import TfdInvasionTimer from '../components/tools/TfdInvasionTimer';
+import TfdColossusWeaknessCalculator from '../components/tools/TfdColossusWeaknessCalculator';
+import OnceHumanBlueprintCalculator from '../components/tools/OnceHumanBlueprintCalculator';
+import OnceHumanMysticalCrateMap from '../components/tools/OnceHumanMysticalCrateMap';
+import OnceHumanAcidFarmCalculator from '../components/tools/OnceHumanAcidFarmCalculator';
+import OnceHumanWeaponCalibrationTool from '../components/tools/OnceHumanWeaponCalibrationTool';
+import OnceHumanCradleOverridePlanner from '../components/tools/OnceHumanCradleOverridePlanner';
+import OnceHumanDevianceOptimizer from '../components/tools/OnceHumanDevianceOptimizer';
+import OnceHumanMemeticPlanner from '../components/tools/OnceHumanMemeticPlanner';
+import OnceHumanBossLootCalculator from '../components/tools/OnceHumanBossLootCalculator';
+import WuwaEchoTuningEvaluator from '../components/tools/WuwaEchoTuningEvaluator';
+import WuwaPityPullPlanner from '../components/tools/WuwaPityPullPlanner';
+import WuwaResonanceChainCalculator from '../components/tools/WuwaResonanceChainCalculator';
+import WuwaAscensionMaterialCalculator from '../components/tools/WuwaAscensionMaterialCalculator';
+import WuwaShellCreditOptimizer from '../components/tools/WuwaShellCreditOptimizer';
+import WuwaSonataSynergyBuilder from '../components/tools/WuwaSonataSynergyBuilder';
+import ZzzDriveDiscOptimizer from '../components/tools/ZzzDriveDiscOptimizer';
+import ZzzPolychromePityCalculator from '../components/tools/ZzzPolychromePityCalculator';
+import ZzzDazeStunCalculator from '../components/tools/ZzzDazeStunCalculator';
+import ZzzBangbooSynergySelector from '../components/tools/ZzzBangbooSynergySelector';
+import ZzzInterKnotBatteryPlanner from '../components/tools/ZzzInterKnotBatteryPlanner';
+import ZzzWEngineComparisonTool from '../components/tools/ZzzWEngineComparisonTool';
+import GachaGearSubstatOptimizer from '../components/tools/GachaGearSubstatOptimizer';
+import { TypeSoulStatPlanner } from '../components/tools/TypeSoulStatPlanner';
+import TypeSoulGradeCalculator from '../components/tools/TypeSoulGradeCalculator';
+import TypeSoulEvolutionTracker from '../components/tools/TypeSoulEvolutionTracker';
+import TypeSoulRaidDropChecker from '../components/tools/TypeSoulRaidDropChecker';
+import TypeSoulClanBuffSimulator from '../components/tools/TypeSoulClanBuffSimulator';
+import TypeSoulComboGauge from '../components/tools/TypeSoulComboGauge';
+import { Bg3DiceCalculator } from '../components/tools/Bg3DiceCalculator';
+import Bg3MulticlassSpellBuilder from '../components/tools/Bg3MulticlassSpellBuilder';
+import Bg3AlchemyRecipeFinder from '../components/tools/Bg3AlchemyRecipeFinder';
+import Bg3CompanionApprovalTracker from '../components/tools/Bg3CompanionApprovalTracker';
+import Bg3ArmorClassOptimizer from '../components/tools/Bg3ArmorClassOptimizer';
+import Bg3WeaponActionDamageCounter from '../components/tools/Bg3WeaponActionDamageCounter';
+import Bg3OriginPassiveGuide from '../components/tools/Bg3OriginPassiveGuide';
+import { LethalCompanyQuotaCalculator } from '../components/tools/LethalCompanyQuotaCalculator';
+import LethalCompanyQuotaMarginMatrix from '../components/tools/LethalCompanyQuotaMarginMatrix';
+import LethalCompanyMonsterDangerRating from '../components/tools/LethalCompanyMonsterDangerRating';
+import LethalCompanyStoreBudgetPlanner from '../components/tools/LethalCompanyStoreBudgetPlanner';
+import LethalCompanyShipUpgradeRoi from '../components/tools/LethalCompanyShipUpgradeRoi';
+import LethalCompanySpookTubeRevenueCalculator from '../components/tools/LethalCompanySpookTubeRevenueCalculator';
+import { StarfieldOutpostCalculator } from '../components/tools/StarfieldOutpostCalculator';
+import StarfieldShipBuilderCalculator from '../components/tools/StarfieldShipBuilderCalculator';
+import StarfieldOutpostSupplyPlanner from '../components/tools/StarfieldOutpostSupplyPlanner';
+import StarfieldSkillTreeAllocator from '../components/tools/StarfieldSkillTreeAllocator';
+import StarfieldPlanetSurveyChecklist from '../components/tools/StarfieldPlanetSurveyChecklist';
+import StarfieldWeaponModCalculator from '../components/tools/StarfieldWeaponModCalculator';
+import StarfieldCrewBuffCalculator from '../components/tools/StarfieldCrewBuffCalculator';
+import { EnshroudedBaseCalculator } from '../components/tools/EnshroudedBaseCalculator';
+import EnshroudedFlameAltarCalculator from '../components/tools/EnshroudedFlameAltarCalculator';
+import EnshroudedBuildingBlockCalculator from '../components/tools/EnshroudedBuildingBlockCalculator';
+import EnshroudedSurvivorRecipeFinder from '../components/tools/EnshroudedSurvivorRecipeFinder';
+import EnshroudedComfortBuffTimer from '../components/tools/EnshroudedComfortBuffTimer';
+import EnshroudedSkillTreePlanner from '../components/tools/EnshroudedSkillTreePlanner';
+import EnshroudedGliderGrappleUpgrader from '../components/tools/EnshroudedGliderGrappleUpgrader';
+import NightingaleRealmCardMatrix from '../components/tools/NightingaleRealmCardMatrix';
+import NightingaleMinorCardSimulator from '../components/tools/NightingaleMinorCardSimulator';
+import NightingaleGearScoreCalculator from '../components/tools/NightingaleGearScoreCalculator';
+import NightingaleResourceStatsOptimizer from '../components/tools/NightingaleResourceStatsOptimizer';
+import NightingaleEssenceTraderPlanner from '../components/tools/NightingaleEssenceTraderPlanner';
+import CrkTeamBuilderTool from '../components/tools/CrkTeamBuilderTool';
+import CrkToppingOptimizerTool from '../components/tools/CrkToppingOptimizerTool';
+import CrkProductionChainPlannerTool from '../components/tools/CrkProductionChainPlannerTool';
+import CrkUpgradePlannerTool from '../components/tools/CrkUpgradePlannerTool';
+import CrkPityPlannerTool from '../components/tools/CrkPityPlannerTool';
+import CrkEventTimersTool from '../components/tools/CrkEventTimersTool';
+import AfkjBossTeamPlannerTool from '../components/tools/AfkjBossTeamPlannerTool';
+import AfkjAscensionPlannerTool from '../components/tools/AfkjAscensionPlannerTool';
+import AfkjResourcePlannerTool from '../components/tools/AfkjResourcePlannerTool';
+import AfkjSummonPlannerTool from '../components/tools/AfkjSummonPlannerTool';
+import AfkjTeamBuilderTool from '../components/tools/AfkjTeamBuilderTool';
+import AfkjSeasonTrackerTool from '../components/tools/AfkjSeasonTrackerTool';
+import MogoStickerTrackerTool from '../components/tools/MogoStickerTrackerTool';
+import MogoTradeMatchingTool from '../components/tools/MogoTradeMatchingTool';
+import MogoFreeDiceLinksTool from '../components/tools/MogoFreeDiceLinksTool';
+import MogoEventTimersTool from '../components/tools/MogoEventTimersTool';
+import MogoShieldFinderTool from '../components/tools/MogoShieldFinderTool';
+import MogoUpgradeCostPlannerTool from '../components/tools/MogoUpgradeCostPlannerTool';
+import SkDamageCalculator from '../components/tools/SkDamageCalculator';
+import SkGearManager from '../components/tools/SkGearManager';
+import SkTeamBuilder from '../components/tools/SkTeamBuilder';
+import SkRubyCalculator from '../components/tools/SkRubyCalculator';
+import SkShopOptimizer from '../components/tools/SkShopOptimizer';
+import SkGachaPlanner from '../components/tools/SkGachaPlanner';
+import CmVillageCalculator from '../components/tools/CmVillageCalculator';
+import CmFreeSpinLinks from '../components/tools/CmFreeSpinLinks';
+import CmCardTracker from '../components/tools/CmCardTracker';
+import CmEventPlanner from '../components/tools/CmEventPlanner';
+import CmPetTimer from '../components/tools/CmPetTimer';
 import ModularGamingTool from '../components/tools/ModularGamingTool';
 
 interface ToolDetailPageProps {
@@ -220,6 +341,306 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <TeamGenerator />;
       case 'gaming-decision-wheel':
         return <GamingDecisionWheel />;
+      case 'helldivers-2-damage-calculator':
+        return <HelldiversBreakpointCalculator />;
+      case 'helldivers-2-armor-calculator':
+        return <HelldiversArmorCalculator />;
+      case 'helldivers-2-stratagem-cooldown-calculator':
+        return <HelldiversStratagemSyncCalculator />;
+      case 'helldivers-2-xp-calculator':
+        return <HelldiversXpWarbondCalculator />;
+      case 'helldivers-2-dps-calculator':
+        return <HelldiversDpsRecoilCalculator />;
+      case 'helldivers-2-major-order-tracker':
+        return <HelldiversMajorOrderTracker />;
+      case 'helldivers-2-sample-calculator':
+      case 'helldivers-2-ship-module-calculator':
+      case 'helldivers-2-sample-ship-planner':
+        return <HelldiversSampleShipPlanner />;
+      case 'helldivers-2-ttk-calculator':
+        return <HelldiversTtkCalculator />;
+      case 'helldivers-2-stratagem-unlock-calculator':
+        return <HelldiversStratagemUnlockCalculator />;
+      case 'helldivers-2-super-credits-calculator':
+        return <HelldiversSuperCreditsCalculator />;
+      case 'helldivers-2-warbond-medal-calculator':
+        return <HelldiversWarbondMedalCalculator />;
+      case 'helldivers-2-enemy-weakness-calculator':
+        return <HelldiversEnemyWeaknessCalculator />;
+      case 'helldivers-2-armor-tier-list':
+        return <HelldiversArmorTierList />;
+      case 'helldivers-2-recoil-visualizer':
+      case 'helldivers-2-recoil-pattern-visualizer':
+        return <HelldiversRecoilVisualizer />;
+      case 'ps99-trade-calculator':
+      case 'ps99-trade-value-wfl-calculator':
+      case 'pet-simulator-99-trade-calculator':
+        return <Ps99TradeCalculator />;
+      case 'ps99-exclusive-daycare-calculator':
+        return <Ps99ExclusiveDaycareCalculator />;
+      case 'ps99-enchant-builder':
+        return <Ps99EnchantBuilder />;
+      case 'ps99-egg-hatching-calculator':
+        return <Ps99EggHatchingCalculator />;
+      case 'ps99-mastery-calculator':
+        return <Ps99MasteryCalculator />;
+      case 'ps99-rap-tracker':
+        return <Ps99RapTracker />;
+      case 'ps99-clan-battle-calculator':
+        return <Ps99ClanBattleCalculator />;
+      case 'ps99-diamond-grind-optimizer':
+        return <Ps99DiamondGrindOptimizer />;
+      case 'tfd-weapon-dps-calculator':
+      case 'descendant-module-capacity-weapon-dps-calculator':
+      case 'tfd-dps-calculator':
+        return <FirstDescendantDpsCalculator />;
+      case 'tfd-skill-damage-simulator':
+        return <TfdSkillDamageSimulator />;
+      case 'tfd-reactor-checker':
+        return <TfdReactorChecker />;
+      case 'tfd-amorphous-tracker':
+        return <TfdAmorphousTracker />;
+      case 'tfd-component-optimizer':
+        return <TfdComponentOptimizer />;
+      case 'tfd-gold-kuiper-calculator':
+        return <TfdGoldKuiperCalculator />;
+      case 'tfd-invasion-timer':
+        return <TfdInvasionTimer />;
+      case 'tfd-colossus-weakness-calculator':
+        return <TfdColossusWeaknessCalculator />;
+      case 'once-human-blueprint-calculator':
+      case 'blueprint-star-upgrade-fragment-xp-calculator':
+      case 'once-human-blueprint-star-upgrade-fragment-xp-calculator':
+        return <OnceHumanBlueprintCalculator />;
+      case 'once-human-mystical-crate-map':
+        return <OnceHumanMysticalCrateMap />;
+      case 'once-human-acid-farm-calculator':
+        return <OnceHumanAcidFarmCalculator />;
+      case 'once-human-weapon-calibration-tool':
+        return <OnceHumanWeaponCalibrationTool />;
+      case 'once-human-cradle-override-planner':
+        return <OnceHumanCradleOverridePlanner />;
+      case 'once-human-deviance-optimizer':
+        return <OnceHumanDevianceOptimizer />;
+      case 'once-human-memetic-specialization-planner':
+        return <OnceHumanMemeticPlanner />;
+      case 'once-human-boss-loot-calculator':
+        return <OnceHumanBossLootCalculator />;
+      case 'wuwa-echo-tuning-evaluator':
+        return <WuwaEchoTuningEvaluator />;
+      case 'wuwa-pity-pull-planner':
+        return <WuwaPityPullPlanner />;
+      case 'wuwa-resonance-chain-calculator':
+        return <WuwaResonanceChainCalculator />;
+      case 'wuwa-ascension-material-calculator':
+        return <WuwaAscensionMaterialCalculator />;
+      case 'wuwa-shell-credit-optimizer':
+        return <WuwaShellCreditOptimizer />;
+      case 'wuwa-sonata-synergy-builder':
+        return <WuwaSonataSynergyBuilder />;
+      case 'zzz-drive-disc-optimizer':
+      case 'zzz-drive-disc-anomaly-optimizer':
+        return <ZzzDriveDiscOptimizer />;
+      case 'zzz-polychrome-pity-calculator':
+        return <ZzzPolychromePityCalculator />;
+      case 'zzz-daze-stun-calculator':
+        return <ZzzDazeStunCalculator />;
+      case 'zzz-bangboo-synergy-selector':
+        return <ZzzBangbooSynergySelector />;
+      case 'zzz-inter-knot-battery-planner':
+        return <ZzzInterKnotBatteryPlanner />;
+      case 'zzz-w-engine-comparison-tool':
+        return <ZzzWEngineComparisonTool />;
+      case 'gacha-gear-substat-optimizer':
+      case 'echo-drive-disc-sub-stat-optimizer-pity-tracker':
+      case 'wuwa-echo-optimizer':
+        return <GachaGearSubstatOptimizer />;
+      case 'type-soul-stat-planner':
+      case 'type-soul-stat-tree-allocator':
+      case 'stat-build-planner-skill-tree-allocator':
+      case 'type-soul-planner':
+        return <TypeSoulStatPlanner />;
+      case 'type-soul-grade-calculator':
+        return <TypeSoulGradeCalculator />;
+      case 'type-soul-evolution-tracker':
+        return <TypeSoulEvolutionTracker />;
+      case 'type-soul-raid-drop-checker':
+        return <TypeSoulRaidDropChecker />;
+      case 'type-soul-clan-buff-simulator':
+        return <TypeSoulClanBuffSimulator />;
+      case 'type-soul-combo-gauge':
+        return <TypeSoulComboGauge />;
+      case 'bg3-multiclass-spell-builder':
+      case 'multiclass-skill-spell-slot-builder':
+        return <Bg3MulticlassSpellBuilder />;
+      case 'bg3-dice-probability-calculator':
+      case 'dice-roll-advantage-disadvantage-probability-calculator':
+      case 'bg3-dice-calculator':
+        return <Bg3DiceCalculator />;
+      case 'bg3-alchemy-recipe-finder':
+      case 'alchemy-crafting-recipe-finder':
+        return <Bg3AlchemyRecipeFinder />;
+      case 'bg3-companion-approval-tracker':
+      case 'companion-approval-romance-tracker':
+        return <Bg3CompanionApprovalTracker />;
+      case 'bg3-armor-class-optimizer':
+      case 'armor-class-ac-saving-throw-optimizer':
+        return <Bg3ArmorClassOptimizer />;
+      case 'bg3-weapon-action-damage-counter':
+      case 'weapon-action-extra-attack-damage-counter':
+        return <Bg3WeaponActionDamageCounter />;
+      case 'bg3-origin-passive-guide':
+      case 'origin-character-passive-modifier-guide':
+        return <Bg3OriginPassiveGuide />;
+      case 'lethal-company-quota-calculator':
+      case 'scrap-value-quota-survival-optimization-calculator':
+      case 'lethal-company-calculator':
+        return <LethalCompanyQuotaCalculator />;
+      case 'lethal-company-quota-margin-matrix':
+        return <LethalCompanyQuotaMarginMatrix />;
+      case 'lethal-company-monster-danger-rating':
+        return <LethalCompanyMonsterDangerRating />;
+      case 'lethal-company-store-budget-planner':
+        return <LethalCompanyStoreBudgetPlanner />;
+      case 'lethal-company-ship-upgrade-roi':
+        return <LethalCompanyShipUpgradeRoi />;
+      case 'lethal-company-spooktube-revenue-calculator':
+        return <LethalCompanySpookTubeRevenueCalculator />;
+      case 'starfield-ship-builder-calculator':
+      case 'ship-modules-cost-cargo-weight-calculator':
+        return <StarfieldShipBuilderCalculator />;
+      case 'starfield-outpost-supply-planner':
+      case 'outpost-resource-supply-line-planner':
+        return <StarfieldOutpostSupplyPlanner />;
+      case 'starfield-outpost-calculator':
+      case 'outpost-production-chain-crafting-calculator':
+      case 'starfield-crafting-calculator':
+        return <StarfieldOutpostCalculator />;
+      case 'starfield-skill-tree-allocator':
+      case 'skill-tree-allocation-tool':
+        return <StarfieldSkillTreeAllocator />;
+      case 'starfield-planet-survey-checklist':
+      case 'planet-scan-flora-fauna-completeness-checklist':
+        return <StarfieldPlanetSurveyChecklist />;
+      case 'starfield-weapon-mod-calculator':
+      case 'weapon-modding-damage-multiplier':
+        return <StarfieldWeaponModCalculator />;
+      case 'starfield-crew-buff-calculator':
+      case 'crew-assignment-buff-calculator':
+        return <StarfieldCrewBuffCalculator />;
+      case 'enshrouded-flame-altar-calculator':
+      case 'flame-altar-upgrade-cost-calculator':
+        return <EnshroudedFlameAltarCalculator />;
+      case 'enshrouded-building-block-calculator':
+      case 'building-block-material-requirements-tool':
+      case 'enshrouded-base-calculator':
+      case 'survival-base-building-material-requirements-calculator':
+      case 'enshrouded-crafting-calculator':
+        return <EnshroudedBuildingBlockCalculator />;
+      case 'enshrouded-survivor-recipe-finder':
+      case 'survivor-npc-unlock-recipe-finder':
+        return <EnshroudedSurvivorRecipeFinder />;
+      case 'enshrouded-comfort-buff-timer':
+      case 'comfort-level-rested-buff-timer':
+        return <EnshroudedComfortBuffTimer />;
+      case 'enshrouded-skill-tree-planner':
+      case 'skill-tree-simulator-attribute-points-planner':
+        return <EnshroudedSkillTreePlanner />;
+      case 'enshrouded-glider-grapple-upgrader':
+      case 'glider-grappling-hook-tier-upgrader':
+        return <EnshroudedGliderGrappleUpgrader />;
+      case 'nightingale-realm-card-crafting-matrix':
+      case 'realm-card-crafting-matrix':
+        return <NightingaleRealmCardMatrix />;
+      case 'nightingale-minor-card-modifier-simulator':
+      case 'minor-card-modifier-simulator':
+        return <NightingaleMinorCardSimulator />;
+      case 'nightingale-gear-score-tier-calculator':
+      case 'gear-score-tier-leveling-calculator':
+        return <NightingaleGearScoreCalculator />;
+      case 'nightingale-resource-stats-optimizer':
+      case 'resource-inherent-stats-optimizer':
+        return <NightingaleResourceStatsOptimizer />;
+      case 'nightingale-essence-trader-planner':
+      case 'essence-trader-inventory-currency-planner':
+        return <NightingaleEssenceTraderPlanner />;
+      case 'crk-team-builder':
+      case 'cookie-run-kingdom-team-builder':
+        return <CrkTeamBuilderTool />;
+      case 'crk-topping-optimizer':
+      case 'cookie-run-kingdom-topping-optimizer':
+        return <CrkToppingOptimizerTool />;
+      case 'crk-production-chain-planner':
+      case 'cookie-run-kingdom-production-chain-planner':
+        return <CrkProductionChainPlannerTool />;
+      case 'crk-upgrade-planner':
+      case 'cookie-run-kingdom-upgrade-planner':
+        return <CrkUpgradePlannerTool />;
+      case 'crk-pity-planner':
+      case 'cookie-run-kingdom-pity-planner':
+        return <CrkPityPlannerTool />;
+      case 'crk-event-timers':
+      case 'cookie-run-kingdom-event-timers':
+        return <CrkEventTimersTool />;
+      case 'afkj-daily-boss-planner':
+      case 'afkj-boss-team-planner':
+      case 'daily-boss-team-planner':
+        return <AfkjBossTeamPlannerTool />;
+      case 'afkj-ascension-planner':
+      case 'ascension-planner':
+        return <AfkjAscensionPlannerTool />;
+      case 'afkj-resource-planner':
+      case 'resource-planner':
+        return <AfkjResourcePlannerTool />;
+      case 'afkj-summon-planner':
+      case 'summon-planner':
+        return <AfkjSummonPlannerTool />;
+      case 'afkj-team-builder':
+      case 'team-builder':
+        return <AfkjTeamBuilderTool />;
+      case 'afkj-season-tracker':
+      case 'season-tracker':
+        return <AfkjSeasonTrackerTool />;
+      case 'mogo-sticker-tracker':
+      case 'monopoly-go-sticker-tracker':
+        return <MogoStickerTrackerTool />;
+      case 'mogo-trade-matching':
+      case 'monopoly-go-trade-matching':
+        return <MogoTradeMatchingTool />;
+      case 'mogo-free-dice-links':
+      case 'monopoly-go-free-dice-links':
+        return <MogoFreeDiceLinksTool />;
+      case 'mogo-event-timers':
+      case 'monopoly-go-event-timers':
+        return <MogoEventTimersTool />;
+      case 'mogo-shield-finder':
+      case 'monopoly-go-shield-finder':
+        return <MogoShieldFinderTool />;
+      case 'mogo-upgrade-cost-planner':
+      case 'monopoly-go-upgrade-cost-planner':
+        return <MogoUpgradeCostPlannerTool />;
+      case 'sk-damage-calc':
+        return <SkDamageCalculator />;
+      case 'sk-gear-manager':
+        return <SkGearManager />;
+      case 'sk-team-builder':
+        return <SkTeamBuilder />;
+      case 'sk-ruby-calc':
+        return <SkRubyCalculator />;
+      case 'sk-shop-optimizer':
+        return <SkShopOptimizer />;
+      case 'sk-gacha-planner':
+        return <SkGachaPlanner />;
+      case 'cm-village-calculator':
+        return <CmVillageCalculator />;
+      case 'cm-free-spin-links':
+        return <CmFreeSpinLinks />;
+      case 'cm-card-tracker':
+        return <CmCardTracker />;
+      case 'cm-event-planner':
+        return <CmEventPlanner />;
+      case 'cm-pet-timer':
+        return <CmPetTimer />;
       default:
         return <ModularGamingTool tool={tool} />;
     }
@@ -276,19 +697,33 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
       />
 
       <div className="space-y-10">
-        {/* Breadcrumb & Header Metadata */}
-        <div>
-          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
+        {/* Placement: Tool Top Banner Ad */}
+        <AdLayout.ToolTop />
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
+        {/* Breadcrumb & Quick Back Navigation */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between gap-3">
+            <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
+            <button
+              onClick={() => onNavigate(gamePath || '/tools')}
+              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 hover:border-violet-500/50 text-slate-300 hover:text-white flex items-center gap-1.5 transition-all cursor-pointer flex-shrink-0"
+              title="Go back to previous page or game hub"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back</span>
+            </button>
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-indigo-950/80">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 {game && (
                   <button
                     onClick={() => onNavigate(gamePath)}
-                    className="text-xs font-semibold text-slate-300 hover:text-emerald-400 font-mono transition-colors"
+                    className="text-xs font-semibold text-slate-300 hover:text-cyan-300 font-mono transition-colors flex items-center gap-1.5"
                   >
-                    {game.name}
+                    {getGameIcon(game.id, 'w-4 h-4')}
+                    <span>{game.name}</span>
                   </button>
                 )}
                 {category && (
@@ -296,7 +731,7 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
                     <span className="text-slate-600">·</span>
                     <button
                       onClick={() => onNavigate(`/categories?cat=${category.id}`)}
-                      className="text-xs font-medium text-slate-400 hover:text-emerald-400 transition-colors"
+                      className="text-xs font-medium text-slate-400 hover:text-cyan-300 transition-colors"
                     >
                       {category.name}
                     </button>
@@ -305,7 +740,7 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
                 {tool.badge && (
                   <>
                     <span className="text-slate-600">·</span>
-                    <span className="text-xs font-mono text-emerald-400">
+                    <span className="text-xs font-mono text-violet-400">
                       {tool.badge}
                     </span>
                   </>
@@ -314,9 +749,14 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
                 <span className="text-[11px] text-slate-500 font-mono">Verified Engine</span>
               </div>
 
-              {/* One Clear H1 for SEO */}
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                {tool.h1}
+              {/* One Clear H1 for SEO with Game Logo */}
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-3.5 flex-wrap">
+                {game && (
+                  <span className="p-2 sm:p-2.5 rounded-xl bg-[#0c122e] border border-indigo-800/80 shadow-md inline-flex items-center justify-center shrink-0">
+                    {getGameIcon(game.id, 'w-7 h-7 sm:w-8 sm:h-8')}
+                  </span>
+                )}
+                <span>{tool.h1}</span>
               </h1>
 
               <p className="text-xs sm:text-sm text-zinc-400 mt-2 max-w-3xl leading-relaxed">
@@ -327,8 +767,8 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
             {/* Right Meta & Share button */}
             <div className="flex flex-row sm:flex-col items-start sm:items-end justify-between gap-2 flex-shrink-0">
               <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
-                <span className="flex items-center gap-1 text-emerald-400">
-                  <Star className="w-3.5 h-3.5 fill-current text-amber-400" />
+                <span className="flex items-center gap-1.5 text-violet-400 font-semibold">
+                  <ShieldCheck className="w-3.5 h-3.5" />
                   <strong>{tool.rating}</strong>
                 </span>
                 <span>•</span>
@@ -336,9 +776,9 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
               </div>
               <button
                 onClick={handleShare}
-                className="px-3 py-1.5 text-xs font-medium rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-300 flex items-center gap-1.5 transition-colors"
+                className="px-3 py-1.5 text-xs font-medium rounded-lg bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 text-slate-300 flex items-center gap-1.5 transition-colors"
               >
-                {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
+                {copiedLink ? <Check className="w-3.5 h-3.5 text-cyan-400" /> : <Share2 className="w-3.5 h-3.5" />}
                 {copiedLink ? 'Link Copied!' : 'Share Tool'}
               </button>
             </div>
@@ -346,15 +786,15 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         </div>
 
         {/* Main Content Grid with Desktop Sidebar */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Main Column: Calculator + Explanations + FAQs (8 cols on lg/xl) */}
-          <div className="lg:col-span-8 space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 lg:grid-cols-12 gap-6 lg:gap-8 items-start relative">
+          {/* Main Column: Calculator + Explanations + FAQs (7-8 cols on desktop/tablet) */}
+          <div className="md:col-span-7 lg:col-span-8 space-y-8 min-w-0">
             {/* The Interactive Tool Container */}
             <div>
               {renderToolComponent()}
 
-              {/* Placement 2: Calculator Results Ad Banner */}
-              <AdLayout.Results />
+              {/* Placement 2: Tool After Result Banner */}
+              <AdLayout.ToolAfterResult />
             </div>
 
             {/* Step-by-Step How To Guide */}
@@ -498,6 +938,9 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
               </section>
             )}
 
+            {/* Placement 3: Tool Mid-Content Banner Ad */}
+            <AdLayout.ToolMidContent />
+
             {/* In-Depth Engine Mechanics & Technical Guide */}
             {deepDive && (
               <section className="bg-[#0e1422] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5">
@@ -558,6 +1001,7 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
               </section>
             )}
 
+
             {/* Enhanced Frequently Asked Questions Accordion */}
             {enhancedFaqs && enhancedFaqs.length > 0 && (
               <section className="bg-[#0e1422] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
@@ -602,14 +1046,14 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
 
             {/* Dedicated Game Hub & Ecosystem Linking Module */}
             {game && (
-              <section className="bg-gradient-to-r from-[#0d1627] to-[#0a101d] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5">
+              <section className="bg-gradient-to-r from-[#0c122e] to-[#070b19] border border-indigo-900/70 rounded-2xl p-6 sm:p-8 space-y-5">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 block mb-1">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block mb-1">
                       Official Game Knowledge Hub
                     </span>
                     <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                      <Compass className="w-5 h-5 text-emerald-400" />
+                      <Compass className="w-5 h-5 text-cyan-400" />
                       More {game.name} Calculators & Tools
                     </h2>
                     <p className="text-xs text-slate-400 mt-1 max-w-xl">
@@ -619,7 +1063,7 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
 
                   <button
                     onClick={() => onNavigate(gamePath)}
-                    className="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs rounded-xl flex items-center gap-1.5 transition-all shadow-lg shadow-emerald-500/20 self-start sm:self-auto flex-shrink-0"
+                    className="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold text-xs rounded-xl flex items-center gap-1.5 transition-all shadow-lg shadow-violet-950/50 self-start sm:self-auto flex-shrink-0"
                   >
                     <span>Visit {game.name} Hub</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -628,7 +1072,7 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
 
                 {/* Sibling tools quick links */}
                 {gameTools.length > 0 && (
-                  <div className="pt-3 border-t border-slate-800/80">
+                  <div className="pt-3 border-t border-indigo-950/80">
                     <span className="text-[11px] text-slate-400 block mb-2 font-medium">
                       Popular {game.name} utilities:
                     </span>
@@ -637,9 +1081,9 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
                         <button
                           key={t.id}
                           onClick={() => onNavigate(`/tools/${t.slug}`)}
-                          className="px-2.5 py-1 text-xs rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
+                          className="px-2.5 py-1 text-xs rounded-lg bg-[#070b19] hover:bg-[#121c45] border border-indigo-950 hover:border-violet-500/50 text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-violet-400" />
                           <span>{t.name}</span>
                         </button>
                       ))}
@@ -650,59 +1094,60 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
             )}
           </div>
 
-          {/* Desktop Sidebar Column (4 cols on lg/xl) */}
-          {/* Sits alongside on wide desktop, stacks below main content on smaller screens */}
-          <aside className="lg:col-span-4 space-y-4">
-            <div className="lg:sticky lg:top-24 space-y-3.5">
-              {/* Ultra-Compact Tool Overview (Saves 160px vertical height so sidebar ad stays high above-the-fold) */}
-              <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800/80 mb-2">
-                  <span className="text-[11px] font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    Tool Overview
-                  </span>
+          {/* Desktop Sidebar Column (5 cols on md, 4 cols on lg/xl) */}
+          {/* Sits alongside on desktop/laptop/tablet, stays firmly stuck as user scrolls */}
+          <aside
+            className="md:col-span-5 lg:col-span-4 self-start sticky top-[72px] z-20 space-y-4 sticky-sidebar-fit w-full"
+            style={{ position: 'sticky', top: '72px', alignSelf: 'flex-start' }}
+          >
+            {/* Slot 1: tool-sidebar-1 ABOVE the first sidebar text block */}
+            <AdLayout.ToolSidebar1 />
+
+            {/* Tool Overview (First sidebar text block) */}
+            <div className="bg-[#0c122e] border border-indigo-900/60 rounded-xl p-3">
+              <div className="flex items-center justify-between pb-2 border-b border-indigo-950/80 mb-2">
+                <span className="text-[11px] font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                  Tool Overview
+                </span>
+                <button
+                  onClick={handleShare}
+                  className="text-[11px] font-medium text-slate-300 hover:text-white px-2 py-0.5 rounded bg-[#070b19] hover:bg-[#121c45] border border-indigo-950 flex items-center gap-1 transition-colors"
+                  title="Share this tool"
+                >
+                  {copiedLink ? <Check className="w-3 h-3 text-cyan-400" /> : <Share2 className="w-3 h-3" />}
+                  <span>{copiedLink ? 'Copied' : 'Share'}</span>
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="bg-[#070b19] px-2.5 py-1 rounded-lg border border-indigo-950">
+                  <span className="text-[10px] text-slate-500 block">Game</span>
                   <button
-                    onClick={handleShare}
-                    className="text-[11px] font-medium text-slate-300 hover:text-white px-2 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 border border-slate-700/80 flex items-center gap-1 transition-colors"
-                    title="Share this tool"
+                    onClick={() => onNavigate(gamePath)}
+                    className="font-semibold text-violet-400 hover:text-cyan-300 hover:underline truncate block max-w-full text-left transition-colors"
                   >
-                    {copiedLink ? <Check className="w-3 h-3 text-emerald-400" /> : <Share2 className="w-3 h-3" />}
-                    <span>{copiedLink ? 'Copied' : 'Share'}</span>
+                    {game?.name || 'General'}
                   </button>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="bg-[#090d16] px-2.5 py-1 rounded-lg border border-slate-800/60">
-                    <span className="text-[10px] text-slate-500 block">Game</span>
-                    <button
-                      onClick={() => onNavigate(gamePath)}
-                      className="font-semibold text-emerald-400 hover:underline truncate block max-w-full text-left"
-                    >
-                      {game?.name || 'General'}
-                    </button>
-                  </div>
-
-                  <div className="bg-[#090d16] px-2.5 py-1 rounded-lg border border-slate-800/60">
-                    <span className="text-[10px] text-slate-500 block">Platform</span>
-                    <span className="font-mono text-slate-200 truncate block text-left">
-                      {tool.badge || 'Universal'}
-                    </span>
-                  </div>
+                <div className="bg-[#070b19] px-2.5 py-1 rounded-lg border border-indigo-950">
+                  <span className="text-[10px] text-slate-500 block">Platform</span>
+                  <span className="font-mono text-slate-200 truncate block text-left">
+                    {tool.badge || 'Universal'}
+                  </span>
                 </div>
               </div>
-
-              {/* Placement 3: Desktop Sidebar Ad Banner (Positioned BELOW Tool Overview) */}
-              <AdLayout.Sidebar />
             </div>
+
+            {/* Slot 2: tool-sidebar-2 BETWEEN sidebar text blocks (or below first block) */}
+            <AdLayout.ToolSidebar2 />
           </aside>
         </div>
 
-        {/* Placement 4: Content Bottom Banner Ad (Directly before Related Tools) */}
-        <AdLayout.Content />
-
         {/* Related Tools */}
         {relatedTools.length > 0 && (
-          <section className="space-y-4 pt-4 border-t border-slate-800">
+          <section className="space-y-4 pt-4 border-t border-indigo-950/80">
             <h2 className="text-lg sm:text-xl font-bold text-white">
               Related {game?.name || 'Gaming'} Tools & Calculators
             </h2>
@@ -717,6 +1162,12 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
             </div>
           </section>
         )}
+
+        {/* Placement 4: Tool Above Footer Banner Ad */}
+        <AdLayout.ToolAboveFooter />
+
+        {/* Mobile Sticky Bottom Ad (Only visible on mobile widths where sidebar is hidden) */}
+        <AdLayout.ToolMobileSticky />
       </div>
     </>
   );

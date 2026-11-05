@@ -6,7 +6,7 @@
 import React, { useState, useMemo } from 'react';
 import { 
   Users, UserPlus, Shuffle, Copy, Check, Shield, Sword, Heart, 
-  Crown, Dices, Award, RefreshCw, Trash2
+  Crown, Dices, Award, RefreshCw, Trash2, Zap
 } from 'lucide-react';
 
 interface Player {
@@ -141,9 +141,9 @@ export default function TeamGenerator() {
 
   // Copy Discord formatted message
   const handleCopyDiscord = () => {
-    let text = `🎮 **BALANCED TEAMS ROSTER (Fairness: ${fairnessScore}%)**\n\n`;
+    let text = `[BALANCED TEAMS ROSTER] (Fairness: ${fairnessScore}%)\n\n`;
     teams.forEach(t => {
-      text += `⚔️ **${t.name}** (Total Skill: ${t.totalSkill} | Avg: ${(t.totalSkill / (t.players.length || 1)).toFixed(1)})\n`;
+      text += `[Team] ${t.name} (Total Skill: ${t.totalSkill} | Avg: ${(t.totalSkill / (t.players.length || 1)).toFixed(1)})\n`;
       t.players.forEach(p => {
         text += `  • ${p.name} [${p.role}] (Skill: ${p.skill}/10)\n`;
       });
@@ -247,13 +247,14 @@ export default function TeamGenerator() {
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => setBalanceMode('skill')}
-                className={`py-1.5 text-xs font-semibold rounded-lg border transition-all ${
+                className={`py-1.5 text-xs font-semibold rounded-lg border transition-all flex items-center justify-center gap-1.5 ${
                   balanceMode === 'skill'
                     ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300'
                     : 'bg-zinc-950 border-zinc-800 text-zinc-400'
                 }`}
               >
-                ⚡ Skill (MMR)
+                <Zap className="w-3.5 h-3.5" />
+                <span>Skill (MMR)</span>
               </button>
               <button
                 onClick={() => setBalanceMode('random')}

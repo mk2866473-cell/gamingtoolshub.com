@@ -26,11 +26,11 @@ export default function BrandLogo({ className = '', size = 'md' }: BrandLogoProp
 
   return (
     <div
-      className={`relative flex items-center justify-center bg-[#0d131f] border border-slate-700/80 shadow-sm transition-all duration-200 group-hover:border-emerald-500/70 group-hover:bg-[#101827] ${sizeClasses[size]} ${className}`}
+      className={`relative flex items-center justify-center bg-[#0c122e] border border-indigo-900/60 shadow-sm transition-all duration-200 group-hover:border-violet-500/70 group-hover:bg-[#121c45] group-hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] ${sizeClasses[size]} ${className}`}
     >
-      {/* Corner precision mark */}
-      <div className="absolute top-1 right-1 w-1 h-1 rounded-full bg-emerald-400" />
-      <Gamepad2 className={`${iconSizes[size]} text-emerald-400`} />
+      {/* Corner precision dot */}
+      <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.9)]" />
+      <Gamepad2 className={`${iconSizes[size]} text-violet-400 group-hover:text-cyan-300 transition-colors`} />
     </div>
   );
 }

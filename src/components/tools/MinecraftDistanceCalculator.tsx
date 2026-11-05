@@ -6,7 +6,7 @@
 import React, { useState, useMemo } from 'react';
 import { 
   Compass, Navigation, Footprints, Wind, Flame, Copy, Check, 
-  ArrowRight, ShieldAlert, Timer, Sparkles
+  ArrowRight, ShieldAlert, Timer, Sparkles, Zap
 } from 'lucide-react';
 import { MINECRAFT_TRAVEL_MODES } from '../../data/minecraftData';
 
@@ -203,8 +203,9 @@ export default function MinecraftDistanceCalculator() {
           <span className="text-2xl sm:text-3xl font-extrabold font-mono text-purple-300 my-1 block">
             {stats.netherHorizontalDist.toLocaleString()} <span className="text-xs font-normal text-zinc-400">blocks</span>
           </span>
-          <span className="text-[11px] text-emerald-400 font-semibold font-mono">
-            ⚡ 87.5% Distance Saved (8:1)
+          <span className="flex items-center justify-center gap-1 text-[11px] text-emerald-400 font-semibold font-mono">
+            <Zap className="w-3.5 h-3.5" />
+            <span>87.5% Distance Saved (8:1)</span>
           </span>
         </div>
       </div>

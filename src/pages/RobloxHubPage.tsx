@@ -12,6 +12,8 @@ import { TOOLS, ToolItem } from '../data/gamesAndTools';
 import ToolCard from '../components/ToolCard';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
+import { getGameIcon } from '../components/GameIcons';
+import AdLayout from '../components/ads/AdLayout';
 
 interface RobloxHubPageProps {
   onNavigate: (path: string) => void;
@@ -26,7 +28,8 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
   }, []);
 
   const categories = [
-    { id: 'all', name: 'All Roblox Tools (10)' },
+    { id: 'all', name: 'All Roblox Tools' },
+    { id: 'ps99', name: 'Pet Simulator 99 (PS99 Trade WFL)' },
     { id: 'economy', name: 'Robux & DevEx (Tax, USD Value, DevEx Cashout)' },
     { id: 'bloxfruits', name: 'Blox Fruits (Values, XP, Stats, Damage)' },
     { id: 'developer', name: 'Studio Developer (Gamepasses, Team Splits, Premium)' }
@@ -41,7 +44,9 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
         tool.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
 
       let matchCategory = true;
-      if (selectedSubCategory === 'economy') {
+      if (selectedSubCategory === 'ps99') {
+        matchCategory = tool.id.includes('ps99') || tool.tags.includes('ps99');
+      } else if (selectedSubCategory === 'economy') {
         matchCategory = ['robux-tax-calculator', 'robux-calculator', 'roblox-devex-calculator'].includes(tool.id);
       } else if (selectedSubCategory === 'bloxfruits') {
         matchCategory = tool.id.startsWith('blox-fruits');
@@ -68,6 +73,9 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
       />
 
       <div className="space-y-10 sm:space-y-12">
+        {/* Hub Top Banner Ad Slot */}
+        <AdLayout.HubTop currentPath="/roblox" />
+
         {/* Breadcrumb & Hero Header */}
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
@@ -81,12 +89,15 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
                 <span>Dedicated Roblox & Blox Fruits Engineering Suite</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-                Roblox Calculators & Blox Fruits Tools
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-4 flex-wrap">
+                <span className="p-2 sm:p-2.5 rounded-2xl bg-rose-950/80 border border-rose-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
+                  {getGameIcon('roblox', 'w-8 h-8 sm:w-11 sm:h-11')}
+                </span>
+                <span>Roblox & Pet Simulator 99 Calculators</span>
               </h1>
 
               <p className="text-sm sm:text-base text-zinc-300 leading-relaxed">
-                Precision developer revenue models, official 30% Robux tax calculations, Developer Exchange (DevEx) conversions, and verified Blox Fruits trade fairness & stat planners.
+                Pet Simulator 99 Trade Value & WFL calculator, official 30% Robux tax calculations, Developer Exchange (DevEx) conversions, and verified Blox Fruits trade fairness & stat planners.
               </p>
 
               {/* Quick Search */}
@@ -97,7 +108,7 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search Robux tax, devex, blox fruits, gamepass, stats..."
+                    placeholder="Search PS99 trade, huge cat, Robux tax, devex, blox fruits..."
                     className="w-full bg-transparent text-xs text-white placeholder-zinc-500 focus:outline-none"
                   />
                   {searchQuery && (
@@ -140,12 +151,14 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTools.map((tool) => (
-              <ToolCard
-                key={tool.id}
-                tool={tool}
-                onSelectTool={(slug) => onNavigate(`/tools/${slug}`)}
-              />
+            {filteredTools.map((tool, idx) => (
+              <React.Fragment key={tool.id}>
+                {idx === 9 && <AdLayout.HubInFeed />}
+                <ToolCard
+                  tool={tool}
+                  onSelectTool={(slug) => onNavigate(`/tools/${slug}`)}
+                />
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -187,6 +200,9 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
             </div>
           </div>
         </section>
+
+        {/* Hub Above Footer Banner Ad Slot */}
+        <AdLayout.HubAboveFooter />
       </div>
     </>
   );

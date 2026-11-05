@@ -29,7 +29,7 @@ export default function Breadcrumbs({ items, onNavigate }: BreadcrumbsProps) {
                 onNavigate('/');
               }
             }}
-            className="flex items-center gap-1 hover:text-emerald-400 transition-colors py-1"
+            className="flex items-center gap-1 hover:text-cyan-300 transition-colors py-1"
           >
             <Home className="w-3.5 h-3.5 text-zinc-500" />
             <span>Home</span>
@@ -57,7 +57,7 @@ export default function Breadcrumbs({ items, onNavigate }: BreadcrumbsProps) {
                         onNavigate(item.path);
                       }
                     }}
-                    className="hover:text-emerald-400 transition-colors py-1 truncate max-w-[150px] sm:max-w-none inline-block"
+                    className="hover:text-cyan-300 transition-colors py-1 truncate max-w-[150px] sm:max-w-none inline-block"
                   >
                     {item.name}
                   </a>

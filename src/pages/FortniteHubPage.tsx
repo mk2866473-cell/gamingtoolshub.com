@@ -12,6 +12,8 @@ import { TOOLS, ToolItem } from '../data/gamesAndTools';
 import ToolCard from '../components/ToolCard';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
+import { getGameIcon } from '../components/GameIcons';
+import AdLayout from '../components/ads/AdLayout';
 
 interface FortniteHubPageProps {
   onNavigate: (path: string) => void;
@@ -68,6 +70,9 @@ export default function FortniteHubPage({ onNavigate }: FortniteHubPageProps) {
       />
 
       <div className="space-y-10 sm:space-y-12">
+        {/* Hub Top Banner Ad Slot */}
+        <AdLayout.HubTop currentPath="/fortnite" />
+
         {/* Breadcrumb & Hero Header */}
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
@@ -81,8 +86,11 @@ export default function FortniteHubPage({ onNavigate }: FortniteHubPageProps) {
                 <span>Dedicated Fortnite Battle Royale & Creative Suite</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-                Fortnite Calculators & Aim Utilities
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-4 flex-wrap">
+                <span className="p-2 sm:p-2.5 rounded-2xl bg-amber-950/80 border border-amber-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
+                  {getGameIcon('fortnite', 'w-8 h-8 sm:w-11 sm:h-11')}
+                </span>
+                <span>Fortnite Calculators & Aim Utilities</span>
               </h1>
 
               <p className="text-sm sm:text-base text-zinc-300 leading-relaxed">
@@ -140,12 +148,14 @@ export default function FortniteHubPage({ onNavigate }: FortniteHubPageProps) {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTools.map((tool) => (
-              <ToolCard
-                key={tool.id}
-                tool={tool}
-                onSelectTool={(slug) => onNavigate(`/tools/${slug}`)}
-              />
+            {filteredTools.map((tool, idx) => (
+              <React.Fragment key={tool.id}>
+                {idx === 9 && <AdLayout.HubInFeed />}
+                <ToolCard
+                  tool={tool}
+                  onSelectTool={(slug) => onNavigate(`/tools/${slug}`)}
+                />
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -187,6 +197,9 @@ export default function FortniteHubPage({ onNavigate }: FortniteHubPageProps) {
             </div>
           </div>
         </section>
+
+        {/* Hub Above Footer Banner Ad Slot */}
+        <AdLayout.HubAboveFooter />
       </div>
     </>
   );

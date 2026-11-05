@@ -6,7 +6,7 @@
 import React, { useState, useMemo } from 'react';
 import { 
   BookOpen, Shield, Sword, Wrench, Check, AlertTriangle, 
-  ArrowRight, Info, Layers, RefreshCw
+  ArrowRight, Info, Layers, RefreshCw, Crosshair, Sparkles, Wind, Zap
 } from 'lucide-react';
 
 interface EnchantmentDef {
@@ -23,7 +23,7 @@ interface ItemPreset {
   id: string;
   name: string;
   category: string;
-  icon: string;
+  icon: React.ElementType;
   availableEnchantments: string[];
 }
 
@@ -81,56 +81,56 @@ const ITEM_PRESETS: ItemPreset[] = [
     id: 'sword',
     name: 'Netherite / Diamond Sword',
     category: 'Weapons',
-    icon: '⚔️',
+    icon: Sword,
     availableEnchantments: ['sharpness', 'smite', 'bane_of_arthropods', 'unbreaking', 'mending', 'looting', 'sweeping_edge', 'fire_aspect', 'knockback']
   },
   {
     id: 'pickaxe',
     name: 'Pickaxe',
     category: 'Tools',
-    icon: '⛏️',
+    icon: Wrench,
     availableEnchantments: ['efficiency', 'unbreaking', 'mending', 'fortune', 'silk_touch']
   },
   {
     id: 'helmet',
     name: 'Helmet',
     category: 'Armor',
-    icon: '🪖',
+    icon: Shield,
     availableEnchantments: ['protection', 'fire_protection', 'blast_protection', 'projectile_protection', 'respiration', 'aqua_affinity', 'unbreaking', 'mending', 'thorns']
   },
   {
     id: 'chestplate',
     name: 'Chestplate',
     category: 'Armor',
-    icon: '🛡️',
+    icon: Shield,
     availableEnchantments: ['protection', 'fire_protection', 'blast_protection', 'projectile_protection', 'unbreaking', 'mending', 'thorns']
   },
   {
     id: 'boots',
     name: 'Boots',
     category: 'Armor',
-    icon: '🥾',
+    icon: Zap,
     availableEnchantments: ['protection', 'fire_protection', 'blast_protection', 'projectile_protection', 'feather_falling', 'depth_strider', 'soul_speed', 'unbreaking', 'mending', 'thorns']
   },
   {
     id: 'bow',
     name: 'Bow',
     category: 'Ranged',
-    icon: '🏹',
+    icon: Crosshair,
     availableEnchantments: ['power', 'flame', 'punch', 'unbreaking', 'infinity', 'mending']
   },
   {
     id: 'trident',
     name: 'Trident',
     category: 'Weapons',
-    icon: '🔱',
+    icon: Sparkles,
     availableEnchantments: ['impaling', 'loyalty', 'channeling', 'unbreaking', 'mending']
   },
   {
     id: 'elytra',
     name: 'Elytra',
     category: 'Utility',
-    icon: '🪽',
+    icon: Wind,
     availableEnchantments: ['unbreaking', 'mending']
   }
 ];
@@ -320,7 +320,7 @@ export default function MinecraftEnchantmentCalculator() {
                     : 'bg-zinc-950 border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200'
                 }`}
               >
-                <span className="text-2xl">{item.icon}</span>
+                <item.icon className={`w-5 h-5 ${isSelected ? 'text-emerald-400' : 'text-zinc-400'}`} />
                 <span className="text-xs truncate max-w-[90px]">{item.name.replace('Netherite / Diamond ', '')}</span>
               </button>
             );

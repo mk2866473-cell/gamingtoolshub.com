@@ -5,7 +5,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search, ArrowUpDown } from 'lucide-react';
-import { TOOLS, GAMES, CATEGORIES, ToolItem } from '../data/gamesAndTools';
+import { TOOLS, GAMES, CATEGORIES, ToolItem, getGameById } from '../data/gamesAndTools';
 import ToolCard from '../components/ToolCard';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
@@ -52,11 +52,20 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
 
   const filteredTools = useMemo(() => {
     return TOOLS.filter((tool) => {
+      const q = searchQuery.toLowerCase().trim();
+      const game = getGameById(tool.gameId);
       const matchSearch =
-        searchQuery.trim() === '' ||
-        tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+        q === '' ||
+        tool.name.toLowerCase().includes(q) ||
+        tool.description.toLowerCase().includes(q) ||
+        tool.shortDescription.toLowerCase().includes(q) ||
+        tool.tags.some(t => t.toLowerCase().includes(q)) ||
+        tool.gameId.toLowerCase().includes(q) ||
+        (game && (
+          game.name.toLowerCase().includes(q) ||
+          (game.shortName && game.shortName.toLowerCase().includes(q)) ||
+          game.slug.toLowerCase().includes(q)
+        ));
 
       const matchGame = selectedGame === 'all' || tool.gameId === selectedGame;
       const matchCategory = selectedCategory === 'all' || tool.categoryId === selectedCategory;
@@ -85,7 +94,7 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
       <div className="space-y-8">
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-indigo-950/80">
             <div>
               <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                 All Gaming Tools & Calculators
@@ -94,24 +103,24 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
                 Explore our full catalog of verified theorycrafting utilities across Minecraft, Palworld, Genshin Impact, FPS, Pokémon GO, Fortnite, and Roblox.
               </p>
             </div>
-            <span className="text-xs font-mono text-emerald-400 bg-emerald-950/60 px-3 py-1.5 rounded-lg border border-emerald-800/40 self-start sm:self-auto">
+            <span className="text-xs font-mono text-violet-300 bg-violet-950/60 px-3 py-1.5 rounded-lg border border-violet-800/40 self-start sm:self-auto">
               {filteredTools.length} {filteredTools.length === 1 ? 'Tool' : 'Tools'} Available
             </span>
           </div>
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="bg-[#0d131f] border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+        <div className="bg-[#0c122e] border border-indigo-900/60 rounded-xl p-4 sm:p-5 space-y-4">
           {/* Search Row */}
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-violet-400/80 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Filter tools by name, keyword, or mechanics tag..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#080c14] border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
+                className="w-full bg-[#070b19] border border-indigo-900/60 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/30 transition-colors"
               />
             </div>
 
@@ -120,7 +129,7 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="bg-[#080c14] border border-slate-700 rounded-lg px-2.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 cursor-pointer"
+                className="bg-[#070b19] border border-indigo-900/60 rounded-lg px-2.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-violet-500 cursor-pointer"
               >
                 <option value="popularity">Most Popular</option>
                 <option value="rating">Highest Rated</option>
@@ -130,14 +139,14 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
           </div>
 
           {/* Game Filter */}
-          <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-slate-800 text-xs">
+          <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-indigo-950/80 text-xs">
             <span className="text-slate-400 font-medium mr-1 text-[11px] uppercase tracking-wider font-mono">Game:</span>
             <button
               onClick={() => setSelectedGame('all')}
               className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
                 selectedGame === 'all'
-                  ? 'bg-emerald-600 text-white font-semibold'
-                  : 'bg-[#080c14] border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-violet-600 text-white font-semibold shadow-sm shadow-violet-950/50'
+                  : 'bg-[#070b19] border border-indigo-950 text-slate-400 hover:text-white hover:bg-[#121c45]'
               }`}
             >
               All Games
@@ -148,8 +157,8 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
                 onClick={() => setSelectedGame(game.id)}
                 className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
                   selectedGame === game.id
-                    ? 'bg-emerald-600 text-white font-semibold'
-                    : 'bg-[#080c14] border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                    ? 'bg-violet-600 text-white font-semibold shadow-sm shadow-violet-950/50'
+                    : 'bg-[#070b19] border border-indigo-950 text-slate-400 hover:text-white hover:bg-[#121c45]'
                 }`}
               >
                 {game.shortName || game.name}
@@ -158,14 +167,14 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-slate-800 text-xs">
+          <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-indigo-950/80 text-xs">
             <span className="text-slate-400 font-medium mr-1 text-[11px] uppercase tracking-wider font-mono">Category:</span>
             <button
               onClick={() => setSelectedCategory('all')}
               className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
                 selectedCategory === 'all'
-                  ? 'bg-cyan-600 text-white font-semibold'
-                  : 'bg-[#080c14] border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-cyan-600 text-white font-semibold shadow-sm shadow-cyan-950/50'
+                  : 'bg-[#070b19] border border-indigo-950 text-slate-400 hover:text-white hover:bg-[#121c45]'
               }`}
             >
               All Types
@@ -176,8 +185,8 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
                   selectedCategory === cat.id
-                    ? 'bg-cyan-600 text-white font-semibold'
-                    : 'bg-[#080c14] border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                    ? 'bg-cyan-600 text-white font-semibold shadow-sm shadow-cyan-950/50'
+                    : 'bg-[#070b19] border border-indigo-950 text-slate-400 hover:text-white hover:bg-[#121c45]'
                 }`}
               >
                 {cat.name}
@@ -199,7 +208,7 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-[#0d131f] border border-slate-800 rounded-xl space-y-3">
+          <div className="text-center py-16 bg-[#0c122e] border border-indigo-900/60 rounded-xl space-y-3">
             <p className="text-base text-slate-300 font-medium">No tools found matching your active filters.</p>
             <p className="text-xs text-slate-500">Try adjusting your search query, or reset game and category filters.</p>
             <button
@@ -208,7 +217,7 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
                 setSelectedGame('all');
                 setSelectedCategory('all');
               }}
-              className="mt-2 px-4 py-1.5 text-xs font-semibold text-emerald-400 bg-slate-900 border border-slate-800 hover:bg-slate-800 rounded-lg transition-colors"
+              className="mt-2 px-4 py-1.5 text-xs font-semibold text-violet-400 bg-[#070b19] border border-indigo-900/60 hover:bg-[#121c45] hover:border-violet-500/50 rounded-lg transition-colors"
             >
               Reset All Filters
             </button>
