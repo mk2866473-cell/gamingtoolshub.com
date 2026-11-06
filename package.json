@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "npx tsx scripts/generate-favicons.ts && npx tsx scripts/generate-sitemap.ts && vite build && npx tsx scripts/prerender.ts && rm -rf dist_files docs && mkdir -p dist_files docs && cp -r dist/* dist_files/ && cp -r dist/* docs/",
+    "build": "npx tsx scripts/generate-favicons.ts && npx tsx scripts/generate-sitemap.ts && npx vite build && npx tsx scripts/prerender.ts && rm -rf dist_files docs && mkdir -p dist_files docs && cp -r dist/. dist_files/ && cp -r dist/. docs/ && touch docs/.nojekyll dist_files/.nojekyll",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
