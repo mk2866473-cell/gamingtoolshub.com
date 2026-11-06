@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <script>
+      // Safe window.fetch getter/setter shim for iframe sandboxes
+      try {
+        if (typeof window !== 'undefined') {
+          const originalFetch = window.fetch;
+          let currentFetch = originalFetch ? originalFetch.bind(window) : undefined;
+          Object.defineProperty(window, 'fetch', {
+            get() {
+              return currentFetch;
+            },
+            set(val) {
+              currentFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        }
+      } catch (e) {
+        // Fallback or ignore if protected
+      }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XRBMRCRFM0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XRBMRCRFM0');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <title>Helldivers 2 Damage &amp; Breakpoint Calculators | GamingToolsHub</title>
+    <meta name="description" content="Precision ballistics, weapon TTK, shots-to-kill breakpoints, and enemy weak spot multipliers for Helldivers 2." />
+    <meta name="keywords" content="gaming tools, minecraft circle generator, nether portal calculator, minecraft xp calculator, coordinate converter, team generator, gaming decision wheel, gaming calculators" />
+    <meta name="author" content="GamingToolsHub" />
+    <meta name="robots" content="index, follow" />
+    <meta name="yandex-verification" content="4849c0ae39e78dca" />
+    <meta name="naver-site-verification" content="" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gamingtoolshub.com/helldivers-2" />
+    <meta property="og:title" content="Helldivers 2 Damage &amp; Breakpoint Calculators | GamingToolsHub" />
+    <meta property="og:description" content="Precision ballistics, weapon TTK, shots-to-kill breakpoints, and enemy weak spot multipliers for Helldivers 2." />
+    <meta property="og:site_name" content="GamingToolsHub" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Helldivers 2 Damage &amp; Breakpoint Calculators | GamingToolsHub" />
+    <meta name="twitter:description" content="Precision ballistics, weapon TTK, shots-to-kill breakpoints, and enemy weak spot multipliers for Helldivers 2." />
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://gamingtoolshub.com/helldivers-2" />
+    <script type="module" crossorigin src="/assets/index-H4wMk5_q.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CvzPQ83g.css">
+  </head>
+  <body class="bg-[#070b19] text-slate-100 min-h-screen antialiased selection:bg-violet-600 selection:text-white">
+    <div id="root" data-prerendered="true">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+      <div>
+        
+    <header class="sticky top-0 z-50 w-full border-b border-indigo-900/60 bg-[#070b19]/95 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 gap-4">
+          <a href="/" class="flex items-center gap-2.5 group">
+            <span class="w-9 h-9 rounded-xl bg-[#0c122e] border border-indigo-900/60 flex items-center justify-center font-black text-violet-400 text-sm">🎮</span>
+            <span class="font-extrabold text-base tracking-tight text-white">GamingTools<span class="text-violet-400">Hub</span></span>
+          </a>
+          <nav class="hidden md:flex items-center gap-6 text-xs text-slate-300">
+            <a href="/tools" class="hover:text-violet-400 transition-colors ">All Tools</a>
+            <a href="/games" class="hover:text-violet-400 transition-colors ">Games</a>
+            <a href="/categories" class="hover:text-violet-400 transition-colors ">Categories</a>
+            <a href="/games/minecraft" class="hover:text-violet-400 transition-colors ">Minecraft</a>
+            <a href="/games/roblox" class="hover:text-violet-400 transition-colors ">Roblox</a>
+            <a href="/games/fortnite" class="hover:text-violet-400 transition-colors ">Fortnite</a>
+            <a href="/games/pokemongo" class="hover:text-violet-400 transition-colors ">Pokémon GO</a>
+            <a href="/games/palworld" class="hover:text-violet-400 transition-colors ">Palworld</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+  
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-10">
+          <nav aria-label="Breadcrumb" class="mb-4">
+            <ol class="flex items-center gap-1.5 text-xs text-zinc-400">
+              <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+              <li class="text-zinc-600">/</li>
+              <li><a href="/games" class="hover:text-emerald-400 transition-colors">Games</a></li>
+              <li class="text-zinc-600">/</li>
+              <li><span class="text-zinc-200 font-medium">Helldivers 2</span></li>
+            </ol>
+          </nav>
+          <div class="pb-6 border-b border-zinc-800">
+            <div class="flex items-center gap-2 mb-2 text-xs font-mono">
+              <span class="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">15 Verified Tools</span>
+              <span class="text-slate-600">·</span>
+              <span class="text-slate-400">Zero Server Lag</span>
+              <span class="text-slate-600">·</span>
+              <span class="text-slate-400">100% Free Client-Side</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Helldivers 2 Calculators, Generators & Blueprint Tools</h1>
+            <p class="text-sm sm:text-base text-zinc-400 mt-3 max-w-3xl leading-relaxed">Precision ballistics and breakpoint calculators for Helldivers 2 soldiers: exact shots-to-kill (STK), time-to-kill (TTK), weak spot multipliers, and difficulty scaling.</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
+              <div class="bg-[#0e1422] border border-slate-800 rounded-xl p-3 text-center">
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider block font-mono">Calculators</span>
+                <span class="text-lg font-bold text-white font-mono">15</span>
+              </div>
+              <div class="bg-[#0e1422] border border-slate-800 rounded-xl p-3 text-center">
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider block font-mono">Accuracy</span>
+                <span class="text-lg font-bold text-emerald-400 font-mono">100% Exact</span>
+              </div>
+              <div class="bg-[#0e1422] border border-slate-800 rounded-xl p-3 text-center">
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider block font-mono">Execution</span>
+                <span class="text-lg font-bold text-cyan-400 font-mono">Client-Side</span>
+              </div>
+              <div class="bg-[#0e1422] border border-slate-800 rounded-xl p-3 text-center">
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider block font-mono">Platform</span>
+                <span class="text-lg font-bold text-indigo-400 font-mono">All Devices</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools Grid -->
+          <section class="space-y-4">
+            <h2 class="text-xl font-bold text-white">All Helldivers 2 Calculators & Utilities (15)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              
+                <a href="/tools/helldivers-2-damage-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Latest Patch</span>
+                      <span class="text-[11px] text-slate-500 font-mono">28.5K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Damage &amp; Breakpoint Calculator</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Calculate exact Shots to Kill (STK), Time to Kill (TTK), weak spot multipliers, and difficulty scaling in Helldivers 2.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Damage &amp; Breakpoint Calculator</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-armor-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Updated 2026</span>
+                      <span class="text-[11px] text-slate-500 font-mono">34.2K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Armor Rating &amp; Passive Calculator</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Compare Light, Medium, and Heavy armors side-by-side with all 10 passives, calculate Bile Titan TTK, and export your Instagram loadout card.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Armor Rating &amp; Passive Calculator</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-stratagem-cooldown-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">2026 Combo Meta</span>
+                      <span class="text-[11px] text-slate-500 font-mono">34.8K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Stratagem Cooldown &amp; Combo Timer Calculator</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Configure 4 Stratagems, visualize 0-10 minute timeline, track Eagle rearm cycles (2m 30s), and find zero-downtime combo rotations.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Stratagem Cooldown &amp; Combo Timer Calculator</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-xp-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Updated 2026</span>
+                      <span class="text-[11px] text-slate-500 font-mono">38.4K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 XP &amp; Warbond Medal Calculator</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Calculate exact XP needed from Level 1 to 150, estimate mission hours, and convert Medals into Warbond pages unlocked.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 XP &amp; Warbond Medal Calculator</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-dps-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Updated 2026</span>
+                      <span class="text-[11px] text-slate-500 font-mono">36.5K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 DPS, Recoil &amp; Handling Calculator</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Calculate Burst DPS, Sustained DPS, mag dump times, CS:GO-style recoil bloom patterns, and exact Time to Kill vs Bile Titans and Hulks.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 DPS, Recoil &amp; Handling Calculator</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-major-order-tracker" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Live Galactic War</span>
+                      <span class="text-[11px] text-slate-500 font-mono">48.2K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Planet Liberation &amp; Major Order Countdown Tool</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Live Galactic War tracker, Major Order countdown timer, active planet liberation rates, and reinforcement ETA calculator.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Planet Liberation &amp; Major Order Countdown Tool</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-sample-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">2026 Sample Meta</span>
+                      <span class="text-[11px] text-slate-500 font-mono">51.4K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Sample Calculator &amp; Farm Optimizer</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Calculate Common, Rare, and Super Sample caps by difficulty (1-9), missions to max Tier 5 ship modules, and optimal farm routes.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Sample Calculator &amp; Farm Optimizer</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-ship-module-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">2026 Upgrade Meta</span>
+                      <span class="text-[11px] text-slate-500 font-mono">54.2K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Ship Module Upgrade Path Calculator</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Track all 24 Super Destroyer ship modules across 6 sections, calculate sample &amp; requisition costs, and follow the meta upgrade priority path.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Ship Module Upgrade Path Calculator</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-ttk-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">2026 Combat Meta</span>
+                      <span class="text-[11px] text-slate-500 font-mono">58.4K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Time to Kill (TTK) Calculator for Enemies</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Calculate exact shots to kill, TTK seconds, weakspot multipliers, and best weapons vs 15 Terminid and Automaton enemies.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Time to Kill (TTK) Calculator for Enemies</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-stratagem-unlock-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">2026 Unlock Guide</span>
+                      <span class="text-[11px] text-slate-500 font-mono">62.1K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Stratagem Unlock Level Calculator</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Calculate required level, XP, and missions to unlock any stratagem from Level 1 to 50, featuring META loadout recommendations and level-up simulator.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Stratagem Unlock Level Calculator</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-super-credits-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">2026 Free SC Meta</span>
+                      <span class="text-[11px] text-slate-500 font-mono">65.8K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Super Credits Farm Calculator &amp; Optimizer</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Calculate time needed, missions, and best planet (Grand Erit Trivial) to farm 1000+ Super Credits fast without spending real money.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Super Credits Farm Calculator &amp; Optimizer</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-warbond-medal-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">2026 Warbond Meta</span>
+                      <span class="text-[11px] text-slate-500 font-mono">71.4K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Warbond Medal Cost Calculator</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Calculate exact medal costs to 100% unlock any Warbond (Mobilize, Cutting Edge, Democratic Detonation, Borderline Justice), track progress, and view mission grind time.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Warbond Medal Cost Calculator</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-enemy-weakness-calculator" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">2026 Enemy Intel</span>
+                      <span class="text-[11px] text-slate-500 font-mono">78.5K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Enemy Weakness &amp; Counter Matrix Calculator</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Discover weakspots, health pools, armor values, best weapons, and stratagem counters for all Terminid bugs and Automaton bots.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Enemy Weakness &amp; Counter Matrix Calculator</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-armor-tier-list" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">2026 Armor Meta</span>
+                      <span class="text-[11px] text-slate-500 font-mono">84.2K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Armor Comparison &amp; Passive Tier List Tool</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Compare 2-3 armors side-by-side, inspect S+ to B tier passive rankings, take the armor quiz, and browse all 50+ armors with real damage math.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Armor Comparison &amp; Passive Tier List Tool</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+                <a href="/tools/helldivers-2-recoil-visualizer" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">NEW 2026</span>
+                      <span class="text-[11px] text-slate-500 font-mono">185K users</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Helldivers 2 Recoil Pattern Visualizer &amp; Control Guide</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">Helldivers 2 Recoil Pattern Visualizer &amp; Mouse Guide 2026. Interactive spray pattern simulator, mouse control compensation arrows, stance reductions, and side-by-side recoil comparison.</p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                    <span>Use Helldivers 2 Recoil Pattern Visualizer &amp; Control Guide</span>
+                    <span>→</span>
+                  </div>
+                </a>
+              
+            </div>
+          </section>
+
+          <!-- Hub Informative Section -->
+          <section class="bg-[#0e1422] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
+            <h2 class="text-lg sm:text-xl font-bold text-white">Why Use GamingToolsHub for Helldivers 2?</h2>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Our Helldivers 2 tool suite is designed from the ground up for technical players, survival builders, competitive gamers, and theorycrafters. Unlike slow ad-bloated sites, GamingToolsHub runs entirely inside your browser. No server requests, no tracking of personal coordinates or private calculation variables, and instant reactivity on desktop and mobile.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              <div class="bg-[#090d16] border border-slate-800/80 rounded-xl p-4">
+                <h3 class="text-xs font-bold text-slate-200 mb-1">Instant Computation</h3>
+                <p class="text-xs text-slate-400">Zero wait times. Formulas compute dynamically as you type with zero network lag.</p>
+              </div>
+              <div class="bg-[#090d16] border border-slate-800/80 rounded-xl p-4">
+                <h3 class="text-xs font-bold text-slate-200 mb-1">Verified Game Math</h3>
+                <p class="text-xs text-slate-400">Formulas cross-referenced against official patch notes and decompiled mechanics.</p>
+              </div>
+              <div class="bg-[#090d16] border border-slate-800/80 rounded-xl p-4">
+                <h3 class="text-xs font-bold text-slate-200 mb-1">100% Free Forever</h3>
+                <p class="text-xs text-slate-400">No paywalls, subscriptions, or feature locks. Free access for every gamer.</p>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+      
+    <footer class="border-t border-slate-800/80 bg-[#060910] py-12 text-xs text-slate-400">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-black text-emerald-400 text-xs">G</span>
+            <span class="font-bold text-white text-sm">GamingToolsHub</span>
+          </div>
+          <p class="text-slate-500 leading-relaxed text-xs">High-performance gaming calculators, circle generators, nether portal math, and conversion engines built for precision gameplay with zero server lag.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-3">Game Hubs</h4>
+          <ul class="space-y-2">
+            <li><a href="/games/minecraft" class="hover:text-emerald-400 transition-colors">Minecraft Tools & Circle Generator</a></li>
+            <li><a href="/games/roblox" class="hover:text-emerald-400 transition-colors">Roblox Robux Tax & DevEx</a></li>
+            <li><a href="/games/fortnite" class="hover:text-emerald-400 transition-colors">Fortnite Battle Pass XP & Sens</a></li>
+            <li><a href="/games/pokemongo" class="hover:text-emerald-400 transition-colors">Pokémon GO CP, IV & Evolutions</a></li>
+            <li><a href="/games/palworld" class="hover:text-emerald-400 transition-colors">Palworld Breeding & Stats</a></li>
+            <li><a href="/games/genshin" class="hover:text-emerald-400 transition-colors">Genshin Impact Wish Pity & Resin</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-3">Popular Calculators</h4>
+          <ul class="space-y-2">
+            <li><a href="/tools/minecraft-circle-generator" class="hover:text-emerald-400 transition-colors">Minecraft Circle Generator</a></li>
+            <li><a href="/tools/minecraft-3d-portal-linker" class="hover:text-emerald-400 transition-colors">Nether Portal 3D Linker</a></li>
+            <li><a href="/tools/roblox-tax-calculator" class="hover:text-emerald-400 transition-colors">Robux 30% Tax Calculator</a></li>
+            <li><a href="/tools/robux-to-usd-calculator" class="hover:text-emerald-400 transition-colors">DevEx USD Cashout Calculator</a></li>
+            <li><a href="/tools/pokemon-go-cp-calculator" class="hover:text-emerald-400 transition-colors">Pokémon GO CP Calculator</a></li>
+            <li><a href="/tools/palworld-breeding-calculator" class="hover:text-emerald-400 transition-colors">Palworld Breeding Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-3">Information & Legal</h4>
+          <ul class="space-y-2">
+            <li><a href="/about" class="hover:text-emerald-400 transition-colors">About Us</a></li>
+            <li><a href="/privacy" class="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
+            <li><a href="/terms" class="hover:text-emerald-400 transition-colors">Terms of Service</a></li>
+            <li><a href="/disclaimer" class="hover:text-emerald-400 transition-colors">Disclaimer & Trademark Notices</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/60 pt-6 text-center text-slate-500">
+        <p>© 2026 GamingToolsHub. All rights reserved. Gaming tools engineered for speed and accuracy.</p>
+      </div>
+    </footer>
+  
+    </div>
+  </div>
+  </body>
+</html>
+
