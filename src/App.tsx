@@ -372,9 +372,6 @@ export default function App() {
           onOpenSearch={() => setIsSearchOpen(true)}
         />
 
-        {/* 1. Top Header Banner Ad Area */}
-        <AdLayout.Header currentPath={currentRoute} />
-
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           {renderCurrentPage()}
         </main>
