@@ -13,8 +13,10 @@ if (rootElement) {
   } else {
     // Prerendered page: the static HTML stays in the document for crawlers,
     // but real visitors get the interactive SPA automatically — no click needed.
-    // The SPA mounts on window load (or after a short fallback delay, or
-    // instantly if the launch button is clicked first).
+    // The SPA mounts as early as possible (right at DOMContentLoaded instead
+    // of waiting for the full window load event, which images can delay),
+    // instantly if the launch button is clicked first, with a short fallback
+    // timer so the static layer is never shown for long.
     let isMounted = false;
     const mountSpa = () => {
       if (isMounted) return;
@@ -40,13 +42,13 @@ if (rootElement) {
       });
     });
 
-    // Auto-mount for real visitors: on full page load, with a fallback
-    // timer so a slow asset can never leave the visitor on the static page.
-    if (document.readyState === 'complete') {
+    // Auto-mount for real visitors at the earliest safe moment: module
+    // scripts execute just before DOMContentLoaded, so the DOM is ready.
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
       mountSpa();
     } else {
-      window.addEventListener('load', mountSpa);
-      setTimeout(mountSpa, 1000);
+      document.addEventListener('DOMContentLoaded', mountSpa);
+      setTimeout(mountSpa, 500);
     }
   }
 }
