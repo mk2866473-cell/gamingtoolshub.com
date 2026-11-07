@@ -11,9 +11,10 @@ if (rootElement) {
     // Normal SPA boot (e.g. homepage SPA root or dynamic navigation)
     createRoot(rootElement).render(<App />);
   } else {
-    // Prerendered page: Do NOT take over automatically on page load!
-    // Crawlers (like Googlebot) see 100% static content without any JavaScript redirects or re-renders.
-    // The interactive SPA only mounts after a deliberate user action:
+    // Prerendered page: the static HTML stays in the document for crawlers,
+    // but real visitors get the interactive SPA automatically — no click needed.
+    // The SPA mounts on window load (or after a short fallback delay, or
+    // instantly if the launch button is clicked first).
     let isMounted = false;
     const mountSpa = () => {
       if (isMounted) return;
@@ -38,5 +39,14 @@ if (rootElement) {
         mountSpa();
       });
     });
+
+    // Auto-mount for real visitors: on full page load, with a fallback
+    // timer so a slow asset can never leave the visitor on the static page.
+    if (document.readyState === 'complete') {
+      mountSpa();
+    } else {
+      window.addEventListener('load', mountSpa);
+      setTimeout(mountSpa, 1000);
+    }
   }
 }
